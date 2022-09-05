@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root to: 'homes#top'
   get 'about' => 'homes#about'
 
@@ -14,11 +14,10 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
-    # get '' => 'homes#top'
-
-    resources :tags, only: [:index, :create, :edit, :update, :destroy]
+    resources :tags, only: [:index, :create, :edit, :update]
     resources :users, only: [:index, :show, :edit, :update, :destroy]
-    resources :posts,only: [:destroy] do
+
+    resources :posts,only: [:index, :show, :destroy] do
       resources :post_comments, only: [:destroy]
     end
   end
