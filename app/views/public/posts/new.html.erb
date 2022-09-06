@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-2">
+      <%= form_with model: @post do |f| %>
+        <table class="table table-borderless">
+          <div class="form-group">
+             <tr>
+               <td><%= f.label :post_image %></td>
+               <td><%= f.file_field :post_image, accept: 'image/*' %></td>
+             </tr>
+           </div>
+           <div class="form-group">
+             <tr>
+               <td><%= f.label :title %></td>
+               <td><%= f.text_field :title, autofocus: true %></td>
+             </tr>
+           </div>
+           <div class="form-group">
+             <tr>
+               <td><%= f.label :body %></td>
+               <td><%= f.text_area :body %></td>
+             </tr>
+           </div>
+           <div class="form-group">
+             <tr>
+               <td><%= f.label :tag %></td>
+               <td>タグを選択できるようにする</td>
+             </tr>
+           </div>
+           <div class="form-group">
+             <tr>
+               <td>位置情報</td>
+               <td>位置情報を入力できるようにする</td>
+             </tr>
+           </div>
+           <div class="form-group">
+             <tr>
+               <td></td>
+               <td><%= f.submit '投稿する' %></td>
+             </tr>
+           </div>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

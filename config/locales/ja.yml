@@ -7,3 +7,10 @@ ja:
       user:
         profile_image: プロフィール画像
         introduction: 自己紹介文
+      post:
+        post_image: 投稿する画像
+        title: タイトル
+        body: コメント
+        tag: タグ
+      tag:
+        name: タグ名
