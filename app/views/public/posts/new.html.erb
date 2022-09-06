@@ -23,8 +23,8 @@
            </div>
            <div class="form-group">
              <tr>
-               <td><%= f.label :tag %></td>
-               <td>タグを選択できるようにする</td>
+               <td><%= f.label :tag_id %></td>
+               <td><%= f.collection_select(:tag_id, @tags, :id, :name ) %></td>
              </tr>
            </div>
            <div class="form-group">

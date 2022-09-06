@@ -1,10 +1,20 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-5 offset-1">
-      <%= image_tag @post.get_post_image(400,400) %>
+    <div class="col-md-5 offset-1 pt-5">
+      <div class="post h3">
+        <%= @post.title %>
+      </div>
+      <div class="post">
+        <%= image_tag @post.get_post_image(400,400) %>
+      </div>
     </div>
-    <div class="col-md-5">
-      
+    <div class="col-md-5 pt-5">
+      <div class="post pt-5">
+        <%= @post.body %>
+      </div>
+      <div class="post pt-3">
+        <%= link_to "#{@post.tag.name}", root_path %>
+      </div>
     </div>
   </div>
 </div>
