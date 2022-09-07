@@ -1,0 +1,10 @@
+
+  <%= search_form_for @search, url: search_index_path do |f| %>
+    <%= f.label :title_cont, "検索" %>
+    <%= f.search_field :title_cont, placeholder: 'フリーワード' %>
+
+    <%= f.submit "🔍" %>
+  <% end %>
+
+
+
