@@ -11,6 +11,6 @@ ja:
         post_image: 投稿する画像
         title: タイトル
         body: コメント
-        tag: タグ
+        tag_id: タグ
       tag:
         name: タグ名
