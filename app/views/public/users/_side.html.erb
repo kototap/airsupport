@@ -1,0 +1,33 @@
+<table class="table table-borderless">
+        <tr>
+          <td>
+            <%= image_tag user.get_profile_image(150,150), class: "rounded-circle border" %>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <%= user.name %>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <%= user.introduction %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= link_to "新規投稿する", new_post_path %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%=link_to"お気に入り記事", bookmarks_user_path(user) %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= link_to "ユーザーの情報編集", edit_user_path(user.id) %>
+
+          </td>
+        </tr>
+      </table>

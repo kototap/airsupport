@@ -4,6 +4,13 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts.all
+  end
+  
+  def bookmarks
+    @user = User.find(params[:id])
+    bookmarks = Bookmark.where(user_id: @user.id).pluck(:post_id)
+    @bookmark_posts = Post.find(bookmarks)
   end
 
   def edit

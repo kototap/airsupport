@@ -2,7 +2,7 @@ class Post < ApplicationRecord
 
   belongs_to :user
   belongs_to :tag
-  has_many :bookmearks, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
   has_many :post_comments, dependent: :destroy
 
   has_one_attached :post_image
@@ -13,5 +13,10 @@ class Post < ApplicationRecord
     post_image.attach(io: File.open(file_path), filename: 'no_post_image.png', content_type: 'image/png')
   end
     post_image.variant(resize_to_limit: [width, height]).processed
+  end
+  
+  # ブックマークがあるか
+  def bookmarked_by?(user)
+    bookmarks.exists?(user_id: user.id)
   end
 end

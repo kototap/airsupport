@@ -34,9 +34,13 @@ Rails.application.routes.draw do
 
     resources :users, only: [:show, :edit, :update, :destroy] do
       get '/unsubscribe' => 'users#unsubscribe'
+      # ブックマークした投稿一覧表示のため
+      member do
+        get :bookmarks
+      end
     end
     resources :posts do
-      resources :bookmarks, only: [:index, :create, :destroy]
+      resource :bookmarks, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
   end

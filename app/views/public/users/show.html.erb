@@ -1,42 +1,33 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3 pt-5">
-      <table class="table table-borderless">
-        <tr>
-          <td>
-            <%= image_tag @user.get_profile_image(150,150), class: "rounded-circle border" %>
-          </td>
-        </tr>
-        <tr>
-          <th>
-            <%= @user.name %>
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <%= @user.introduction %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <%= link_to "新規投稿する", new_post_path %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            ブックマークを見る
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <%= link_to "ユーザーの情報編集", edit_user_path(@user.id) %>
-
-          </td>
-        </tr>
-      </table>
+      <%= render 'side', user: @user %>
     </div>
 
-    <div class="col-md-9", style="background-color: orange;"></div>
-
+    <div class="col-md-9">
+      <div class="card-list-container py-5">
+        <% @posts.each do |post| %>
+        <div class="card col-7 w-30 mx-auto mt-4 shadow-lg">
+          <%= link_to post_path(post.id) do %>
+            <%= image_tag post.get_post_image(500,500), class: 'card-img-top pt-3';  %>
+          <% end %>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-3">
+                <%= image_tag post.user.get_profile_image(100,100), class: 'rounded-circle border'; %>
+              </div>
+              <div class="col-9">
+                <p class="card-title">
+                  <%= link_to post.title, post_path(post.id), class: 'text-dark border-bottom' %>
+                </p>
+                <p class="card-text"><%= post.body %></p>
+                <p><%= post.user.name %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
