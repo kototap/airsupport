@@ -19,6 +19,15 @@ class Public::PostsController < ApplicationController
     @posts = Post.all
   end
 
+  def search
+    @search = Post.ransack(params[:q])
+  end
+
+  def search_index
+    @search = Post.ransack(params[:q])
+    @posts = @search.result
+  end
+
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new

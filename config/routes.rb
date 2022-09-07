@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   # ゲストログイン
   devise_scope :user do
-    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+    post 'public/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
 
 
@@ -45,6 +45,8 @@ Rails.application.routes.draw do
       resource :bookmarks, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
+    get '/search' => 'posts#search'
+    get '/search/index' => 'posts#search_index'
   end
 
 
