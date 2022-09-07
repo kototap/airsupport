@@ -20,7 +20,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :tags, only: [:index, :create, :edit, :update]
-    resources :users, only: [:index, :show, :edit, :update, :destroy]
+    resources :users, only: [:index, :show, :edit, :update, :destroy] do
+      # ユーザーの投稿一覧
+      member do
+        get :user_index
+      end
+    end
 
     resources :posts,only: [:index, :show, :destroy] do
       resources :post_comments, only: [:destroy]
@@ -29,12 +34,9 @@ Rails.application.routes.draw do
 
 
   scope module: :public do
-    # root to: 'homes#top'
-    # get 'about' => 'homes#about'
-
     resources :users, only: [:show, :edit, :update, :destroy] do
       get '/unsubscribe' => 'users#unsubscribe'
-      # ブックマークした投稿一覧表示のため
+      # ブックマークした投稿一覧表示
       member do
         get :bookmarks
       end

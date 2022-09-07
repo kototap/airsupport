@@ -6,7 +6,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts.all
   end
-  
+
   def bookmarks
     @user = User.find(params[:id])
     bookmarks = Bookmark.where(user_id: @user.id).pluck(:post_id)
@@ -20,7 +20,7 @@ class Public::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_path(@user.id), notice: "更新が完了しました！"
+      redirect_to user_path(@user), notice: "更新が完了しました！"
     else
       render 'edit'
     end
