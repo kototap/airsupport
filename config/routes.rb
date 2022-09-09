@@ -41,10 +41,16 @@ Rails.application.routes.draw do
         get :bookmarks
       end
     end
+
     resources :posts do
       resource :bookmarks, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
+      # 下書き一覧
+      collection do
+        get 'draft_index'
+      end
     end
+    
     get '/search' => 'posts#search'
     get '/search/index' => 'posts#search_index'
   end

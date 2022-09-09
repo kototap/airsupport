@@ -26,9 +26,17 @@ class Public::PostsController < ApplicationController
   end
 
 
+  # 公開されている投稿のみ表示
   def index
-    @posts = Post.all
+    @posts = Post.where(is_draft: false)
   end
+  
+
+  # 下書きの投稿のみ表示
+  def draft_index
+    @posts = current_user.posts.where(is_draft: true)
+  end
+
 
   def search
     @search = Post.ransack(params[:q])
