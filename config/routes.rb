@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update, :destroy] do
       # ユーザーの投稿一覧
       member do
-        get :user_index
+        get :posts
       end
     end
 

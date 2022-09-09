@@ -1,6 +1,13 @@
 <div class="container">
+
+    <div class="row">
+    <div class="col-md-3 offset-2 pt-5">
+      <h3><%= "#{@user.name}さんの情報編集" %></h3>
+    </div>
+  </div>
+
   <div class="row">
-    <div class="col-md-6 offset-3 pt-5 center-block">
+    <div class="col-md-8 offset-2 pt-5 center-block">
 
       <%= form_with model: @user, url: admin_user_path(@user), method: :patch do |f| %>
         <table class="table table-borderless">
@@ -42,6 +49,11 @@
            </div>
         </table>
       <% end %>
+    </div>
+  </div>
+    <div class="row">
+    <div class="col-md-3 offset-2 pt-5 pb-5">
+      <%= link_to "戻る", admin_user_path(@user) %>
     </div>
   </div>
 </div>

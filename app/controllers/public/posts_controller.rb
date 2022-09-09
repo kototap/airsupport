@@ -21,11 +21,13 @@ class Public::PostsController < ApplicationController
 
   def search
     @search = Post.ransack(params[:q])
+    # OR検索
+    @search.combinator = 'or'
   end
 
   def search_index
     @search = Post.ransack(params[:q])
-    @posts = @search.result
+    @posts = @search.result(distinct: true)
   end
 
   def show
@@ -54,7 +56,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :post_image, :tag_id)
+    params.require(:post).permit(:title, :body, :airport, :post_image, :tag_id)
   end
 
 

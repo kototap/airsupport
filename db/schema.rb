@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2022_09_04_105125) do
     t.integer "tag_id", null: false
     t.string "title", null: false
     t.string "body", null: false
+    t.string "airport", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

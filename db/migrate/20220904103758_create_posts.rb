@@ -5,6 +5,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.integer :tag_id, null: false
       t.string :title, null: false
       t.string :body, null: false
+      t.string :airport, null: false
 
       t.timestamps
     end

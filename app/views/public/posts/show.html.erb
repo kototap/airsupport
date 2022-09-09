@@ -10,9 +10,13 @@
     </div>
     <div class="col-md-5 pt-5">
       <div class="post pt-5">
-        <%= @post.body %>
+        <p><%= @post.body %></p>
+        <p><%= @post.tag.name %></p>
+        <p><%= @post.airport %></p>
       </div>
 
+
+      <div>
         <% if @post.bookmarked_by?(current_user) %>
           <p>
             <%= link_to post_bookmarks_path(@post), method: :delete do %>
@@ -27,8 +31,6 @@
           </p>
         <% end %>
 
-
-      <div>
         <p>コメント<%= @post.post_comments.count %>件</p>
         <% @post.post_comments.each do |post_comment| %>
           <p><%= image_tag post_comment.user.get_profile_image(30,30), class: 'border' %>
@@ -48,11 +50,10 @@
         <% end %>
       </div>
 
-      <div class="post pt-3">
-        <%= link_to @post.tag.name, root_path, class: 'text-dark border-bottom' %>
+      <div class="post pt-3"></div>
         <% if current_user == @post.user %>
-          <%= link_to '編集', edit_post_path(@post.id), class: 'text-dark border-bottom' %>
-          <%= link_to '削除', post_path(@post.id), method: :delete, class: 'text-dark border-bottom' %>
+          <%= link_to '編集', edit_post_path(@post.id), class: 'text-dark border-bottom text-muted' %>
+          <%= link_to '削除', post_path(@post.id), method: :delete, class: 'text-dark border-bottom text-muted' %>
         <% end %>
       </div>
     </div>

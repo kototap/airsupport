@@ -8,7 +8,7 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def user_index
+  def posts
     @user = User.find(params[:id])
     @user_posts = @user.posts.all
   end
@@ -28,7 +28,7 @@ class Admin::UsersController < ApplicationController
     @user.destroy
     redirect_to admin_users_path
   end
-  
+
   def unsubscribe
     @user = User.find(params:id)
   end

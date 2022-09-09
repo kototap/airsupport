@@ -23,6 +23,12 @@
            </div>
            <div class="form-group">
              <tr>
+               <td><%= f.label :airport %></td>
+               <td><%= f.text_field :airport %></td>
+             </tr>
+           </div>
+           <div class="form-group">
+             <tr>
                <td><%= f.label :tag_id %></td>
                <td><%= f.collection_select(:tag_id, @tags, :id, :name ) %></td>
              </tr>

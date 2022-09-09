@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3 offset-2 pt-5">
-      <h3>みんなの投稿一覧</h3>
+      <h3><%= "#{@user.name}さんの投稿一覧" %></h3>
     </div>
   </div>
   <div class="row">
@@ -9,21 +9,27 @@
         <table class="table">
           <thead>
             <tr>
-              <th>ユーザー</th>
               <th>タイトル</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            <% @posts.each do |post| %>
+            <% @user_posts.each do |user_post| %>
             <tr>
-              <td><%= post.user.name %></td>
-              <td><%= post.title %></td>
-              <td><%= link_to '詳細へ', admin_post_path(post) %></td>
+              <td><%= user_post.title %></td>
+              <td><%= link_to '詳細へ', admin_post_path(user_post) %></td>
             </tr>
             <% end %>
           </tbody>
         </table>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-3 offset-2 pt-5 pb-5">
+      <%= link_to "戻る", admin_user_path(@user) %>
+    </div>
+  </div>
 </div>
+
+
+
