@@ -18,6 +18,8 @@
     </header>
 
     <main class="mb-auto">
+      <%= flash[:notice] %>
+      <%= flash[:alert] %>
     <%= yield %>
     </main>
 

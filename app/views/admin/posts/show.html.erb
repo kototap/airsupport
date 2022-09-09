@@ -42,9 +42,9 @@
           <small class="text-muted"><p>
             <%= post_comment.created_at.strftime('%Y/%m/%d') %>
             <% if admin_signed_in? %>
-              <%= link_to "削除", admin_post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+              <%= link_to "削除", admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, data: {confirm: "本当に削除しますか？"} %>
             <% elsif post_comment.user == current_user %>
-              <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+              <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, data: {confirm: "本当に削除しますか？"}  %>
             <% end %>
           </p></small>
         <% end %>
@@ -60,7 +60,7 @@
       <% end %>
 
       <div class="post pt-3"></div>
-        <%= link_to '削除', admin_post_path(@post.id), method: :delete, class: 'text-dark border-bottom text-muted' %>
+        <%= link_to '削除', admin_post_path(@post.id), method: :delete, class: 'text-dark border-bottom text-muted', data: {confirm: "本当に削除しますか？"} %>
       </div>
     </div>
   </div>
