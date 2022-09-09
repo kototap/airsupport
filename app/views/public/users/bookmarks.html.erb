@@ -1,4 +1,31 @@
-いいね一覧
-<% @bookmark_posts.each do |post|%>
-<%=post.title %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mx-auto pt-5">
+      <h3>ブックマークした投稿一覧</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mx-auto pt-5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ユーザー</th>
+              <th>タイトル</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @bookmark_posts.each do |post| %>
+            <tr>
+              <td><%= post.user.name %></td>
+              <td><%= post.title %></td>
+              <td><%= link_to '詳細へ', post_path(post) %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+
+

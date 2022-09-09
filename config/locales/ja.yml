@@ -12,5 +12,6 @@ ja:
         title: タイトル
         body: コメント
         tag_id: タグ
+        airport: 空港名
       tag:
         name: タグ名

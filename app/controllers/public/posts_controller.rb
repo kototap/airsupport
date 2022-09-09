@@ -2,30 +2,51 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @tags = Tag.all
   end
 
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    if @post.save
-      redirect_to post_path(@post.id)
+    # 投稿ボタンを押下した場合
+    if params[:send]
+      if @post.save
+        # (context: :publicize)
+        redirect_to post_path(@post), notice: "投稿しました！"
+      else
+        render :new, alert: "投稿できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください。"
+      end
+    # 下書きボタンを押下した場合
     else
-      render 'new'
+      if Post.update(is_draft: true)
+        redirect_to user_path(current_user), notice: "下書きを保存しました。"
+      else
+        render :new, alert: "保存できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください。"
+      end
     end
   end
 
+
+  # 公開されている投稿のみ表示
   def index
-    @posts = Post.all
+    @posts = Post.where(is_draft: false)
   end
+  
+
+  # 下書きの投稿のみ表示
+  def draft_index
+    @posts = current_user.posts.where(is_draft: true)
+  end
+
 
   def search
     @search = Post.ransack(params[:q])
+    # OR検索
+    @search.combinator = 'or'
   end
 
   def search_index
     @search = Post.ransack(params[:q])
-    @posts = @search.result
+    @posts = @search.result(distinct: true)
   end
 
   def show
@@ -40,9 +61,33 @@ class Public::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
-    redirect_to post_path(@post.id)
+    # 下書きを公開するする場合
+    if params[:publicize_draft]
+      @post.attributes = post_params.merge(is_draft: false)
+      if @post.save(context: :publicize)
+        redirect_to post_path(@post), notice: "下書きの投稿を公開しました！"
+      else
+        @post.is_draft = true
+        render :edit, alert: "投稿を公開できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
+      end
+    # 公開済み投稿の更新の場合
+    elsif params[:update_post]
+      @post.attributes = post_params
+      if @post.save(context: :publicize)
+        redirect_to post_path(@post), notice: "投稿を更新しました！"
+      else
+        render :edit, alert: "投稿を更新できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
+      end
+    # 下書きを非公開のまま更新する場合
+    else
+      if @post.update(post_params)
+        redirect_to post_path(@post), notice: "下書きを更新しました！"
+      else
+        render :edit, alert: "下書きを更新できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
+      end
+    end
   end
+
 
   def destroy
     @post = Post.find(params[:id])
@@ -54,7 +99,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :post_image, :tag_id)
+    params.require(:post).permit(:title, :body, :airport, :post_image, :tag_id, :is_draft)
   end
 
 

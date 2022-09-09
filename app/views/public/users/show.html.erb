@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3 pt-5">
+    <div class="col-md-3 col-sm-12 pt-5">
       <%= render 'side', user: @user %>
     </div>
 
-    <div class="col-md-9">
+    <div class="col-md-9 col-sm-12">
       <div class="card-list-container py-5">
         <% @posts.each do |post| %>
-        <div class="card col-7 w-30 mx-auto mt-4 shadow-lg">
-          <%= link_to post_path(post.id) do %>
+        <div class="card col-md-7 col-sm-12 w-30 mx-auto mt-4 shadow-lg">
+          <%= link_to post_path(post) do %>
             <%= image_tag post.get_post_image(500,500), class: 'card-img-top pt-3';  %>
           <% end %>
           <div class="card-body">

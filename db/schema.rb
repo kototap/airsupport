@@ -69,9 +69,11 @@ ActiveRecord::Schema.define(version: 2022_09_04_105125) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "tag_id", null: false
-    t.string "title", null: false
-    t.string "body", null: false
+    t.integer "tag_id"
+    t.string "title"
+    t.string "body"
+    t.string "airport"
+    t.boolean "is_draft", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

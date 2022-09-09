@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 offset-1 pt-5">
+      <div class="post h3">
+        <%= @post.title %>
+      </div>
+      <div class="post">
+        <%= image_tag @post.get_post_image(400,400) %>
+      </div>
+    </div>
+    <div class="col-md-5 pt-5">
+      <div class="post pt-5">
+        <p><%= @post.body %></p>
+        <p><%= @post.tag.name %></p>
+        <p><%= @post.airport %></p>
+      </div>
+
+
+      <div>
+        <% if admin_signed_in? %>
+          <p> ♥<%= @post.bookmarks.count %> いいね</p>
+
+        <% elsif @post.bookmarked_by?(current_user) %>
+          <p>
+            <%= link_to post_bookmarks_path(@post), method: :delete do %>
+              ♥<%= @post.bookmarks.count %> いいね
+            <% end %>
+          </p>
+        <% else %>
+          <p>
+            <%= link_to post_bookmarks_path(@post), method: :post do %>
+              ♡<%= @post.bookmarks.count %> いいね
+            <% end %>
+          </p>
+        <% end %>
+
+
+        <p>コメント<%= @post.post_comments.count %>件</p>
+        <% @post.post_comments.each do |post_comment| %>
+          <p><%= image_tag post_comment.user.get_profile_image(30,30), class: 'border' %>
+          <%= post_comment.user.name %>&emsp;<%= post_comment.comment %></p>
+          <small class="text-muted"><p>
+            <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+            <% if admin_signed_in? %>
+              <%= link_to "削除", admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+            <% elsif post_comment.user == current_user %>
+              <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, data: {confirm: "本当に削除しますか？"}  %>
+            <% end %>
+          </p></small>
+        <% end %>
+      </div>
+
+      <% if user_signed_in? %>
+        <div>
+          <%= form_with model: [@post, @post_comment] do |f| %>
+            <%= f.text_area :comment, rows: '2', placeholder: "コメントをここに" %>
+            <%= f.submit "送信する" %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div class="post pt-3"></div>
+        <%= link_to '削除', admin_post_path(@post.id), method: :delete, class: 'text-dark border-bottom text-muted', data: {confirm: "本当に削除しますか？"} %>
+      </div>
+    </div>
+  </div>
+</div>

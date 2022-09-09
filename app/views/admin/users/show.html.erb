@@ -15,7 +15,7 @@
           <td><%= @user.email %></td>
         </tr>
         <tr>
-          <td><%= link_to "この会員の投稿一覧へ", user_index_admin_user_path(@user) %></td>
+          <td><%= link_to "この会員の投稿一覧へ", posts_admin_user_path(@user) %></td>
           <td><%= link_to "編集する", edit_admin_user_path(@user) %></td>
           <td><%= link_to "ユーザーの削除", admin_user_path(@user), method: :delete, data: {confirm: "本当に削除しますか？"} %></td>
         </tr>

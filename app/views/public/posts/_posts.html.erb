@@ -1,7 +1,11 @@
 <% posts.each do |post| %>
-      <div class="card">
-        <%= image_tag post.get_post_image(300,300), class: "card-img-top" %>
-        <div class="card-body">
+  <div class="card col-md-7 col-sm-12 w-30 mx-auto mt-4 shadow-lg">
+    <%= link_to post_path(post) do %>
+      <%= image_tag post.get_post_image(300,300), class: "card-img-top pt-3"; %>
+    <% end %>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12">
           <h5 class="card-title"><%= post.title %></h5>
           <p class="card-text"><%= post.body %></p>
           <p class="card-text"><small class="text-muted">
@@ -9,4 +13,7 @@
           </small></p>
         </div>
       </div>
-      <% end %>
+
+    </div>
+  </div>
+<% end %>
