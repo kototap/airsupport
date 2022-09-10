@@ -10,7 +10,7 @@ class Admin::UsersController < ApplicationController
 
   def posts
     @user = User.find(params[:id])
-    @user_posts = @user.posts.all
+    @user_posts = @user.posts.where(is_draft: false)
   end
 
   def edit

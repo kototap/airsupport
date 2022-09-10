@@ -1,6 +1,9 @@
 <div class="container">
+
+  <%= render "error", obj: @tag %>
+
   <div class="row pt-5">
-    <div class="col-md-6 offset-3 text-center">
+    <div class="col-md-8 offset-3 text-center">
       <%= form_with model: @tag, url: admin_tags_path do |f| %>
         <div class="form-group">
           <%= f.label :name %>

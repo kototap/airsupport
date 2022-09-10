@@ -1,8 +1,11 @@
 
 <div class="container">
-  <div class="col-md-9 col-sm-12">
-      <div class="card-list-container py-5">
-    <%= render 'posts', posts: @posts %>
+  <div class="row">
+    <div class="col-md-3 offset-1">
+      <h2>投稿一覧</h2>
     </div>
+  </div>
+  <div class="row">
+        <%= render 'posts', posts: @posts %>
   </div>
 </div>

@@ -1,20 +1,22 @@
 class Post < ApplicationRecord
 
   belongs_to :user
-  belongs_to :tag
+  belongs_to :tag, optional: true
   has_many :bookmarks, dependent: :destroy
   has_many :post_comments, dependent: :destroy
 
   has_one_attached :post_image
 
 
-  # with_options presence: true, on: :publicize do
-  #   validates :post_image
-  #   validates :title, length: { maximum: 20 }
-  #   validates :body, length: { maximum: 80 }
-  #   validates :airport
-  #   validates :tag_id
-  # end
+  with_options presence: true, on: :publicize do
+    validates :title
+    validates :body
+    validates :airport
+    validates :tag_id
+  end
+
+  validates :title, length: { maximum: 20 }, on: :publicize
+  validates :body, length: { maximum: 80 }, on: :publicize
 
 
 

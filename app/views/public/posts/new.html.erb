@@ -1,4 +1,7 @@
 <div class="container">
+
+ <%= render "error", obj: @post %>
+
   <div class="row">
     <div class="col-md-8 offset-2">
       <%= form_with model: @post do |f| %>

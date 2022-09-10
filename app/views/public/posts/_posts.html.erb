@@ -1,19 +1,25 @@
-<% posts.each do |post| %>
-  <div class="card col-md-7 col-sm-12 w-30 mx-auto mt-4 shadow-lg">
-    <%= link_to post_path(post) do %>
-      <%= image_tag post.get_post_image(300,300), class: "card-img-top pt-3"; %>
-    <% end %>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-12">
-          <h5 class="card-title"><%= post.title %></h5>
-          <p class="card-text"><%= post.body %></p>
-          <p class="card-text"><small class="text-muted">
-            <%= link_to post.user.name, user_path(post.user.id), class: 'text-dark border-bottom' %>
-          </small></p>
+<div class="col-md-9 col-sm-12">
+  <div class="card-list-container py-5">
+    <% @posts.each do |post| %>
+    <div class="card col-md-7 col-sm-12 w-30 mx-auto mt-4 shadow-lg">
+      <%= link_to post_path(post) do %>
+        <%= image_tag post.get_post_image(500,500), class: 'card-img-top pt-3';  %>
+      <% end %>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-3">
+            <%= image_tag post.user.get_profile_image(100,100), class: 'rounded-circle border'; %>
+          </div>
+          <div class="col-9">
+            <p class="card-title">
+              <%= link_to post.title, post_path(post.id), class: 'text-dark border-bottom' %>
+            </p>
+            <p class="card-text"><%= post.body %></p>
+            <p><%= post.user.name %></p>
+          </div>
         </div>
       </div>
-
     </div>
+    <% end %>
   </div>
-<% end %>
+    </div>
