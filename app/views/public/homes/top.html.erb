@@ -1,0 +1,57 @@
+
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+	<div class="carousel-inner bgCarousel">
+		<div class="carousel-item bgCarousel__item active"></div>
+		<div class="carousel-item bgCarousel__item"></div>
+		<div class="carousel-item bgCarousel__item"></div>
+		<div class="carousel-caption d-none d-md-block">
+      <h2 class="mv-title"><span>旅をもっと快適に</span></h2>
+      <p class="mv-body"><span>旅行も出張も、時間を持て余すことなく楽しみ尽くす<span></p>
+    </div>
+	</div>
+</div>
+
+
+<div class="container top-main">
+
+  <div class="row pt-5 mt-5">
+    <h3>How to...</h3>
+  </div>
+
+
+  <div class="row pt-5 mt-5">
+    <div class="col-12">
+      <p class='new-posts'><span>NEW POSTS!</span></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <% @posts.each do |post| %>
+        <div class="card mt-4">
+          <div class="row">
+            <div class="col-md-4">
+              <%= image_tag post.get_post_image(200,150), class: 'img-fluid' %>
+            </div>
+            <div class="col-md-8">
+              <h5 class="card-title font-weight-bold pt-3"><%= post.title %></h5>
+              <p class="card-text"><%= post.body %></p>
+              <p class="card-text">
+                <small class="text-muted"><%= post.tag.name %> | <%= post.airport %>　　　</small>
+                <%= link_to "Read More", post_path(post), class: 'btn btn-outline-success btn-sm align-left' %>
+              </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="d-flex justify-content-end mt-3">
+        <%= link_to posts_path do %>
+          <i class="fas fa-check fa-lg" style="color: #95e1d3;"></i>
+          <span class="text-dark border-bottom">全ての投稿を見てみる</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+</div>

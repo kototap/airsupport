@@ -1,7 +1,7 @@
 class Admin::PostsController < ApplicationController
 
   def index
-    @posts = Post.where(is_draft: false)
+    @posts = Post.where(is_draft: false).page(params[:page]).per(2)
   end
 
   def show
