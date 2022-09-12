@@ -1,7 +1,7 @@
 class Admin::UsersController < ApplicationController
 
   def index
-    @user = User.all
+    @users = User.all.page(params[:page])
   end
 
   def show
@@ -10,7 +10,7 @@ class Admin::UsersController < ApplicationController
 
   def posts
     @user = User.find(params[:id])
-    @user_posts = @user.posts.all
+    @user_posts = @user.posts.where(is_draft: false)
   end
 
   def edit

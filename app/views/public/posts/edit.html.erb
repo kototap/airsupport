@@ -1,4 +1,5 @@
 <div class="container">
+<%= render "error", obj: @post %>
   <div class="row pt-5 mt-5">
     <h2 class="text-center">投稿編集</h2>
   </div>
@@ -26,8 +27,14 @@
            </div>
            <div class="form-group">
              <tr>
+               <td><%= f.label :airport %></td>
+               <td><%= f.text_field :airport %></td>
+             </tr>
+           </div>
+           <div class="form-group">
+             <tr>
                <td><%= f.label :tag_id %></td>
-               <td><%= f.collection_select(:tag_id, @tags, :id, :name ) %></td>
+               <td><%= f.collection_select(:tag_id, Tag.all , :id, :name , {prompt: "選択してください"}, {class: 'form-control'}) %></td>
              </tr>
            </div>
            <div class="form-group">
@@ -41,11 +48,11 @@
                <td></td>
               <% if @post.is_draft == true %>
                 <td>
-                  <%= f.submit "下書きを公開", :name => 'publicize_draft', class:'mr-5 btn btn-sm btn-warning mr-5' %>
-                  <%= f.submit "下書きのまま更新", :name => 'update_draft', class:'mr-5 btn btn-sm btn-outline-secondary' %>
+                  <%= f.submit "下書きを公開", :name => 'publicize_draft', class: 'mr-5 btn btn-sm btn-warning mr-5' %>
+                  <%= f.submit "下書きのまま更新", :name => 'update_draft', class: 'mr-5 btn btn-sm btn-outline-secondary' %>
                 </td>
               <% else %>
-                <td><%= f.submit "更新", :name => 'update_post', class:'btn btn-sm btn-warning text-light' %></td>
+                <td><%= f.submit "更新", :name => 'update_post', class: 'btn btn-sm btn-warning text-light' %></td>
               <% end %>
              </tr>
            </div>

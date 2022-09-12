@@ -4,7 +4,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.where(is_draft: false)
+    @posts = @user.posts.where(is_draft: false).order(created_at: :desc).page(params[:page]).per(2)
   end
 
   def bookmarks

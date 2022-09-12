@@ -1,0 +1,78 @@
+
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+	 <ol class="carousel-indicators">
+    <li data-target="#carouselExampleFade" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleFade" data-slide-to="1"></li>
+    <li data-target="#carouselExampleFade" data-slide-to="2"></li>
+  </ol>
+	<div class="carousel-inner bgCarousel">
+		<div class="carousel-item bgCarousel__item active"></div>
+		<div class="carousel-item bgCarousel__item"></div>
+		<div class="carousel-item bgCarousel__item"></div>
+		<div class="carousel-caption d-none d-md-block">
+      <h2 class="mv-title"><span>旅をもっと快適に</span></h2>
+      <p class="mv-body"><span>旅行も出張も、時間を持て余すことなく楽しみ尽くす<span></p>
+    </div>
+	</div>
+</div>
+
+<div class="top-bg py-5">
+  <div class="container top-main">
+
+    <div class="row py-5 my-5">
+      <div class="col-md-6 offset-2">
+        <h1><span class="top-about">It's Fun To Travel <i class="fas fa-plane"></i></span></h1>
+        <h4 class="pt-3">AIRSUPPORTで旅をもっと気軽に楽しもう</h4>
+        <h4 class="pt-2"><i class="fas fa-search-location"></i> 空港からすぐ近くの、お店や場所を探す</h4>
+        <p class="offset-7"><small class=" text-muted">*ユーザー登録が必要です</small></p>
+      </div>
+      <div class="col-md-2 align-self-center">
+        <%= link_to about_path, class: 'btn btn-outline-warning text-dark mt-4 mb-1 pr-5' do %>
+        <i class="fas fa-check fa-lg" style="color: #95e1d3;"></i>
+        　About
+        <% end %>
+        <%= link_to search_path, class: 'btn btn-outline-info text-dark mt-1 pr-5' do %>
+        <i class="fas fa-search fa-lg" style="color: #95e1d3;"></i>
+        　Search
+        <% end %>
+      </div>
+    </div>
+
+
+    <div class="row pt-5 mt-5">
+      <div class="col-12">
+        <h1><span class='new-posts'>NEW POSTS</span></h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-8">
+        <% @posts.each do |post| %>
+          <div class="card mt-4">
+            <div class="row">
+              <div class="col-md-4">
+                <%= image_tag post.get_post_image, class: 'img-fluid' %>
+              </div>
+              <div class="col-md-8">
+                <h5 class="card-title font-weight-bold pt-3"><%= post.title %></h5>
+                <p class="card-text"><%= post.body %></p>
+                <p class="card-text">
+                  <small class="text-muted"><%= post.tag.name %> | <%= post.airport %>　　　</small>
+                  <%= link_to "Read More", post_path(post), class: 'btn btn-outline-success btn-sm align-left' %>
+                </p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <div class="d-flex justify-content-end mt-3">
+          <%= link_to posts_path do %>
+            <i class="fas fa-check fa-lg" style="color: #95e1d3;"></i>
+            <span class="text-dark border-bottom">全ての投稿を見てみる</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  root to: 'homes#top'
-  get 'about' => 'homes#about'
-
+  namespace :admin do
+    get 'homes/top'
+  end
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
   }
@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
+    get '/' => 'homes#top'
     resources :tags, only: [:index, :create, :edit, :update]
     resources :users, only: [:index, :show, :edit, :update, :destroy] do
       # ユーザーの投稿一覧
@@ -34,6 +35,9 @@ Rails.application.routes.draw do
 
 
   scope module: :public do
+    root to: 'homes#top'
+    get '/about' => 'homes#about'
+
     resources :users, only: [:show, :edit, :update, :destroy] do
       get '/unsubscribe' => 'users#unsubscribe'
       # ブックマークした投稿一覧表示
@@ -50,7 +54,7 @@ Rails.application.routes.draw do
         get 'draft_index'
       end
     end
-    
+
     get '/search' => 'posts#search'
     get '/search/index' => 'posts#search_index'
   end

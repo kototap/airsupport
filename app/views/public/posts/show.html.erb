@@ -1,54 +1,76 @@
-<div class="container">
+<div class="container mb-5">
   <div class="row">
     <div class="col-md-5 offset-1 pt-5">
       <div class="post h3">
         <%= @post.title %>
       </div>
       <div class="post">
-        <%= image_tag @post.get_post_image(400,400) %>
+        <%= image_tag @post.get_post_image, size: '400x400' %>
       </div>
     </div>
     <div class="col-md-5 pt-5">
       <div class="post pt-5">
         <p><%= @post.body %></p>
-        <p><%= @post.tag.name %></p>
+        <p><%= @post.tag.name if @post.tag.present? %></p>
         <p><%= @post.airport %></p>
       </div>
 
 
-      <div>
-        <% if @post.bookmarked_by?(current_user) %>
-          <p>
-            <%= link_to post_bookmarks_path(@post), method: :delete do %>
-              ♥<%= @post.bookmarks.count %> いいね
+        <div>
+        <!--投稿が公開されていてユーザーがログインしているときにコメント欄、ブックマーク欄を出す-->
+        <!--ブックマーク欄-->
+        <% if @post.is_draft == false && user_signed_in? %>
+
+          <% if @post.bookmarked_by?(current_user) %>
+            <p>
+              <%= link_to post_bookmarks_path(@post), method: :delete do %>
+                ♥<%= @post.bookmarks.count %> いいね
+              <% end %>
+            </p>
+            <% else %>
+            <p>
+              <%= link_to post_bookmarks_path(@post), method: :post do %>
+                ♡<%= @post.bookmarks.count %> いいね
+              <% end %>
+            </p>
+          <% end %>
+
+          <p>コメント<%= @post.post_comments.count %>件</p>
+          <% @post.post_comments.each do |post_comment| %>
+            <p><%= image_tag post_comment.user.get_profile_image(30,30), class: 'border' %>
+            <%= post_comment.user.name %>&emsp;<%= post_comment.comment %></p>
+            <small class="text-muted"><p>
+              <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+              <% if post_comment.user == current_user %>
+                <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+              <% end %>
+            </p></small>
+          <% end %>
+          </div>
+
+          <div>
+            <%= form_with model: [@post, @post_comment] do |f| %>
+              <%= f.text_area :comment, rows: '2', placeholder: "コメントをここに" %>
+              <%= f.submit "送信する" %>
             <% end %>
-          </p>
-          <% else %>
-          <p>
-            <%= link_to post_bookmarks_path(@post), method: :post do %>
-              ♡<%= @post.bookmarks.count %> いいね
-            <% end %>
-          </p>
+          </div>
         <% end %>
 
-        <p>コメント<%= @post.post_comments.count %>件</p>
-        <% @post.post_comments.each do |post_comment| %>
-          <p><%= image_tag post_comment.user.get_profile_image(30,30), class: 'border' %>
-          <%= post_comment.user.name %>&emsp;<%= post_comment.comment %></p>
-          <small class="text-muted"><p>
-            <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-            <% if post_comment.user == current_user %>
-              <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
-            <% end %>
-          </p></small>
+        <!--ユーザーがログインしていないとき-->
+        <% unless user_signed_in? %>
+          <p>♥<%= @post.bookmarks.count %> いいね</p>
+          <p>コメント<%= @post.post_comments.count %>件</p>
+          <% @post.post_comments.each do |post_comment| %>
+            <p><%= image_tag post_comment.user.get_profile_image(30,30), class: 'border' %>
+            <%= post_comment.user.name %>&emsp;<%= post_comment.comment %></p>
+            <small class="text-muted"><p>
+              <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+            </p></small>
+          <% end %>
+          <p><%= link_to 'ユーザー登録', new_user_registration_path %>して投稿をブックマークしたり、<br>
+              コメントしてみよう！</p>
         <% end %>
-      </div>
-      <div>
-        <%= form_with model: [@post, @post_comment] do |f| %>
-          <%= f.text_area :comment, rows: '2', placeholder: "コメントをここに" %>
-          <%= f.submit "送信する" %>
-        <% end %>
-      </div>
+
 
       <div class="post pt-3"></div>
         <% if current_user == @post.user %>

@@ -1,5 +1,9 @@
 <div class="container">
-  <div class="card-group col-9 mx-auto pt-5 pb-5 mt-5 mb-5 shadow-lg">
-    <%= render 'posts', posts: @posts %>
+  <div class="row">
+    <div class="col-md-3 offset-1">
+      <h2>検索結果一覧</h2>
+    </div>
   </div>
 </div>
+
+<%= render 'posts', posts: @posts %>

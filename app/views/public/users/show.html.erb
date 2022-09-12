@@ -3,30 +3,38 @@
     <div class="col-md-3 col-sm-12 pt-5">
       <%= render 'side', user: @user %>
     </div>
-
-    <div class="col-md-9 col-sm-12">
-      <div class="card-list-container py-5">
-        <% @posts.each do |post| %>
-        <div class="card col-md-7 col-sm-12 w-30 mx-auto mt-4 shadow-lg">
-          <%= link_to post_path(post) do %>
-            <%= image_tag post.get_post_image(500,500), class: 'card-img-top pt-3';  %>
-          <% end %>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-3">
-                <%= image_tag post.user.get_profile_image(100,100), class: 'rounded-circle border'; %>
-              </div>
-              <div class="col-9">
-                <p class="card-title">
-                  <%= link_to post.title, post_path(post.id), class: 'text-dark border-bottom' %>
-                </p>
-                <p class="card-text"><%= post.body %></p>
-                <p><%= post.user.name %></p>
+    <div class="col-md-9">
+      <div class="container">
+        <div class="row">
+          <% @posts.each do |post| %>
+            <div class="col-lg-6 my-4">
+              <div class="card">
+                <%= image_tag post.get_post_image,class: 'card-img-top' %>
+                <div class="card-body ml-2">
+                  <div class="row">
+                    <h4 class="card-title"><%= post.title %></h4>
+                  </div>
+                  <div class="row">
+                    <p class="card-text"><i class="fas fa-comment-dots"></i> <%= post.body %></p>
+                  </div>
+                  <div class="row">
+                    <p><i class="fas fa-tag"></i> <%= post.tag.name %>　|　<i class="fas fa-plane-departure"></i> <%= post.airport %></p>
+                  </div>
+                  <div class="row">
+                    <div class="col-7 pt-2">
+                      <%= link_to "詳細を見る", post_path(post), class:"btn btn-primary" %>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+          <% end %>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mx-auto py-5 d-flex justify-content-center">
+            <p><%= paginate @posts %></p>
           </div>
         </div>
-        <% end %>
       </div>
     </div>
   </div>

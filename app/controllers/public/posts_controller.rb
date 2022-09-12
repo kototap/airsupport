@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+ before_action :authenticate_user!, except:[:index, :show]
 
   def new
     @post = Post.new
@@ -9,15 +10,14 @@ class Public::PostsController < ApplicationController
     @post.user_id = current_user.id
     # 投稿ボタンを押下した場合
     if params[:send]
-      if @post.save
-        # (context: :publicize)
+      if @post.save(context: :publicize)
         redirect_to post_path(@post), notice: "投稿しました！"
       else
         render :new, alert: "投稿できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください。"
       end
     # 下書きボタンを押下した場合
     else
-      if Post.update(is_draft: true)
+      if @post.update(is_draft: true)
         redirect_to user_path(current_user), notice: "下書きを保存しました。"
       else
         render :new, alert: "保存できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください。"
@@ -28,36 +28,48 @@ class Public::PostsController < ApplicationController
 
   # 公開されている投稿のみ表示
   def index
-    @posts = Post.where(is_draft: false)
+    @posts = Post.where(is_draft: false).order(created_at: :desc).page(params[:page])
   end
-  
+
 
   # 下書きの投稿のみ表示
   def draft_index
-    @posts = current_user.posts.where(is_draft: true)
+    @posts = current_user.posts.where(is_draft: true).order(created_at: :desc).page(params[:page])
   end
 
 
   def search
-    @search = Post.ransack(params[:q])
+    @search = Post.where(is_draft: false).ransack(params[:q])
     # OR検索
     @search.combinator = 'or'
   end
 
   def search_index
-    @search = Post.ransack(params[:q])
-    @posts = @search.result(distinct: true)
+    @search = Post.where(is_draft: false).ransack(params[:q])
+    @posts = @search.result(distinct: true).order(created_at: :desc).page(params[:page])
   end
 
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
+    # 前ページセッションを記録=>indexページ（全体or個人）
+    session[:previous_url] = request.referer
   end
+
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+     # showで記録したページに戻る
+    redirect_to session[:previous_url]
+  end
+
 
   def edit
     @post = Post.find(params[:id])
     @tags = Tag.all
   end
+
 
   def update
     @post = Post.find(params[:id])
@@ -88,12 +100,6 @@ class Public::PostsController < ApplicationController
     end
   end
 
-
-  def destroy
-    @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to posts_path
-  end
 
 
   private

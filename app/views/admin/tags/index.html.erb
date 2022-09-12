@@ -1,6 +1,9 @@
 <div class="container">
+
+  <%= render "error", obj: @tag %>
+
   <div class="row pt-5">
-    <div class="col-md-6 offset-3 text-center">
+    <div class="col-md-8 offset-3 text-center">
       <%= form_with model: @tag, url: admin_tags_path do |f| %>
         <div class="form-group">
           <%= f.label :name %>
@@ -20,6 +23,11 @@
           </tr>
         <% end %>
       </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mx-auto pt-5 d-flex justify-content-center">
+      <p><%= paginate @tags %></p>
     </div>
   </div>
 </div>
