@@ -1,2 +1,9 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+
+body{
+  font-family: 'Noto Sans JP', sans-serif;
+  background: #fffdfb;
+}

@@ -28,13 +28,13 @@ class Public::PostsController < ApplicationController
 
   # 公開されている投稿のみ表示
   def index
-    @posts = Post.where(is_draft: false).page(params[:page])
+    @posts = Post.where(is_draft: false).order(created_at: :desc).page(params[:page])
   end
 
 
   # 下書きの投稿のみ表示
   def draft_index
-    @posts = current_user.posts.where(is_draft: true).page(params[:page])
+    @posts = current_user.posts.where(is_draft: true).order(created_at: :desc).page(params[:page])
   end
 
 
@@ -45,8 +45,8 @@ class Public::PostsController < ApplicationController
   end
 
   def search_index
-    @search = Post.where(is_draft: false).ransack(params[:q]).page(params[:page])
-    @posts = @search.result(distinct: true)
+    @search = Post.where(is_draft: false).ransack(params[:q])
+    @posts = @search.result(distinct: true).order(created_at: :desc).page(params[:page])
   end
 
   def show

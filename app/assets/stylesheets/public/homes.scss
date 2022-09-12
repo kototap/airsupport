@@ -80,3 +80,25 @@ text-align: center;
 
 
 // アバウトページ
+
+.about-bg{
+  background: #f3ecc8;
+}
+
+.about-title span{
+  font-weight: bold;
+  color: #402a23;
+}
+
+.card-title{
+  font-weight: bold;
+}
+
+.card-title span{
+    background: linear-gradient(transparent 60%, #ffb677 40%);
+    padding: 0 10px;
+}
+
+.card-text{
+  line-height: 2em;
+}
