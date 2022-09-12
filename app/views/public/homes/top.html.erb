@@ -19,22 +19,26 @@
 <div class="top-bg py-5">
   <div class="container top-main">
 
-    <div class="row py-5 my-5">
-      <div class="col-md-6 offset-2">
+    <div class="row py-5 my-5 d-flex justify-content-center">
+      <div class="col-md-6 about-box">
         <h1><span class="top-about">It's Fun To Travel <i class="fas fa-plane"></i></span></h1>
         <h4 class="pt-3">AIRSUPPORTで旅をもっと気軽に楽しもう</h4>
         <h4 class="pt-2"><i class="fas fa-search-location"></i> 空港からすぐ近くの、お店や場所を探す</h4>
         <p class="offset-7"><small class=" text-muted">*ユーザー登録が必要です</small></p>
       </div>
-      <div class="col-md-2 align-self-center">
-        <%= link_to about_path, class: 'btn btn-outline-warning text-dark mt-4 mb-1 pr-5' do %>
-        <i class="fas fa-check fa-lg" style="color: #95e1d3;"></i>
-        　About
-        <% end %>
-        <%= link_to search_path, class: 'btn btn-outline-info text-dark mt-1 pr-5' do %>
-        <i class="fas fa-search fa-lg" style="color: #95e1d3;"></i>
-        　Search
-        <% end %>
+      <div class="col-md-6 align-self-center d-flex justify-content-around">
+        <div class="top-link d-inline">
+          <%= link_to about_path, class: 'btn btn-outline-warning text-dark pr-5' do %>
+            <i class="fas fa-check fa-lg" style="color: #95e1d3;"></i>
+          　About
+          <% end %>
+        </div>
+        <div class="top-link d-inline">
+          <%= link_to search_path, class: 'btn btn-outline-info text-dark pr-5' do %>
+            <i class="fas fa-search fa-lg" style="color: #95e1d3;"></i>
+          　Search
+          <% end %>
+        </div>
       </div>
     </div>
 
