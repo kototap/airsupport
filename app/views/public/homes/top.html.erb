@@ -1,5 +1,10 @@
 
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+	 <ol class="carousel-indicators">
+    <li data-target="#carouselExampleFade" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleFade" data-slide-to="1"></li>
+    <li data-target="#carouselExampleFade" data-slide-to="2"></li>
+  </ol>
 	<div class="carousel-inner bgCarousel">
 		<div class="carousel-item bgCarousel__item active"></div>
 		<div class="carousel-item bgCarousel__item"></div>
@@ -11,47 +16,48 @@
 	</div>
 </div>
 
+<div class="top-bg py-5">
+  <div class="container top-main">
 
-<div class="container top-main">
-
-  <div class="row pt-5 mt-5">
-    <h3>How to...</h3>
-  </div>
-
-
-  <div class="row pt-5 mt-5">
-    <div class="col-12">
-      <p class='new-posts'><span>NEW POSTS!</span></p>
+    <div class="row pt-5 mt-5">
+      <h3>How to</h3>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-sm-8">
-      <% @posts.each do |post| %>
-        <div class="card mt-4">
-          <div class="row">
-            <div class="col-md-4">
-              <%= image_tag post.get_post_image(200,150), class: 'img-fluid' %>
-            </div>
-            <div class="col-md-8">
-              <h5 class="card-title font-weight-bold pt-3"><%= post.title %></h5>
-              <p class="card-text"><%= post.body %></p>
-              <p class="card-text">
-                <small class="text-muted"><%= post.tag.name %> | <%= post.airport %>　　　</small>
-                <%= link_to "Read More", post_path(post), class: 'btn btn-outline-success btn-sm align-left' %>
-              </p>
-            </div>
-          </div>
-        </div>
-      <% end %>
-      <div class="d-flex justify-content-end mt-3">
-        <%= link_to posts_path do %>
-          <i class="fas fa-check fa-lg" style="color: #95e1d3;"></i>
-          <span class="text-dark border-bottom">全ての投稿を見てみる</span>
-        <% end %>
+
+    <div class="row pt-5 mt-5">
+      <div class="col-12">
+        <p class='new-posts'><span>NEW POSTS!</span></p>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-sm-8">
+        <% @posts.each do |post| %>
+          <div class="card mt-4">
+            <div class="row">
+              <div class="col-md-4">
+                <%= image_tag post.get_post_image(200,150), class: 'img-fluid' %>
+              </div>
+              <div class="col-md-8">
+                <h5 class="card-title font-weight-bold pt-3"><%= post.title %></h5>
+                <p class="card-text"><%= post.body %></p>
+                <p class="card-text">
+                  <small class="text-muted"><%= post.tag.name %> | <%= post.airport %>　　　</small>
+                  <%= link_to "Read More", post_path(post), class: 'btn btn-outline-success btn-sm align-left' %>
+                </p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <div class="d-flex justify-content-end mt-3">
+          <%= link_to posts_path do %>
+            <i class="fas fa-check fa-lg" style="color: #95e1d3;"></i>
+            <span class="text-dark border-bottom">全ての投稿を見てみる</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+
   </div>
-
-
 </div>

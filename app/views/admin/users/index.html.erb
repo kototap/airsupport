@@ -15,7 +15,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @user.each do |user| %>
+          <% @users.each do |user| %>
           <tr>
             <td><%= image_tag user.get_profile_image(50,50) %></td>
             <td><%= user.name %></td>
@@ -24,6 +24,11 @@
           <% end %>
         </tbody>
       </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mx-auto pt-5 d-flex justify-content-center">
+      <p><%= paginate @users %></p>
     </div>
   </div>
 </div>

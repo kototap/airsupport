@@ -57,7 +57,7 @@
         <% end %>
 
         <!--ユーザーがログインしていないとき-->
-        <% unless user_signed_in? && admin_signed_in? %>
+        <% unless user_signed_in? %>
           <p>♥<%= @post.bookmarks.count %> いいね</p>
           <p>コメント<%= @post.post_comments.count %>件</p>
           <% @post.post_comments.each do |post_comment| %>

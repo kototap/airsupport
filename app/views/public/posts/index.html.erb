@@ -1,11 +1,17 @@
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-3 offset-1">
-      <h2>投稿一覧</h2>
+<div class="posts-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 offset-1">
+        <h2>投稿一覧</h2>
+      </div>
     </div>
-  </div>
-  <div class="row">
-        <%= render 'posts', posts: @posts %>
+    <div class="row">
+          <%= render 'posts', posts: @posts %>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mx-auto pt-5 d-flex justify-content-center">
+        <p><%= paginate @posts %></p>
+      </div>
+    </div>
   </div>
 </div>

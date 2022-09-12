@@ -11,11 +11,13 @@ color: #444;
 display: block;
 font-size: 30px;
 font-weight: bold;
+text-align: center;
 }
 .description{
 display: block;
 font-size: 16px;
 font-weight: bold;
+text-align: center;
 }
 
 
@@ -65,3 +67,7 @@ font-weight: bold;
   padding: 0 10px;
 }
 
+
+.top-bg{
+  background: #fffdfb;
+}

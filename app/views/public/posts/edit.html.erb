@@ -1,64 +1,65 @@
-<div class="container">
-
-<%= render "error", obj: @post %>
-  <div class="row pt-5 mt-5">
-    <h2 class="text-center">投稿編集</h2>
-  </div>
-  <div class="row">
-    <div class="col-md-8 offset-2">
-      <%= form_with model: @post, method: :patch do |f| %>
-        <table class="table table-borderless">
-          <div class="form-group">
-             <tr>
-               <td><%= f.label :post_image %></td>
-               <td><%= f.file_field :post_image, accept: 'image/*' %></td>
-             </tr>
-           </div>
-           <div class="form-group">
-             <tr>
-               <td><%= f.label :title %></td>
-               <td><%= f.text_field :title, autofocus: true %></td>
-             </tr>
-           </div>
-           <div class="form-group">
-             <tr>
-               <td><%= f.label :body %></td>
-               <td><%= f.text_area :body %></td>
-             </tr>
-           </div>
-           <div class="form-group">
-             <tr>
-               <td><%= f.label :airport %></td>
-               <td><%= f.text_field :airport %></td>
-             </tr>
-           </div>
-           <div class="form-group">
-             <tr>
-               <td><%= f.label :tag_id %></td>
-               <td><%= f.collection_select(:tag_id, Tag.all , :id, :name , {prompt: "選択してください"}, {class: 'form-control'}) %></td>
-             </tr>
-           </div>
-           <div class="form-group">
-             <tr>
-               <td>位置情報</td>
-               <td>位置情報を入力できるようにする</td>
-             </tr>
-           </div>
-           <div class="form-group">
-             <tr>
-               <td></td>
-              <% if @post.is_draft == true %>
-                <td>
-                  <%= f.submit "下書きを公開", :name => 'publicize_draft', class: 'mr-5 btn btn-sm btn-warning mr-5' %>
-                  <%= f.submit "下書きのまま更新", :name => 'update_draft', class: 'mr-5 btn btn-sm btn-outline-secondary' %>
-                </td>
-              <% else %>
-                <td><%= f.submit "更新", :name => 'update_post', class: 'btn btn-sm btn-warning text-light' %></td>
-              <% end %>
-             </tr>
-           </div>
-        </table>
-      <% end %>
+<div class="posts-bg">
+  <div class="container">
+  <%= render "error", obj: @post %>
+    <div class="row pt-5 mt-5">
+      <h2 class="text-center">投稿編集</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-8 offset-2">
+        <%= form_with model: @post, method: :patch do |f| %>
+          <table class="table table-borderless">
+            <div class="form-group">
+               <tr>
+                 <td><%= f.label :post_image %></td>
+                 <td><%= f.file_field :post_image, accept: 'image/*' %></td>
+               </tr>
+             </div>
+             <div class="form-group">
+               <tr>
+                 <td><%= f.label :title %></td>
+                 <td><%= f.text_field :title, autofocus: true %></td>
+               </tr>
+             </div>
+             <div class="form-group">
+               <tr>
+                 <td><%= f.label :body %></td>
+                 <td><%= f.text_area :body %></td>
+               </tr>
+             </div>
+             <div class="form-group">
+               <tr>
+                 <td><%= f.label :airport %></td>
+                 <td><%= f.text_field :airport %></td>
+               </tr>
+             </div>
+             <div class="form-group">
+               <tr>
+                 <td><%= f.label :tag_id %></td>
+                 <td><%= f.collection_select(:tag_id, Tag.all , :id, :name , {prompt: "選択してください"}, {class: 'form-control'}) %></td>
+               </tr>
+             </div>
+             <div class="form-group">
+               <tr>
+                 <td>位置情報</td>
+                 <td>位置情報を入力できるようにする</td>
+               </tr>
+             </div>
+             <div class="form-group">
+               <tr>
+                 <td></td>
+                <% if @post.is_draft == true %>
+                  <td>
+                    <%= f.submit "下書きを公開", :name => 'publicize_draft', class: 'mr-5 btn btn-sm btn-warning mr-5' %>
+                    <%= f.submit "下書きのまま更新", :name => 'update_draft', class: 'mr-5 btn btn-sm btn-outline-secondary' %>
+                  </td>
+                <% else %>
+                  <td><%= f.submit "更新", :name => 'update_post', class: 'btn btn-sm btn-warning text-light' %></td>
+                <% end %>
+               </tr>
+             </div>
+          </table>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
