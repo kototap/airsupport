@@ -19,14 +19,23 @@
 <div class="top-bg py-5">
   <div class="container top-main">
 
-    <div class="row pt-5 mt-5">
-      <h3>How to</h3>
+    <div class="row py-5 my-5">
+      <div class="col-md-6 offset-2">
+        <h1><span class="top-about">It's Fun To Travel <i class="fas fa-plane"></i></span></h1>
+        <h4>AIRSUPPORTで旅をもっと気軽に楽しもう</h4>
+      </div>
+      <div class="col-md-2 align-self-center">
+        <%= link_to about_path, class: 'btn btn-outline-warning text-dark' do %>
+        <i class="fas fa-check fa-lg" style="color: #95e1d3;"></i>
+        About Page
+        <% end %>
+      </div>
     </div>
 
 
     <div class="row pt-5 mt-5">
       <div class="col-12">
-        <p class='new-posts'><span>NEW POSTS!</span></p>
+        <h1><span class='new-posts'>NEW POSTS</span></h1>
       </div>
     </div>
 

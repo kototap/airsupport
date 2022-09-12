@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+// ヘッダー
 h4 .logo{
 text-align: center;
 font-weight: normal;
@@ -21,7 +22,7 @@ text-align: center;
 }
 
 
-
+// カルーセル
 .bgCarousel {
   height: 470px;
   width: 100%;
@@ -54,16 +55,20 @@ text-align: center;
 }
 
 
+// トップメイン
 .top-main{
-  width: 100%;
-  height: 1000px;
+  width: 100%;}
+
+
+.top-about{
+  background: linear-gradient(transparent 50%, #fce38a 50%);
+  font-weight: bold;
 }
 
 
-.new-posts span{
-  font-size: 25px;
+.new-posts{
   font-weight: bold;
-  background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+  // background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
   padding: 0 10px;
 }
 
@@ -71,3 +76,7 @@ text-align: center;
 .top-bg{
   background: #fffdfb;
 }
+
+
+
+// アバウトページ
