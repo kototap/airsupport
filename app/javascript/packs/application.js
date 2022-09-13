@@ -14,8 +14,9 @@ import "bootstrap";
 import "../stylesheets/application"
 import '@fortawesome/fontawesome-free/js/all'
 import '../stylesheets/homes.scss'
-const images = require.context('../images/', true)
-const imagePath = (name) => images(name, true)
+import '../stylesheets/posts.scss'
+import '../stylesheets/signup.scss'
+import '../stylesheets/users.scss'
 
 Rails.start()
 Turbolinks.start()
