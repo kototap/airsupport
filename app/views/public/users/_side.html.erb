@@ -4,7 +4,12 @@
   </div>
   <div class="profile-item my-4 d-flex">
     <h5 class="font-weight-bold mr-5"><%= user.name %></h5>
-    <p class="ml-5"><i class="fas fa-user-edit"></i></p>
+    <% if user == current_user %>
+    <p class="ml-5"><%= link_to edit_user_path(user.id), class: 'text-dark border-bottom' do %>
+      <i class="fas fa-user-edit"></i>
+      <% end %>
+    </p>
+    <% end %>
   </div>
   <div class="profile-item my-4">
     <p><%= user.introduction %></p>
@@ -27,10 +32,10 @@
       下書き
     <% end %>
   </div>
-  <div class="profile-item my-2">
-    <%= link_to edit_user_path(user.id), class: 'text-dark border-bottom' do %>
-      <i class="fas fa-user-edit"></i>
-      ユーザー情報編集
-    <% end %>
-  </div>
+  <!--<div class="profile-item my-2">-->
+  <!--  %= link_to edit_user_path(user.id), class: 'text-dark border-bottom' do %>-->
+  <!--    <i class="fas fa-user-edit"></i>-->
+  <!--    ユーザー情報編集-->
+  <!--  % end %>-->
+  <!--</div>-->
 </div>
