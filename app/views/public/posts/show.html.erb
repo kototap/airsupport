@@ -1,41 +1,49 @@
-<div class="container mb-5">
+<div class="container my-5">
   <div class="row">
-    <div class="col-md-5 offset-1 pt-5">
-      <div class="post h3">
-        <%= @post.title %>
+    <div class="col-md-6">
+      <div class="row mb-5">
+        <div class="post h3">
+          <i class="far fa-flag"></i>
+          <span><%= @post.title %></span>
+        </div>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
       <div class="post">
         <%= image_tag @post.get_post_image, size: '400x400' %>
       </div>
     </div>
-    <div class="col-md-5 pt-5">
-      <div class="post pt-5">
+
+    <!--投稿詳細とコメント部分-->
+    <div class="col-md-6">
+      <div class="post mt-3">
         <p><%= @post.body %></p>
         <p><%= @post.tag.name if @post.tag.present? %></p>
         <p><%= @post.airport %></p>
       </div>
 
-
-        <div>
         <!--投稿が公開されていてユーザーがログインしているときにコメント欄、ブックマーク欄を出す-->
         <!--ブックマーク欄-->
+        <div>
         <% if @post.is_draft == false && user_signed_in? %>
 
           <% if @post.bookmarked_by?(current_user) %>
             <p>
-              <%= link_to post_bookmarks_path(@post), method: :delete do %>
-                ♥<%= @post.bookmarks.count %> いいね
+              <%= link_to post_bookmarks_path(@post), class: "text-dark border-bottom", method: :delete do %>
+                <i class="fas fa-bookmark"></i> <%= @post.bookmarks.count %>　ブックマーク済み
               <% end %>
             </p>
             <% else %>
             <p>
-              <%= link_to post_bookmarks_path(@post), method: :post do %>
-                ♡<%= @post.bookmarks.count %> いいね
+              <%= link_to post_bookmarks_path(@post), class: "text-dark border-bottom", method: :post do %>
+                <i class="far fa-bookmark"></i>　ブックマーク<%= @post.bookmarks.count %>件
               <% end %>
             </p>
           <% end %>
 
-          <p>コメント<%= @post.post_comments.count %>件</p>
+          <p><i class="fas fa-comment-dots"></i>　コメント<%= @post.post_comments.count %>件</p>
           <% @post.post_comments.each do |post_comment| %>
             <p><%= image_tag post_comment.user.get_profile_image(30,30), class: 'border' %>
             <%= post_comment.user.name %>&emsp;<%= post_comment.comment %></p>
@@ -79,5 +87,4 @@
         <% end %>
       </div>
     </div>
-  </div>
 </div>

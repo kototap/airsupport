@@ -1,37 +1,35 @@
-<table class="table table-borderless">
-        <tr>
-          <td>
-            <%= image_tag user.get_profile_image(150,150), class: "rounded-circle border" %>
-          </td>
-        </tr>
-        <tr>
-          <th>
-            <%= user.name %>
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <%= user.introduction %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <%= link_to "新規投稿する", new_post_path %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <%=link_to"お気に入り記事", bookmarks_user_path(user) %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <%=link_to"下書き一覧", draft_index_posts_path %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <%= link_to "ユーザーの情報編集", edit_user_path(user.id) %>
-          </td>
-        </tr>
-      </table>
+<div class="col-md-3 my-4">
+  <div class="profile-item">
+    <%= image_tag user.get_profile_image(150,150), class: "rounded-circle border" %>
+  </div>
+  <div class="profile-item my-4 d-flex">
+    <h5 class="font-weight-bold mr-5"><%= user.name %></h5>
+    <% if user == current_user %>
+    <p class="ml-5"><%= link_to edit_user_path(user.id), class: 'text-dark border-bottom' do %>
+      <i class="fas fa-user-edit"></i>
+      <% end %>
+    </p>
+    <% end %>
+  </div>
+  <div class="profile-item my-4">
+    <p><%= user.introduction %></p>
+  </div>
+  <div class="profile-item my-2">
+    <%= link_to new_post_path, class: 'text-dark border-bottom' do %>
+      <i class="fas fa-plus"></i>
+      新規投稿
+    <% end %>
+  </div>
+  <div class="profile-item my-2">
+    <%=link_to bookmarks_user_path(user), class: 'text-dark border-bottom' do  %>
+      <i class="far fa-bookmark"></i>
+      ブックマーク
+    <% end %>
+  </div>
+  <div class="profile-item my-2">
+    <%=link_to draft_index_posts_path, class: 'text-dark border-bottom' do %>
+      <i class="far fa-copy"></i>
+      下書き
+    <% end %>
+  </div>
+</div>

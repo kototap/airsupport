@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
- before_action :authenticate_user!, except:[:index, :show]
+  before_action :authenticate_user!, except:[:index, :show]
 
   def new
     @post = Post.new
@@ -52,6 +52,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
+    @comments = @post.post_comments.page(params[:page]).per(2)
     # 前ページセッションを記録=>indexページ（全体or個人）
     session[:previous_url] = request.referer
   end

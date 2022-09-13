@@ -1,8 +1,6 @@
 <div class="container">
-  <div class="row my-5">
-    <div class="col-md-3 offset-3">
-      <h4><span class="registration">新規会員登録</span></h4>
-    </div>
+  <div class="row my-5 d-flex justify-content-center">
+      <h4><span class="registration px-2">新規会員登録</span></h4>
   </div>
 
 
@@ -14,7 +12,7 @@
         <label for="inputName" class="col-md-6 col-form-label"><%= f.label :name %></label>
         <div class="col-md-6">
           <%= f.text_field :name, autofocus: true %><br>
-          <small class="text-muted">ユーザー名は後から変更可能</small>
+          <small class="text-muted">*ユーザー名は後から変更可能</small>
         </div>
       </div>
 
@@ -44,13 +42,13 @@
         </div>
       </div>
 
-      <div class="actions offset-5 pb-5">
-        <%= f.submit "新規登録", class: 'btn btn-outline-warning text-dark' %>
+      <div class="actions d-flex justify-content-center pb-5">
+        <%= f.submit "新規登録", class: 'btn btn-outline-warning text-dark px-4' %>
       </div>
     <% end %>
   </div>
 
-  <div class="row offset-3">
+  <div class="row d-flex justify-content-center pb-5">
     <%= render "public/shared/links" %>
   </div>
 
