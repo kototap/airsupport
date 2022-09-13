@@ -1,90 +1,74 @@
 <div class="container my-5">
   <div class="row">
+
     <div class="col-md-6">
-      <div class="row mb-5">
-        <div class="post h3">
-          <i class="far fa-flag"></i>
-          <span><%= @post.title %></span>
+      <div class="post-image d-flex justify-content-center">
+        <%= image_tag @post.get_post_image, size: '400x400' %>
+      </div>
+      <div class="post-info my-3 d-flex justify-content-end mr-md-5 h4">
+      <!--ユーザーがログインしていて、投稿が公開されている時-->
+        <% if @post.is_draft == false && user_signed_in? %>
+        <!--ここからブックマーク-->
+          <% if @post.bookmarked_by?(current_user) %>
+            <%= link_to post_bookmarks_path(@post), class: "text-dark", method: :delete do %>
+              <i class="fas fa-bookmark"></i> <%= @post.bookmarks.count %>
+            <% end %>
+          <% else %>
+            <%= link_to post_bookmarks_path(@post), class: "text-dark", method: :post do %>
+              <i class="far fa-bookmark"></i> <%= @post.bookmarks.count %>
+            <% end %>
+          <% end %>
+            <!--<p class="d-inline pl-3"><i class="far fa-comment-dots"></i> %= @post.post_comments.count %></p>-->
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="post-title align-self-start">
+          <h3><i class="far fa-flag"></i> <span><%= @post.title %></span></h3>
+        </div>
+        <div class="post-body align-self-center">
+          <p class="ml-4"><%= @post.body %></p>
+        </div>
+        <div class="post-tags align-self-end">
+          <p><i class="fas fa-tag"></i> <%= @post.tag.name if @post.tag.present? %>　|　<i class="fas fa-plane"></i> <%= @post.airport %></p>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="post">
-        <%= image_tag @post.get_post_image, size: '400x400' %>
-      </div>
+
+    <!--コメントエリア-->
+    <div class="row offset-md-1">
+      <h4><i class="far fa-comments"></i> コメント： <%= @post.post_comments.count %> </h4>
     </div>
-
-    <!--投稿詳細とコメント部分-->
-    <div class="col-md-6">
-      <div class="post mt-3">
-        <p><%= @post.body %></p>
-        <p><%= @post.tag.name if @post.tag.present? %></p>
-        <p><%= @post.airport %></p>
-      </div>
-
-        <!--投稿が公開されていてユーザーがログインしているときにコメント欄、ブックマーク欄を出す-->
-        <!--ブックマーク欄-->
-        <div>
-        <% if @post.is_draft == false && user_signed_in? %>
-
-          <% if @post.bookmarked_by?(current_user) %>
-            <p>
-              <%= link_to post_bookmarks_path(@post), class: "text-dark border-bottom", method: :delete do %>
-                <i class="fas fa-bookmark"></i> <%= @post.bookmarks.count %>　ブックマーク済み
-              <% end %>
-            </p>
-            <% else %>
-            <p>
-              <%= link_to post_bookmarks_path(@post), class: "text-dark border-bottom", method: :post do %>
-                <i class="far fa-bookmark"></i>　ブックマーク<%= @post.bookmarks.count %>件
-              <% end %>
-            </p>
+    <div class="row">
+      <div class="col-md-5 offset-md-1">
+        <% @post.post_comments.each do |post_comment| %>
+          <%= image_tag post_comment.user.get_profile_image(30,30), class: 'rounded-circle border' %>
+          <%= link_to user_path(post_comment.user), class: 'text-dark' do %>
+            <%= post_comment.user.name %>
           <% end %>
-
-          <p><i class="fas fa-comment-dots"></i>　コメント<%= @post.post_comments.count %>件</p>
-          <% @post.post_comments.each do |post_comment| %>
-            <p><%= image_tag post_comment.user.get_profile_image(30,30), class: 'border' %>
-            <%= post_comment.user.name %>&emsp;<%= post_comment.comment %></p>
-            <small class="text-muted"><p>
-              <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-              <% if post_comment.user == current_user %>
-                <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
-              <% end %>
-            </p></small>
-          <% end %>
-          </div>
-
-          <div>
-            <%= form_with model: [@post, @post_comment] do |f| %>
-              <%= f.text_area :comment, rows: '2', placeholder: "コメントをここに" %>
-              <%= f.submit "送信する" %>
+            : <%= post_comment.comment %>
+          <small class="text-muted"><p>
+            <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+            <% if post_comment.user == current_user %>
+              <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
             <% end %>
-          </div>
+          </p></small>
         <% end %>
-
-        <!--ユーザーがログインしていないとき-->
-        <% unless user_signed_in? %>
-          <p>♥<%= @post.bookmarks.count %> いいね</p>
-          <p>コメント<%= @post.post_comments.count %>件</p>
-          <% @post.post_comments.each do |post_comment| %>
-            <p><%= image_tag post_comment.user.get_profile_image(30,30), class: 'border' %>
-            <%= post_comment.user.name %>&emsp;<%= post_comment.comment %></p>
-            <small class="text-muted"><p>
-              <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-            </p></small>
+      </div>
+      <div class="col-md-6">
+        <% if @post.is_draft == false && user_signed_in? %>
+          <%= form_with model: [@post, @post_comment] do |f| %>
+            <div class="action">
+              <div class="form-area">
+                <%= f.text_area :comment, rows: '2', placeholder: "コメントをここに", class: 'form-control' %>
+              </div>
+              <div class="bottom d-flex justify-content-end">
+                <%= f.submit "送信する", class: 'btn btn-outline-warning text-dark btn-sm mt-2' %>
+              </div>
+            </div>
           <% end %>
-          <p><%= link_to 'ユーザー登録', new_user_registration_path %>して投稿をブックマークしたり、<br>
-              コメントしてみよう！</p>
-        <% end %>
-
-
-      <div class="post pt-3"></div>
-        <% if current_user == @post.user %>
-          <%= link_to '編集', edit_post_path(@post.id), class: 'text-dark border-bottom text-muted' %>
-          <%= link_to '削除', post_path(@post.id), method: :delete, class: 'text-dark border-bottom text-muted', data: {confirm: "本当に削除しますか？"} %>
         <% end %>
       </div>
     </div>
-</div>
+  </div>

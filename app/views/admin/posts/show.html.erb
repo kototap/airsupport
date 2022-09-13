@@ -11,8 +11,7 @@
     <div class="col-md-5 pt-5">
       <div class="post pt-5">
         <p><%= @post.body %></p>
-        <p><%= @post.tag.name %></p>
-        <p><%= @post.airport %></p>
+        <p><i class="fas fa-tag"></i> <%= @post.tag.name %>　|　<i class="fas fa-plane"></i> <%= @post.airport %></p>
       </div>
 
 
