@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-5 offset-1 pt-5">
+    <div class="col-md-5 offset-1 my-5">
       <div class="post h3">
         <%= @post.title %>
       </div>
       <div class="post">
-        <%= image_tag @post.get_post_image(400,400) %>
+        <%= image_tag @post.get_post_image, size: '400x400' %>
       </div>
     </div>
     <div class="col-md-5 pt-5">
