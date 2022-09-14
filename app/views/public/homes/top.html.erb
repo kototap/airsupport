@@ -22,9 +22,8 @@
     <div class="row py-5 my-5 d-flex justify-content-center">
       <div class="col-md-6 about-box">
         <h1><span class="top-about">It's Fun To Travel <i class="fas fa-plane"></i></span></h1>
-        <h4 class="pt-3">AIRSUPPORTで旅をもっと気軽に楽しもう</h4>
-        <h4 class="pt-2"><i class="fas fa-search-location"></i> 空港からすぐ近くの、お店や場所を探す</h4>
-        <p class="offset-7"><small class=" text-muted">*ユーザー登録が必要です</small></p>
+        <h4 class="pt-3 top-body">AIRSUPPORTで旅をもっと気軽に楽しもう</h4>
+        <h4 class="pt-2 top-body"><i class="fas fa-search-location"></i> 空港からすぐ近くの、お店や場所を探す</h4>
       </div>
       <div class="col-md-6 align-self-center d-flex justify-content-around">
         <div class="top-link d-inline">
@@ -57,13 +56,23 @@
               <div class="col-md-4">
                 <%= image_tag post.get_post_image, class: 'img-fluid' %>
               </div>
-              <div class="col-md-8">
+              <div class="col-md-8 d-flex flex-column justify-content-between">
                 <h5 class="card-title font-weight-bold pt-3"><%= post.title %></h5>
                 <p class="card-text"><%= post.body %></p>
-                <p class="card-text">
-                  <small class="text-muted"><%= post.tag.name %> | <%= post.airport %>　　　</small>
-                  <%= link_to "Read More", post_path(post), class: 'btn btn-outline-success btn-sm align-left' %>
-                </p>
+
+                <!--%= image_tag post.user.get_profile_image(,), class: 'rounded-circle border' %>-->
+
+                <div class="card-text d-flex justify-content-between pb-3 pr-3">
+                  <p><small>
+                  <%= link_to post.tag.name, search_index_path(tag_id: post.tag.id), class: "text-muted" %>
+                  <span> | </span>
+                  <%= link_to post.airport, search_index_path(airport: post.airport), class: "text-muted" %>
+                  <span>　　</span>
+                  <%= post.created_at.strftime('%Y/%m/%d') %>
+                  </small></p>
+
+                  <div class="align-self-center"><%= link_to "Read More", post_path(post), class: 'btn btn-outline-success btn-sm align-left' %></div>
+                </div>
               </div>
             </div>
           </div>

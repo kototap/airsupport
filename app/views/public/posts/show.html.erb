@@ -2,43 +2,69 @@
   <div class="row">
 
     <div class="col-md-6">
-      <div class="post-image d-flex justify-content-center">
-        <%= image_tag @post.get_post_image, size: '400x400' %>
+      <div class="row d-flex justify-content-center">
+        <div class="post-image">
+          <%= image_tag @post.get_post_image, size: '350x350' %>
+        </div>
       </div>
-      <div class="post-info my-3 d-flex justify-content-end mr-md-5 h4">
-      <!--ユーザーがログインしていて、投稿が公開されている時-->
-        <% if @post.is_draft == false && user_signed_in? %>
-        <!--ここからブックマーク-->
-          <% if @post.bookmarked_by?(current_user) %>
-            <%= link_to post_bookmarks_path(@post), class: "text-dark", method: :delete do %>
-              <i class="fas fa-bookmark"></i> <%= @post.bookmarks.count %>
-            <% end %>
-          <% else %>
-            <%= link_to post_bookmarks_path(@post), class: "text-dark", method: :post do %>
-              <i class="far fa-bookmark"></i> <%= @post.bookmarks.count %>
+
+      <!--ここからブックマーク-->
+      <div class="row offset-md-2 mb-4 pl-1">
+        <div class="post-info my-3 h4">
+        <!--ユーザーがログインしていて、投稿が公開されている時-->
+          <% if @post.is_draft == false && user_signed_in? %>
+            <% if @post.bookmarked_by?(current_user) %>
+              <%= link_to post_bookmarks_path(@post), class: "text-dark", method: :delete do %>
+                <i class="fas fa-bookmark"></i> <%= @post.bookmarks.count %>
+              <% end %>
+            <% else %>
+              <%= link_to post_bookmarks_path(@post), class: "text-dark", method: :post do %>
+                <i class="far fa-bookmark"></i> <%= @post.bookmarks.count %>
+              <% end %>
             <% end %>
           <% end %>
-            <!--<p class="d-inline pl-3"><i class="far fa-comment-dots"></i> %= @post.post_comments.count %></p>-->
-        <% end %>
+          <!--ユーザーがログインしていない時-->
+          <% unless user_signed_in? %>
+            <i class="far fa-bookmark"></i> <%= @post.bookmarks.count %>
+          <% end %>
+        </div>
       </div>
     </div>
 
-    <div class="col-md-6">
-        <div class="post-title align-self-start">
-          <h3><i class="far fa-flag"></i> <span><%= @post.title %></span></h3>
+      <!--投稿詳細右半分-->
+      <div class="col-md-6">
+        <div class="row d-flex flex-column pl-1">
+          <div class="post-title">
+            <h3><span><%= @post.title %></span></h3>
+          </div>
+          <div class="post-body">
+            <p class="ml-2 mt-3"><%= @post.body %></p>
+          </div>
+          <div class="post-tags">
+            <p><i class="fas fa-tag"></i> <%= @post.tag.name if @post.tag.present? %>　|　<i class="fas fa-plane"></i> <%= @post.airport %></p>
+          </div>
         </div>
-        <div class="post-body align-self-center">
-          <p class="ml-4"><%= @post.body %></p>
+        <div class="row d-flex justify-content-end pr-1">
+          <%= @post.created_at.strftime('%Y/%m/%d') %>
+          <% if current_user == @post.user %>
+            <span>　|　</span>
+            <%= link_to edit_post_path(@post.id), class: 'text-dark border-bottom text-muted' do %>
+              <i class="far fa-edit"></i>
+            <% end %>
+            <span>　|　</span>
+            <%= link_to post_path(@post.id), method: :delete, class: 'text-dark border-bottom text-muted', data: {confirm: "この投稿を削除しますか？"} do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+          <% end %>
         </div>
-        <div class="post-tags align-self-end">
-          <p><i class="fas fa-tag"></i> <%= @post.tag.name if @post.tag.present? %>　|　<i class="fas fa-plane"></i> <%= @post.airport %></p>
+
         </div>
       </div>
-    </div>
 
     <!--コメントエリア-->
-    <div class="row offset-md-1">
-      <h4><i class="far fa-comments"></i> コメント： <%= @post.post_comments.count %> </h4>
+    <div class="row offset-md-1 my-2">
+       <%= render "error", obj: @post_comment %>
+      <h5 class="comment-title ml-1"><span><i class="far fa-comments"></i> コメント： <%= @post.post_comments.count %></span></h5>
     </div>
     <div class="row">
       <div class="col-md-5 offset-md-1">
@@ -69,6 +95,17 @@
             </div>
           <% end %>
         <% end %>
+
+        <!--ユーザーがログインしていないとき-->
+        <div class="not-signin d-flex">
+        <% unless user_signed_in? %>
+          <i class="fas fa-bullhorn mt-1"></i>
+          <p class="ml-4"><%= link_to 'ログイン', new_user_session_path %>して投稿をブックマークしたり、<br>
+             コメントしてみよう！
+          </p>
+        <% end %>
+      </div>
+
       </div>
     </div>
   </div>
