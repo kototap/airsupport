@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_user!, except:[:index, :show]
+  before_action :authenticate_user!, except:[:index, :show, :search, :search_index]
 
   def new
     @post = Post.new
@@ -46,7 +46,15 @@ class Public::PostsController < ApplicationController
 
   def search_index
     @search = Post.where(is_draft: false).ransack(params[:q])
-    @posts = @search.result(distinct: true).order(created_at: :desc).page(params[:page])
+    posts = @search.result(distinct: true)
+    posts = if params[:tag_id]
+               posts.where(tag_id: params[:tag_id])
+            elsif params[:airport]
+               posts.where(airport: params[:airport])
+            else
+              posts
+            end
+    @posts = posts.order(created_at: :desc).page(params[:page])
   end
 
   def show

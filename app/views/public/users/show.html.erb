@@ -13,7 +13,7 @@
                     <h4 class="card-title"><%= post.title %></h4>
                   </div>
                   <div class="row">
-                    <p class="card-text"><i class="fas fa-comment-dots"></i> <%= post.body %></p>
+                    <p class="card-text"><i class="fas fa-comment-dots"></i> <%= post.body.truncate(24) %></p>
                   </div>
                   <div class="row">
                     <p><i class="fas fa-tag"></i> <%= post.tag.name %>　|　<i class="fas fa-plane-departure"></i> <%= post.airport %></p>
