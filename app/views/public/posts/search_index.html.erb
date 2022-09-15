@@ -1,9 +1,30 @@
 <div class="container">
+  <div class="row mt-5">
+    <div class="col-md-6">
+      <% if params[:q].present? && params[:q][:title_cont].present? %>
+        <h2>"<%= params[:q][:title_cont] %>"の検索結果一覧</h2>
+      <% elsif params[:q].present? && params[:q][:tag_id_eq].present? %>
+        <h2>"<%= Tag.find(params[:q][:tag_id_eq]).name %>"の検索結果一覧</h2>
+      <% elsif params[:q].present? && params[:q][:airport_cont].present? %>
+        <h2>"<%= params[:q][:airport_cont] %>"の検索結果一覧</h2>
+      <% else %>
+        <h2>投稿一覧</h2>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="container">
   <div class="row">
-    <div class="col-md-3 offset-1">
-      <h2>検索結果一覧</h2>
+    <% @posts.each do |post| %>
+      <div class="col-lg-4 my-4">
+        <%= render 'post-card', post: post %>
+      </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mx-auto py-5 d-flex justify-content-center">
+      <p><%= paginate @posts %></p>
     </div>
   </div>
 </div>
 
-<%= render 'posts', posts: @posts %>

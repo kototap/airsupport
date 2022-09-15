@@ -30,12 +30,14 @@
             <h3><span><%= @post.title %></span></h3>
           </div>
           <div class="post-body">
-            <p class="ml-2 mt-3"><%= @post.body %></p>
+            <p class="ml-2 mt-3"><%=safe_join(@post.body.split("\n"),tag(:br))%></p>
           </div>
           <div class="post-tags">
             <p><i class="fas fa-tag"></i>
-              <%= link_to  search_index_path(tag_id: @post.tag.id), class: 'text-dark border-bottom' do %>
-                <%= @post.tag.name if @post.tag.present? %>
+              <% if @post.tag.present? %>
+                <%= link_to  search_index_path(tag_id: @post.tag.id), class: 'text-dark border-bottom' do %>
+                  <%= @post.tag.name if @post.tag.present? %>
+                <% end %>
               <% end %>
               <span>　|　</span>
               <i class="fas fa-plane"></i> <%= link_to @post.airport, search_index_path(airport: @post.airport), class: 'text-dark border-bottom' %>
@@ -45,7 +47,7 @@
         <div class="row d-flex justify-content-between pr-1">
           <div>
             <%= link_to user_path(@post.user), class: 'd-flex align-items-end text-dark' do %>
-              <%= image_tag @post.user.get_profile_image(30,30) %>
+              <%= image_tag @post.user.get_profile_image(35,35), class: 'rounded-circle border' %>&nbsp;&nbsp;
               <span class="border-bottom"><%= @post.user.name %></span>
             <% end %>
           </div>
@@ -74,6 +76,9 @@
     </div>
     <div class="row">
       <div class="comment-area col-md-5 offset-md-1">
+        <% unless @post.post_comments.present? %>
+        <p class="text-muted">まだコメントがありません。</p>
+        <% end %>
         <%= render 'public/post_comments/comment-area', post: @post %>
       </div>
       <div class="comment-form col-md-6">

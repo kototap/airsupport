@@ -12,7 +12,7 @@
     <% end %>
   </div>
   <div class="profile-item my-4">
-    <p><%= user.introduction %></p>
+    <p><%=safe_join(user.introduction.split("\n"),tag(:br))%></p>
   </div>
   <div class="profile-item my-2">
     <%= link_to new_post_path, class: 'text-dark border-bottom' do %>
