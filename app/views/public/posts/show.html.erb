@@ -41,7 +41,13 @@
             <p class="ml-2 mt-3"><%= @post.body %></p>
           </div>
           <div class="post-tags">
-            <p><i class="fas fa-tag"></i> <%= @post.tag.name if @post.tag.present? %>　|　<i class="fas fa-plane"></i> <%= @post.airport %></p>
+            <p><i class="fas fa-tag"></i>
+              <%= link_to  search_index_path(tag_id: @post.tag.id), class: 'text-dark border-bottom' do %>
+                <%= @post.tag.name if @post.tag.present? %>
+              <% end %>
+              <span>　|　</span>
+              <i class="fas fa-plane"></i> <%= link_to @post.airport, search_index_path(airport: @post.airport), class: 'text-dark border-bottom' %>
+            </p>
           </div>
         </div>
         <div class="row d-flex justify-content-end pr-1">
@@ -77,7 +83,9 @@
           <small class="text-muted"><p>
             <%= post_comment.created_at.strftime('%Y/%m/%d') %>
             <% if post_comment.user == current_user %>
-              <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+              <%= link_to post_post_comment_path(post_comment.post, post_comment), method: :delete, class: 'text-dark border-bottom text-muted', data: {confirm: "このコメントを削除しますか？"} do %>
+                <i class="fas fa-trash-alt"></i>
+              <% end %>
             <% end %>
           </p></small>
         <% end %>
@@ -108,4 +116,7 @@
 
       </div>
     </div>
+
+        <%= link_to 'Back', :back, class: 'btn btn-sm'  %>
+
   </div>

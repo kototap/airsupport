@@ -1,4 +1,5 @@
 
+<!--メインビジュアル部分-->
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
 	 <ol class="carousel-indicators">
     <li data-target="#carouselExampleFade" data-slide-to="0" class="active"></li>
@@ -16,10 +17,10 @@
 	</div>
 </div>
 
+<!--メインビジュアル下の説明-->
 <div class="top-bg py-5">
   <div class="container top-main">
-
-    <div class="row py-5 my-5 d-flex justify-content-center">
+    <div class="row py-5 my-5 d-flex justify-content-center text-center">
       <div class="col-md-6 about-box">
         <h1><span class="top-about">It's Fun To Travel <i class="fas fa-plane"></i></span></h1>
         <h4 class="pt-3 top-body">AIRSUPPORTで旅をもっと気軽に楽しもう</h4>
@@ -41,7 +42,7 @@
       </div>
     </div>
 
-
+<!--NEWPOST部分-->
     <div class="row pt-5 mt-5">
       <div class="col-12">
         <h1><span class='new-posts'>NEW POSTS</span></h1>
@@ -57,18 +58,23 @@
                 <%= image_tag post.get_post_image, class: 'img-fluid' %>
               </div>
               <div class="col-md-8 d-flex flex-column justify-content-between">
+                <%= link_to post_path(post), class: 'text-dark' do %>
                 <h5 class="card-title font-weight-bold pt-3"><%= post.title %></h5>
-                <p class="card-text"><%= post.body %></p>
+                <% end %>
+                <p class="card-text"><%= post.body.truncate(30) %></p>
 
-                <!--%= image_tag post.user.get_profile_image(,), class: 'rounded-circle border' %>-->
 
                 <div class="card-text d-flex justify-content-between pb-3 pr-3">
                   <p><small>
-                  <%= link_to post.tag.name, search_index_path(tag_id: post.tag.id), class: "text-muted" %>
-                  <span> | </span>
-                  <%= link_to post.airport, search_index_path(airport: post.airport), class: "text-muted" %>
-                  <span>　　</span>
-                  <%= post.created_at.strftime('%Y/%m/%d') %>
+                    <i class="fas fa-tag"></i>
+                    <%= link_to post.tag.name, search_index_path(tag_id: post.tag.id), class: "text-dark border-bottom" %>
+                    <span> | </span>
+                    <i class="fas fa-plane"></i>
+                    <%= link_to post.airport, search_index_path(airport: post.airport), class: "text-dark border-bottom" %>
+                    <br>
+                    <i class="fas fa-user"></i>
+                    <%= link_to post.user.name, user_path(post.user), class: 'text-dark border-bottom' %>
+                    <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
                   </small></p>
 
                   <div class="align-self-center"><%= link_to "Read More", post_path(post), class: 'btn btn-outline-success btn-sm align-left' %></div>
@@ -77,6 +83,7 @@
             </div>
           </div>
         <% end %>
+
         <div class="d-flex justify-content-end mt-3">
           <%= link_to posts_path do %>
             <i class="fas fa-check fa-lg" style="color: #95e1d3;"></i>
@@ -85,7 +92,5 @@
         </div>
       </div>
     </div>
-
-
   </div>
 </div>
