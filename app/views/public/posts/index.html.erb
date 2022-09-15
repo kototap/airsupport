@@ -6,4 +6,19 @@
   </div>
 </div>
 
-<%= render 'posts', posts: @posts %>
+
+<div class="container">
+    <div class="row">
+      <% @posts.each do |post| %>
+        <div class="col-lg-4 my-4">
+          <%= render 'post-card', post: post %>
+        </div>
+      <% end %>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mx-auto py-5 d-flex justify-content-center">
+        <p><%= paginate @posts %></p>
+      </div>
+    </div>
+  </div>
+

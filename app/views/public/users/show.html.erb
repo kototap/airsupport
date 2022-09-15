@@ -6,25 +6,7 @@
         <div class="row">
           <% @posts.each do |post| %>
             <div class="col-lg-6 my-4">
-              <div class="card">
-                <%= image_tag post.get_post_image,class: 'card-img-top' %>
-                <div class="card-body ml-2">
-                  <div class="row">
-                    <h4 class="card-title"><%= post.title %></h4>
-                  </div>
-                  <div class="row">
-                    <p class="card-text"><i class="fas fa-comment-dots"></i> <%= post.body.truncate(24) %></p>
-                  </div>
-                  <div class="row">
-                    <p><i class="fas fa-tag"></i> <%= post.tag.name %>　|　<i class="fas fa-plane-departure"></i> <%= post.airport %></p>
-                  </div>
-                  <div class="row">
-                    <div class="col-7 pt-2">
-                      <%= link_to "詳細を見る", post_path(post), class:"btn btn-primary" %>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <%= render 'public/posts/post-card', post: post %>
             </div>
           <% end %>
         </div>
