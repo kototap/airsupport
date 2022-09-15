@@ -1,0 +1,10 @@
+            <% if post.bookmarked_by?(current_user) %>
+              <%= link_to post_bookmarks_path(post), class: "text-dark", method: :delete, remote: true do %>
+                <i class="fas fa-bookmark"></i> <%= post.bookmarks.count %>
+              <% end %>
+            <% else %>
+              <%= link_to post_bookmarks_path(post), class: "text-dark", method: :post, remote: true do %>
+                <i class="far fa-bookmark"></i> <%= post.bookmarks.count %>
+              <% end %>
+            <% end %>
+
