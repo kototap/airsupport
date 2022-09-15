@@ -61,8 +61,7 @@
 
     <!--コメントエリア-->
     <div class="row offset-md-1 my-2">
-       <%= render "error", obj: @post_comment %>
-      <h5 class="comment-title ml-1"><span><i class="far fa-comments"></i> コメント： <%= @post.post_comments.count %></span></h5>
+      <h5 class="comment-title ml-1"><i class="far fa-comments"></i> コメント</h5>
     </div>
     <div class="row">
       <div class="comment-area col-md-5 offset-md-1">
@@ -72,7 +71,6 @@
         <% if @post.is_draft == false && user_signed_in? %>
           <%= render 'public/post_comments/comment-form', post: @post, post_comment: @post_comment %>
         <% end %>
-
         <!--ユーザーがログインしていないとき-->
         <div class="not-signin d-flex">
         <% unless user_signed_in? %>
@@ -81,8 +79,7 @@
              コメントしてみよう！
           </p>
         <% end %>
-      </div>
-
+        </div>
       </div>
     </div>
 
