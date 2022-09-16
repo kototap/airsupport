@@ -74,6 +74,9 @@ ActiveRecord::Schema.define(version: 2022_09_04_105125) do
     t.string "body"
     t.string "airport"
     t.boolean "is_draft", default: false
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -2,28 +2,35 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.card-img-top{
-  width: 100%;
-  height: 300px;
-  // background-size: contain;
-  // object-fit: cover;
+// indexページ
+.card{
+  &__img-top{
+    width: 100%;
+    height: 300px;
+  }
+  &__posts-tags{
+    font-size: 14px;
+    margin-top: 10px;
+  }
 }
 
 
+// showページ
 .post-title span{
   background: linear-gradient(transparent 70%, #ffb677 30%);
   padding: 0 8px;
   font-weight: bold;
 }
 
-.comment-title span{
-  background: linear-gradient(transparent 80%, #95e1d3 20%);
-  // border-bottom: solid 5px #95e1d3;
-  padding: 0 10px;
+.comment-title{
+  background: linear-gradient(transparent 70%, #95e1d3 30%);
+  padding: 0 8px;
   font-weight: bold;
 }
 
-.posts-tags{
-  font-size: 14px;
-  margin-top: 10px;
+
+
+#map {
+  height: 500px;
+  width: 100%;
 }

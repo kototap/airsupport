@@ -76,3 +76,6 @@ end
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
+
+# 住所から緯度経度を取得
+gem 'geocoder'
