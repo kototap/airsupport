@@ -8,7 +8,7 @@ class Public::PostCommentsController < ApplicationController
     if @post_comment.save
       render :comments
     else
-      redirect_back fallback_location: @post
+      redirect_to post_path(@post)
     end
   end
 
