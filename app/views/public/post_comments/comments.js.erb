@@ -2,4 +2,4 @@ $(".comment-form").html("<%= j(render 'public/post_comments/comment-form', post:
 
 $("textarea").val('');
 
-$(".comment-area").html("<%= j(render 'public/post_comments/comment-area', post: @post) %>");
+$(".comment-area").html("<%= j(render 'public/post_comments/comment-area', comments: @comments, post: @post) %>");

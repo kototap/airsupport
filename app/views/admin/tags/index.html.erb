@@ -1,33 +1,34 @@
 <div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto pt-5">
+      <h2>タグ一覧/追加</h2>
+    </div>
+  </div>
+</div>
 
+<div class="container">
   <%= render "error", obj: @tag %>
-
   <div class="row pt-5">
-    <div class="col-md-8 offset-3 text-center">
+    <div class="col-md-8 mx-auto text-right">
       <%= form_with model: @tag, url: admin_tags_path do |f| %>
-        <div class="form-group">
-          <%= f.label :name %>
+        <div class="form-group d-flex justify-content-center">
+          <%= f.label :name %>：
           <%= f.text_field :name, autofocus: true %>
-          <%= f.submit '追加する' %>
+          <%= f.submit '追加する', class: 'btn btn-outline-success btn-sm ml-2' %>
         </div>
       <% end %>
     </div>
   </div>
-  <div class="row pt-5">
+  <div class="row py-5">
     <div class="col-md-6 offset-3 text-center">
       <table class="table">
         <% @tags.each do |tag| %>
           <tr>
             <td><%= tag.name %></td>
-            <td><%= link_to "編集する", edit_admin_tag_path(tag.id) %></td>
+            <td><%= link_to "編集する", edit_admin_tag_path(tag.id), class: 'btn btn-outline-info btn-sm' %></td>
           </tr>
         <% end %>
       </table>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6 mx-auto pt-5 d-flex justify-content-center">
-      <p><%= paginate @tags %></p>
     </div>
   </div>
 </div>

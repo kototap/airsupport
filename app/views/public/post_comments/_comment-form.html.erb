@@ -1,7 +1,6 @@
 <%= render '/public/posts/error', obj: post_comment %>
 
 <% if post.is_draft == false && user_signed_in? %>
-
   <%= form_with model: [post, post_comment], url: post_post_comments_path(post), method: :post, local: false do |f| %>
     <div class="action">
       <div class="form-area">
@@ -12,5 +11,5 @@
       </div>
     </div>
   <% end %>
-
 <% end %>
+

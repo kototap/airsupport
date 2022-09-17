@@ -57,14 +57,17 @@ class Public::PostsController < ApplicationController
     @posts = posts.order(created_at: :desc).page(params[:page])
   end
 
+
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
-    @comments = @post.post_comments.page(params[:page]).per(3)
+    @comments = @post.post_comments.order(created_at: :desc).page(params[:page]).per(5)
+
     # 他のユーザーは下書き投稿にアクセスできないようにする
     if (@post.is_draft == true) && @post.user != current_user
      redirect_to root_path
     end
+
     # 前ページセッションを記録=>indexページ（全体or個人）
     session[:previous_url] = request.referer
   end

@@ -1,6 +1,11 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6 pt-5 mt-5">
+    <div class="col-md-8 mx-auto pt-5">
+      <h3><%= @user.name %>さんの詳細ページ</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mx-auto my-5">
       <table class="table table-borderless">
         <tr>
           <td><%= image_tag @user.get_profile_image(100,100), class: 'border'%></td>
@@ -15,11 +20,22 @@
           <td><%= @user.email %></td>
         </tr>
         <tr>
-          <td><%= link_to "この会員の投稿一覧へ", posts_admin_user_path(@user) %></td>
-          <td><%= link_to "編集する", edit_admin_user_path(@user) %></td>
-          <td><%= link_to "ユーザーの削除", admin_user_path(@user), method: :delete, data: {confirm: "本当に削除しますか？"} %></td>
+          <td><i class="far fa-sticky-note"></i><%= link_to "#{@user.name}さんの投稿一覧", posts_admin_user_path(@user), class: 'text-dark border-bottom ml-1' %></td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-user-edit"></i><%= link_to "編集する", edit_admin_user_path(@user), class: 'text-dark border-bottom ml-1' %></td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-trash-alt"></i><%= link_to "ユーザーの削除", admin_user_path(@user), method: :delete, class: 'text-dark border-bottom ml-1', data: {confirm: "本当に削除しますか？"} %></td>
         </tr>
       </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <%= link_to :back, class: 'btn btn-sm mb-5' do %>
+        <i class="fas fa-angle-double-left"></i> Back
+      <% end %>
     </div>
   </div>
 </div>
