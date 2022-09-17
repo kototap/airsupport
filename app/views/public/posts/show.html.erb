@@ -1,5 +1,5 @@
 <div class="container my-5">
-  <%= link_to :back, class: 'btn btn-sm' do %>
+  <%= link_to :back, class: 'btn btn-sm mb-3' do %>
     <i class="fas fa-angle-double-left"></i> Back
   <% end %>
   <div class="row">
@@ -79,22 +79,14 @@
   </div>
   <div class="row">
     <div class="comment-area col-md-5 offset-md-1">
-      <% unless @post.post_comments.present? %>
-      <p class="text-muted">まだコメントがありません。</p>
-      <% end %>
       <%= render 'public/post_comments/comment-area', post: @post %>
-      <!--コメントのページネーション-->
-      <div class="row">
-        <div class="col-md-6 mx-auto py-5 d-flex justify-content-center">
-          <p><%= paginate @comments %></p>
-        </div>
-      </div>
     </div>
-    <div class="comment-form col-md-6">
-      <% if @post.is_draft == false && user_signed_in? %>
-        <%= render 'public/post_comments/comment-form', post: @post, post_comment: @post_comment %>
-      <% end %>
 
+    <div class="col-md-6">
+        <!--コメントフォーム 非同期通信-->
+      <div class="comment-form">
+        <%= render 'public/post_comments/comment-form', post: @post, post_comment: @post_comment %>
+      </div>
       <!--ユーザーがログインしていないとき-->
       <div class="not-signin d-flex">
         <% unless user_signed_in? %>
