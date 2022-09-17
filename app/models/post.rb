@@ -7,6 +7,9 @@ class Post < ApplicationRecord
 
   has_one_attached :post_image
 
+  geocoded_by :address
+  after_validation :geocode
+
 
   with_options presence: true, on: :publicize do
     validates :title

@@ -43,8 +43,11 @@
            </div>
            <div class="form-group">
              <tr>
-               <td>位置情報</td>
-               <td>位置情報を入力できるようにする</td>
+               <td><%= f.label :address %></td>
+               <td>
+                 <%= f.text_field :address, class: 'form-control' %>
+                 <small class="text-muted">*数字は半角で入力してください</small>
+               </td>
              </tr>
            </div>
            <div class="form-group">

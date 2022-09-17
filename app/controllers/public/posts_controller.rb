@@ -60,7 +60,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
-    @comments = @post.post_comments.all
+    @comments = @post.post_comments.page(params[:page]).per(3)
     # 他のユーザーは下書き投稿にアクセスできないようにする
     if (@post.is_draft == true) && @post.user != current_user
      redirect_to root_path
@@ -118,7 +118,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :airport, :post_image, :tag_id, :is_draft)
+    params.require(:post).permit(:title, :body, :airport, :post_image, :tag_id, :is_draft, :address)
   end
 
 end

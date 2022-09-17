@@ -1,6 +1,6 @@
           <div class="card">
             <%= link_to post_path(post), class: 'text-dark' do %>
-              <%= image_tag post.get_post_image, class: 'card-img-top' %>
+              <%= image_tag post.get_post_image, class: 'card__img-top' %>
               <div class="card-body ml-2">
                 <div class="row">
                   <h4 class="card-title"><%= post.title %></h4>
@@ -10,7 +10,7 @@
                 </div>
               <% end %>
                 <div class="row">
-                  <p class="posts-tags">
+                  <p class="card__posts-tags">
                     <i class="fas fa-tag"></i>
                     <% if post.tag.present? %>
                       <%= link_to post.tag.name, search_index_path(tag_id: post.tag.id), class: "text-dark border-bottom" %>

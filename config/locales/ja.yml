@@ -13,5 +13,6 @@ ja:
         body: コメント
         tag_id: タグ
         airport: 空港名
+        address: 住所
       tag:
         name: タグ名

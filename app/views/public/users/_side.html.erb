@@ -5,10 +5,10 @@
   <div class="profile-item my-4 d-flex">
     <h5 class="font-weight-bold mr-5"><%= user.name %></h5>
     <% if user == current_user %>
-    <p class="ml-5"><%= link_to edit_user_path(user.id), class: 'text-dark border-bottom' do %>
-      <i class="fas fa-user-edit"></i>
-      <% end %>
-    </p>
+      <p class="ml-5"><%= link_to edit_user_path(user.id), class: 'text-dark border-bottom' do %>
+        <i class="fas fa-user-edit"></i>
+        <% end %>
+      </p>
     <% end %>
   </div>
   <div class="profile-item my-4">
@@ -16,6 +16,7 @@
       <p><%=safe_join(user.introduction.split("\n"),tag(:br))%></p>
     <% end %>
   </div>
+  <% if user == current_user %>
   <div class="profile-item my-2">
     <%= link_to new_post_path, class: 'text-dark border-bottom' do %>
       <i class="fas fa-plus"></i>
@@ -34,4 +35,5 @@
       下書き
     <% end %>
   </div>
+  <% end %>
 </div>
