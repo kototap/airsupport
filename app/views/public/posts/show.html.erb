@@ -1,4 +1,7 @@
 <div class="container my-5">
+  <%= link_to :back, class: 'btn btn-sm' do %>
+    <i class="fas fa-angle-double-left"></i> Back
+  <% end %>
   <div class="row">
 
     <div class="col-md-6">
@@ -101,61 +104,58 @@
           </p>
         <% end %>
       </div>
+
+      <!--マップ表示-->
+      <div class="address py-2 mt-4">
+        <% if @post.address.present? %>
+          <p><i class="fas fa-map-marker-alt"></i> <%= @post.address %></p>
+        <% else %>
+          <p><i class="fas fa-map-marker-alt"></i> 住所が登録されていません</p>
+        <% end %>
+      </div>
+      <div id='map'></div>
+
+      <style>
+        #map {
+          height: 300px;
+          width: 400px;
+        }
+      </style>
+
+      <script>
+        let map
+        const addressDis = document.getElementById('addressDisplay')
+
+        function initMap(){
+          geocoder = new google.maps.Geocoder()
+          var test ={lat: <%= @post.latitude %>, lng: <%= @post.longitude %>};
+
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: test,
+            zoom: 15,
+            mapTypeControl: true,
+            streetViewControl: true
+          });
+
+          var contentString = '住所：<%= @post.address %>';
+          var infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
+
+          marker = new google.maps.Marker({
+            position:  test,
+            map: map,
+            title: contentString
+          });
+
+            addressDis.innerHTML = results[0].formatted_address;
+        }
+      </script>
+
+      <script async
+          src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+      </script>
+
     </div>
   </div>
-
-
-
-
-
-
-
-<div id='map'></div>
-
-<style>
-  #map {
-    height: 300px;
-    width: 400px;
-  }
-</style>
-
-<script>
-  let map
-
-  function initMap(){
-    geocoder = new google.maps.Geocoder()
-    var test ={lat: <%= @post.latitude %>, lng: <%= @post.longitude %>};
-
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: test,
-      zoom: 15,
-      mapTypeControl: false,
-      streetViewControl: false
-    });
-
-    var contentString = '住所：<%= @post.address %>';
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString
-    });
-
-    marker = new google.maps.Marker({
-      position:  test,
-      map: map,
-      title: contentString
-    });
-  }
-</script>
-
-<script async
-    src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
-</script>
-
-
-
-
-
-
-
-
-  <%= link_to 'Back', :back, class: 'btn btn-sm'  %>
 </div>
