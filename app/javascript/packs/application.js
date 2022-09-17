@@ -19,5 +19,5 @@ import '../stylesheets/signup.scss'
 import '../stylesheets/users.scss'
 
 Rails.start()
-Turbolinks.start()
+// Turbolinks.start()
 ActiveStorage.start()
