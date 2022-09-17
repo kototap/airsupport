@@ -1,10 +1,16 @@
-<%= form_with model: [post, post_comment], url: post_post_comments_path(post), method: :post, local: false do |f| %>
-  <div class="action">
-    <div class="form-area">
-      <%= f.text_area :comment, rows: '2', placeholder: "コメントをここに入力", class: 'form-control' %>
+<%= render '/public/posts/error', obj: post_comment %>
+
+<% if post.is_draft == false && user_signed_in? %>
+
+  <%= form_with model: [post, post_comment], url: post_post_comments_path(post), method: :post, local: false do |f| %>
+    <div class="action">
+      <div class="form-area">
+        <%= f.text_area :comment, rows: '2', placeholder: "コメントをここに入力", class: 'form-control' %>
+      </div>
+      <div class="bottom d-flex justify-content-end">
+        <%= f.submit "送信する", class: 'btn btn-outline-warning text-dark btn-sm mt-2' %>
+      </div>
     </div>
-    <div class="bottom d-flex justify-content-end">
-      <%= f.submit "送信する", class: 'btn btn-outline-warning text-dark btn-sm mt-2' %>
-    </div>
-  </div>
+  <% end %>
+
 <% end %>

@@ -6,7 +6,7 @@
                   <h4 class="card-title"><%= post.title %></h4>
                 </div>
                 <div class="row">
-                  <p class="card-text"><i class="fas fa-comment-dots"></i> <%= post.body.truncate(22) %></p>
+                  <p class="card-text"><i class="fas fa-comment-dots"></i> <%= post.body.truncate(20) %></p>
                 </div>
               <% end %>
                 <div class="row">
@@ -18,16 +18,15 @@
                   <span> | </span>
                   <i class="fas fa-plane"></i>
                   <%= link_to post.airport, search_index_path(airport: post.airport), class: "text-dark border-bottom" %>
-                  <span>　　</span>
-                  <%= post.created_at.strftime('%Y/%m/%d') %>
                   </p>
                 </div>
 
-                <div class="row top-image">
+                <div class="row top-image d-flex justify-content-between">
                   <%= link_to user_path(post.user), class: 'd-flex align-items-end text-dark' do %>
                     <%= image_tag post.user.get_profile_image(25,25), class: 'rounded-circle border' %>&nbsp; &nbsp;
                     <span class="border-bottom"><%= post.user.name %></span>
                   <% end %>
+                  <span class="text-muted pr-3"><small><%= post.created_at.strftime('%Y/%m/%d') %></small></span>
                 </div>
             </div>
           </div>
