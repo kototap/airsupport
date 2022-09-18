@@ -73,17 +73,18 @@
     </div>
   </div>
 
-  <!--コメントエリア-->
+
   <div class="row offset-md-1 my-2">
     <h5 class="comment-title ml-1"><i class="far fa-comments"></i> コメント</h5>
   </div>
+    <!--コメントエリア-->
   <div class="row">
     <div class="comment-area col-md-5 offset-md-1">
-      <%= render 'public/post_comments/comment-area', post: @post %>
+      <%= render 'public/post_comments/comment-area', post: @post, comments: @comments %>
     </div>
 
     <div class="col-md-6">
-        <!--コメントフォーム 非同期通信-->
+        <!--コメントフォーム-->
       <div class="comment-form">
         <%= render 'public/post_comments/comment-form', post: @post, post_comment: @post_comment %>
       </div>

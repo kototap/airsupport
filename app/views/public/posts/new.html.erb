@@ -20,7 +20,7 @@
            <div class="form-group">
              <tr>
                <td><%= f.label :title %></td>
-               <td><%= f.text_field :title, autofocus: true,class: 'form-control' %></td>
+               <td><%= f.text_field :title, placeholder: "お店や観光地の名称などを入れてください", autofocus: true,class: 'form-control' %></td>
              </tr>
            </div>
            <div class="form-group">
@@ -45,7 +45,7 @@
              <tr>
                <td><%= f.label :address %></td>
                <td>
-                 <%= f.text_field :address, class: 'form-control' %>
+                 <%= f.text_field :address, placeholder: "東京都〇〇区〇〇1-1-1", class: 'form-control' %>
                  <small class="text-muted">*数字は半角で入力してください</small>
                </td>
              </tr>

@@ -12,7 +12,7 @@ class Admin::UsersController < ApplicationController
 
   def posts
     @user = User.find(params[:id])
-    @user_posts = @user.posts.where(is_draft: false)
+    @user_posts = @user.posts.where(is_draft: false).order(created_at: :desc)
   end
 
   def edit

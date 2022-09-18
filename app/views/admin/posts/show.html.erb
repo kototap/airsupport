@@ -1,65 +1,105 @@
-<div class="container">
+<div class="container my-5">
+  <%= link_to :back, class: 'btn btn-sm mb-3' do %>
+    <i class="fas fa-angle-double-left"></i> Back
+  <% end %>
   <div class="row">
-    <div class="col-md-5 offset-1 my-5">
-      <div class="post h3">
-        <%= @post.title %>
+
+    <div class="col-md-6">
+      <div class="row d-flex justify-content-center">
+        <div class="post-image">
+          <%= image_tag @post.get_post_image, size: '350x350' %>
+        </div>
       </div>
-      <div class="post">
-        <%= image_tag @post.get_post_image, size: '400x400' %>
+
+      <!--ここからブックマーク-->
+      <div class="row offset-md-2 mb-4 pl-1">
+        <div class="bookmark-btn my-3 h4">
+            <i class="far fa-bookmark"></i> <%= @post.bookmarks.count %>
+        </div>
       </div>
     </div>
-    <div class="col-md-5 pt-5">
-      <div class="post pt-5">
-        <p><%= @post.body %></p>
-        <p><i class="fas fa-tag"></i> <%= @post.tag.name %>　|　<i class="fas fa-plane"></i> <%= @post.airport %></p>
-      </div>
 
-
-      <div>
-        <% if admin_signed_in? %>
-          <p> ♥<%= @post.bookmarks.count %> いいね</p>
-
-        <% elsif @post.bookmarked_by?(current_user) %>
-          <p>
-            <%= link_to post_bookmarks_path(@post), method: :delete do %>
-              ♥<%= @post.bookmarks.count %> いいね
-            <% end %>
-          </p>
-        <% else %>
-          <p>
-            <%= link_to post_bookmarks_path(@post), method: :post do %>
-              ♡<%= @post.bookmarks.count %> いいね
-            <% end %>
-          </p>
-        <% end %>
-
-
-        <p>コメント<%= @post.post_comments.count %>件</p>
-        <% @post.post_comments.each do |post_comment| %>
-          <p><%= image_tag post_comment.user.get_profile_image(30,30), class: 'border' %>
-          <%= post_comment.user.name %>&emsp;<%= post_comment.comment %></p>
-          <small class="text-muted"><p>
-            <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-            <% if admin_signed_in? %>
-              <%= link_to "削除", admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, data: {confirm: "本当に削除しますか？"} %>
-            <% elsif post_comment.user == current_user %>
-              <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, data: {confirm: "本当に削除しますか？"}  %>
-            <% end %>
-          </p></small>
-        <% end %>
-      </div>
-
-      <% if user_signed_in? %>
+      <!--投稿詳細右半分-->
+      <div class="col-md-6">
+        <div class="row d-flex flex-column pl-1">
+          <div class="post-title">
+            <h3><span><%= @post.title %></span></h3>
+          </div>
+          <div class="post-body">
+            <p class="ml-2 mt-3"><%=safe_join(@post.body.split("\n"),tag(:br))%></p>
+          </div>
+          <div class="post-tags">
+            <p><i class="fas fa-tag"></i>
+              <% if @post.tag.present? %>
+                <%= link_to  search_index_path(tag_id: @post.tag.id), class: 'text-dark border-bottom' do %>
+                  <%= @post.tag.name if @post.tag.present? %>
+                <% end %>
+              <% end %>
+              <span>　|　</span>
+              <i class="fas fa-plane"></i> <%= link_to @post.airport, search_index_path(airport: @post.airport), class: 'text-dark border-bottom' %>
+            </p>
+          </div>
+        </div>
+      <div class="row d-flex justify-content-between pr-1">
         <div>
-          <%= form_with model: [@post, @post_comment] do |f| %>
-            <%= f.text_area :comment, rows: '2', placeholder: "コメントをここに" %>
-            <%= f.submit "送信する" %>
+          <%= link_to admin_user_path(@post.user), class: 'd-flex align-items-end text-dark' do %>
+            <%= image_tag @post.user.get_profile_image(35,35), class: 'rounded-circle border' %>&nbsp;&nbsp;
+            <span class="border-bottom"><%= @post.user.name %></span>
           <% end %>
         </div>
+
+        <div class="d-flex align-items-end">
+          <%= @post.created_at.strftime('%Y/%m/%d') %>
+          <% if current_user == @post.user %>
+            <span>　|　</span>
+            <%= link_to edit_post_path(@post.id), class: 'text-dark border-bottom text-muted' do %>
+              <i class="far fa-edit"></i>
+            <% end %>
+            <span>　|　</span>
+            <%= link_to post_path(@post.id), method: :delete, class: 'text-dark border-bottom text-muted', data: {confirm: "この投稿を削除しますか？"} do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row offset-md-1 my-2">
+    <h5 class="comment-title ml-1"><i class="far fa-comments"></i> コメント</h5>
+  </div>
+    <!--コメントエリア-->
+  <div class="row">
+    <div class="comment-area col-md-5 offset-md-1">
+      <% unless @post.post_comments.present? %>
+        <p class="text-muted">まだコメントがありません。</p>
       <% end %>
 
-      <div class="post pt-3"></div>
-        <%= link_to '削除', admin_post_path(@post.id), method: :delete, class: 'text-dark border-bottom text-muted', data: {confirm: "本当に削除しますか？"} %>
+      <% @comments.each do |post_comment| %>
+        <%= image_tag post_comment.user.get_profile_image(30,30), class: 'rounded-circle border' %>
+        <%= link_to post_comment.user.name, admin_user_path(post_comment.user), class: 'text-dark' %>
+        <span>  : <%= post_comment.comment %></span>
+        <small class="text-muted"><p class="d-flex justify-content-end pr-5">
+          <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+          <% if post_comment.user == current_user %>
+            <%= link_to post_post_comment_path(post_comment.post, post_comment), method: :delete, class: 'text-dark border-bottom text-muted', data: {confirm: "このコメントを削除しますか？"}, remote: true do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+          <% end %>
+        </p></small>
+      <% end %>
+
+      <div class="row">
+        <div class="col-md-6 mx-auto pt-2 d-flex justify-content-center">
+          <p><%= paginate @comments %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="not-signin d-flex">
+          <%= link_to '※この投稿を削除する（管理者）※', admin_post_path(@post), method: :delete, class: 'text-danger h5', data: {confirm: "本当に削除しますか？"}  %>
       </div>
     </div>
   </div>
