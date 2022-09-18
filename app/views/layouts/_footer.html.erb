@@ -10,16 +10,12 @@
                 </span>
               </h4>
             </a>
-            <!--%= image_tag('logo-white.png') %>-->
           </div>
           <div class="col-md-8">
-            <h6 class="text-white mt-2 mb-3">Link</h6>
+            <h6 class="text-dark mt-5 mb-3">Link</h6>
             <ul class="p-0 list-unstyled">
               <li>
-                <a href="" title="About" class="text-black-50">会社概要</a>
-              </li>
-              <li>
-                <a href="" title="License informations" class="text-black-50">プライバシーポリシー</a>
+                <%= link_to 'サイト概要', about_path, class: 'text-black-50' %>
               </li>
               <li>
                 <%= link_to '管理者ページ', new_admin_session_path, class: 'text-black-50' %>
