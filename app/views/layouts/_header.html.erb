@@ -88,3 +88,10 @@
     </div>
   </div>
 </nav>
+<div class="bg-white">
+  <div class="container pb-2">
+    <% if admin_signed_in? %>
+      <div class='d-flex justify-content-end'>*管理者でログインしています</div>
+    <% end %>
+  </div>
+</div>
