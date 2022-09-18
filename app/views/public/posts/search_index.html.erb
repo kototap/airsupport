@@ -1,16 +1,14 @@
 <div class="container">
   <div class="row mt-5">
-    <div class="col-md-6">
-      <% if params[:q].present? && params[:q][:title_cont].present? %>
-        <h2>"<%= params[:q][:title_cont] %>"の検索結果一覧</h2>
-      <% elsif params[:q].present? && params[:q][:tag_id_eq].present? %>
-        <h2>"<%= Tag.find(params[:q][:tag_id_eq]).name %>"の検索結果一覧</h2>
-      <% elsif params[:q].present? && params[:q][:airport_cont].present? %>
-        <h2>"<%= params[:q][:airport_cont] %>"の検索結果一覧</h2>
-      <% else %>
-        <h2>投稿一覧</h2>
-      <% end %>
-    </div>
+    <% if params[:q].present? && params[:q][:title_cont].present? %>
+      <h2><span class="public-title"><i class="fas fa-search"></i> "<%= params[:q][:title_cont] %>"の検索結果一覧<span></h2>
+    <% elsif params[:q].present? && params[:q][:tag_id_eq].present? %>
+      <h2><span class="public-title"><i class="fas fa-search"></i> "<%= Tag.find(params[:q][:tag_id_eq]).name %>"の検索結果一覧</span></h2>
+    <% elsif params[:q].present? && params[:q][:airport_cont].present? %>
+      <h2><span class="public-title"><i class="fas fa-search"></i> "<%= params[:q][:airport_cont] %>"の検索結果一覧</span></h2>
+    <% else %>
+      <h2><span class="public-title"><i class="fas fa-search"></i> 投稿一覧</span></h2>
+    <% end %>
   </div>
 </div>
 <div class="container">

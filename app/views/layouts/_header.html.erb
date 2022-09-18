@@ -18,25 +18,25 @@
         <li class="nav-item">
           <%= link_to posts_path, class: 'nav-link text-dark' do %>
             <i class="far fa-sticky-note fa-lg"></i>
-            Posts
+            投稿一覧
           <% end %>
         </li>
         <li class="nav-item">
           <%= link_to user_path(current_user.id), class: 'nav-link text-dark' do %>
             <i class="far fa-user fa-lg"></i>
-            My Page
+            マイページ
           <% end %>
         </li>
         <li class="nav-item">
           <%= link_to search_path, class: 'nav-link text-dark' do %>
             <i class="fas fa-search fa-lg"></i>
-            Search
+            検索
           <% end %>
         </li>
         <li class="nav-item">
           <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark' do %>
             <i class="fas fa-sign-out-alt fa-lg"></i>
-            Sign Out
+            ログアウト
           <% end %>
         </li>
       <% elsif admin_signed_in? %>
@@ -68,19 +68,19 @@
         <li class="nav-item">
           <%= link_to new_user_registration_path, class: 'nav-link text-dark' do %>
             <i class="fas fa-user-plus fa-lg"></i>
-            Sign Up
+            新規会員登録
           <% end %>
         </li>
         <li class="nav-item">
           <%= link_to new_user_session_path, class: 'nav-link text-dark' do %>
             <i class="fas fa-sign-in-alt fa-lg"></i>
-            Log In
+            ログイン
           <% end %>
         </li>
         <li class="nav-item">
           <%= link_to public_guest_sign_in_path, class: 'nav-link text-dark', method: :post do %>
             <i class="fas fa-users fa-lg"></i>
-            Guest Log In
+            ゲストログイン
           <% end %>
         </li>
       <% end %>

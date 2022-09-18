@@ -44,26 +44,21 @@
 
 <!--NEWPOST部分-->
     <div class="row pt-5 mt-5">
-      <div class="col-12">
-        <h1><span class='newPosts'>NEW POSTS</span></h1>
-      </div>
-    </div>
+      <div class="col-md-7">
+        <h2><span class='newPosts'><i class="far fa-star"></i>New Posts</span></h2>
 
-    <div class="row">
-      <div class="col-sm-8">
         <% @posts.each do |post| %>
           <div class="card mt-4">
             <div class="row">
               <div class="col-md-4">
                 <%= image_tag post.get_post_image, class: 'newPosts__img-fluid' %>
               </div>
+
               <div class="col-md-8 d-flex flex-column justify-content-between">
                 <%= link_to post_path(post), class: 'text-dark' do %>
                 <h5 class="card-title font-weight-bold pt-3"><%= post.title %></h5>
                 <% end %>
                 <p class="card-text"><%= post.body.truncate(30) %></p>
-
-
                 <div class="card-text d-flex justify-content-between pb-3 pr-3">
                   <p><small>
                     <i class="fas fa-tag"></i>
@@ -76,7 +71,6 @@
                     <%= link_to post.user.name, user_path(post.user), class: 'text-dark border-bottom' %>
                     <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
                   </small></p>
-
                   <div class="align-self-center"><%= link_to "Read More", post_path(post), class: 'btn btn-outline-success btn-sm align-left' %></div>
                 </div>
               </div>
@@ -84,12 +78,17 @@
           </div>
         <% end %>
 
-        <div class="d-flex justify-content-end mt-3">
+        <div class="d-flex justify-content-end my-3">
           <%= link_to posts_path do %>
             <i class="fas fa-check fa-lg" style="color: #95e1d3;"></i>
             <span class="text-dark border-bottom">全ての投稿を見てみる</span>
           <% end %>
         </div>
+      </div>
+
+      <div class="col-md-5">
+        <h3><span class='newPosts'><i class="far fa-thumbs-up"></i>Today's Recommend</span></h3>
+
       </div>
     </div>
   </div>

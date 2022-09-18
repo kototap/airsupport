@@ -2,13 +2,13 @@
   <div class="row">
     <div class="col-md-6 offset-3 pt-5 mt-5">
       <div class="text-center h1">
-        本当に退会しますか？
+        <i class="fas fa-exclamation-triangle"></i> 本当に退会しますか？
       </div>
       <div class="text-center pt-5">
         今までの投稿やブックマークが全て削除されてしまいます
       </div>
-      <div class ="text-center pt-5">
-        <%= link_to "いいえ", user_path(@user.id), class: 'btn btn-primary' %>
+      <div class ="text-center py-5">
+        <%= link_to "いいえ", user_path(@user.id), class: 'btn btn-outline-primary' %>
         <%= link_to "退会する", user_path(@user.id), method: :delete, class: 'btn btn-danger ml-5' %>
       </div>
     </div>
