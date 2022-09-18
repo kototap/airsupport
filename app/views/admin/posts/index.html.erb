@@ -1,16 +1,17 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3 offset-2 pt-5">
-      <h3>みんなの投稿一覧</h3>
+      <h3><span class="admin-title">みんなの投稿一覧</span></h3>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6 mx-auto pt-5">
+    <div class="col-md-8 mx-auto pt-5">
         <table class="table">
           <thead>
             <tr>
               <th>ユーザー</th>
               <th>タイトル</th>
+              <th>投稿日時</th>
               <th></th>
             </tr>
           </thead>
@@ -19,7 +20,8 @@
             <tr>
               <td><%= post.user.name %></td>
               <td><%= post.title %></td>
-              <td><%= link_to '詳細へ', admin_post_path(post) %></td>
+              <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
+              <td><%= link_to '詳細へ', admin_post_path(post), class: 'btn btn-sm btn-outline-info' %></td>
             </tr>
             <% end %>
           </tbody>

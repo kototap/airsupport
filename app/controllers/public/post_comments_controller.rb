@@ -17,6 +17,7 @@ class Public::PostCommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @post_comment = PostComment.find(params[:id])
     @post_comment.destroy
+    @comments = @post.post_comments.order(created_at: :desc).page(params[:page]).per(5)
     render :comments
   end
 

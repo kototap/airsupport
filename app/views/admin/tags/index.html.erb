@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 mx-auto pt-5">
-      <h2>タグ一覧/追加</h2>
+      <h3><span class="admin-title">タグ一覧/追加</span></h3>
     </div>
   </div>
 </div>
@@ -22,12 +22,20 @@
   <div class="row py-5">
     <div class="col-md-6 offset-3 text-center">
       <table class="table">
-        <% @tags.each do |tag| %>
+        <thead>
           <tr>
-            <td><%= tag.name %></td>
-            <td><%= link_to "編集する", edit_admin_tag_path(tag.id), class: 'btn btn-outline-info btn-sm' %></td>
+            <th>タグ名</th>
+            <th></th>
           </tr>
-        <% end %>
+        </thead>
+        <tbody>
+          <% @tags.each do |tag| %>
+            <tr>
+              <td><%= tag.name %></td>
+              <td><%= link_to "編集する", edit_admin_tag_path(tag.id), class: 'btn btn-outline-info btn-sm' %></td>
+            </tr>
+          <% end %>
+        </tbody>
       </table>
     </div>
   </div>

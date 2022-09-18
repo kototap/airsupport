@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
     <div class="col-md-3 offset-2 pt-5">
-      <h3>会員一覧</h3>
+      <h3><span class="admin-title">会員一覧</span></h3>
     </div>
   </div>
   <div class="row">
@@ -19,7 +19,7 @@
           <tr>
             <td><%= image_tag user.get_profile_image(50,50) %></td>
             <td><%= user.name %></td>
-            <td><%= link_to "詳細へ" ,admin_user_path(user) %></td>
+            <td><%= link_to "詳細へ" ,admin_user_path(user), class: 'btn btn-sm btn-outline-info' %></td>
           </tr>
           <% end %>
         </tbody>
