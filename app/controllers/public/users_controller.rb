@@ -22,7 +22,7 @@ class Public::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(@user), notice: "更新が完了しました！"
     else
-      render 'edit'
+      render "edit"
     end
   end
 
@@ -38,16 +38,14 @@ class Public::UsersController < ApplicationController
 
 
   private
-
-  def user_params
-    params.require(:user).permit(:name, :introduction, :profile_image, :email)
-  end
-
-  def ensure_guest_user
-    @user = User.find(params[:id])
-    if @user.name == "guestuser"
-      redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+    def user_params
+      params.require(:user).permit(:name, :introduction, :profile_image, :email)
     end
-  end
 
+    def ensure_guest_user
+      @user = User.find(params[:id])
+      if @user.name == "guestuser"
+        redirect_to user_path(current_user), notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+      end
+    end
 end
