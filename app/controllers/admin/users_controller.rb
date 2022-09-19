@@ -32,14 +32,12 @@ class Admin::UsersController < ApplicationController
   end
 
   def unsubscribe
-    @user = User.find(params:id)
+    @user = User.find(params: id)
   end
 
 
   private
-
-  def user_params
-    params.require(:user).permit(:name, :introduction, :profile_image, :email)
-  end
-
+    def user_params
+      params.require(:user).permit(:name, :introduction, :profile_image, :email)
+    end
 end
