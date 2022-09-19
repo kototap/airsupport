@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   # ゲストログイン
   def self.guest
-    find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |user|
+    find_or_create_by!(name: "guestuser", email: "guest@example.com") do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "guestuser"
     end
@@ -25,8 +25,8 @@ class User < ApplicationRecord
 
   def get_profile_image(width, height)
     unless profile_image.attached?
-      file_path = Rails.root.join('app/javascript/images/no_image.png')
-      profile_image.attach(io: File.open(file_path), filename: 'no_image.png', content_type: 'image/png')
+      file_path = Rails.root.join("app/javascript/images/no_image.png")
+      profile_image.attach(io: File.open(file_path), filename: "no_image.png", content_type: "image/png")
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end

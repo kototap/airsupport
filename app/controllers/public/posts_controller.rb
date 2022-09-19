@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_user!, except:[:index, :show, :search, :search_index]
+  before_action :authenticate_user!, except: [:index, :show, :search, :search_index]
 
   def new
     @post = Post.new
@@ -41,19 +41,19 @@ class Public::PostsController < ApplicationController
   def search
     @search = Post.where(is_draft: false).ransack(params[:q])
     # OR検索
-    @search.combinator = 'or'
+    @search.combinator = "or"
   end
 
   def search_index
     @search = Post.where(is_draft: false).ransack(params[:q])
     posts = @search.result(distinct: true)
     posts = if params[:tag_id]
-               posts.where(tag_id: params[:tag_id])
-            elsif params[:airport]
-               posts.where(airport: params[:airport])
-            else
-              posts
-            end
+      posts.where(tag_id: params[:tag_id])
+    elsif params[:airport]
+      posts.where(airport: params[:airport])
+    else
+      posts
+    end
     @posts = posts.order(created_at: :desc).page(params[:page])
   end
 
@@ -65,7 +65,7 @@ class Public::PostsController < ApplicationController
 
     # 他のユーザーは下書き投稿にアクセスできないようにする
     if (@post.is_draft == true) && @post.user != current_user
-     redirect_to root_path
+      redirect_to root_path
     end
 
     # 前ページセッションを記録=>indexページ（全体or個人）
@@ -76,7 +76,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-     # showで記録したページに戻る
+    # showで記録したページに戻る
     redirect_to session[:previous_url]
   end
 
@@ -119,9 +119,7 @@ class Public::PostsController < ApplicationController
 
 
   private
-
-  def post_params
-    params.require(:post).permit(:title, :body, :airport, :post_image, :tag_id, :is_draft, :address)
-  end
-
+    def post_params
+      params.require(:post).permit(:title, :body, :airport, :post_image, :tag_id, :is_draft, :address)
+    end
 end

@@ -13,7 +13,7 @@ class Admin::TagsController < ApplicationController
       redirect_to admin_tags_path
     else
       @tags = Tag.all
-      render 'index'
+      render "index"
     end
   end
 
@@ -26,14 +26,12 @@ class Admin::TagsController < ApplicationController
     if @tag.update(tag_params)
       redirect_to admin_tags_path
     else
-      render 'edit'
+      render "edit"
     end
   end
 
   private
-
-  def tag_params
-    params.require(:tag).permit(:name)
-  end
-
+    def tag_params
+      params.require(:tag).permit(:name)
+    end
 end

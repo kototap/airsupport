@@ -19,5 +19,4 @@ class Admin::PostsController < ApplicationController
     # showで記録したページに戻る
     redirect_to session[:previous_url]
   end
-
 end
