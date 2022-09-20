@@ -1,8 +1,14 @@
 <div class="container">
-<%= render "error", obj: @post %>
-  <div class="row pt-5 mt-5">
-    <h2 class="text-center"><span class="public-title">投稿編集</span></h2>
+  <div class="row">
+    <div class="col-md-3 pt-5">
+      <h2><span class="public-title"><i class="far fa-edit"></i> 投稿編集</span></h2>
+    </div>
   </div>
+</div>
+
+
+<div class="container">
+<%= render "error", obj: @post %>
   <div class="row">
     <div class="col-md-8 offset-2">
       <%= form_with model: @post, method: :patch do |f| %>
@@ -52,7 +58,10 @@
                   <%= f.submit "下書きのまま更新", :name => 'update_draft', class: 'mr-5 btn btn-sm btn-outline-secondary' %>
                 </td>
               <% else %>
-                <td><%= f.submit "更新", :name => 'update_post', class: 'btn btn-sm btn-warning text-light' %></td>
+                <td>
+                  <%= link_to '戻る', post_path(@post), class: 'btn btn-sm btn-outline-success mr-5' %>
+                  <%= f.submit "更新", :name => 'update_post', class: 'btn btn-sm btn-warning text-light ml-5' %>
+                </td>
               <% end %>
              </tr>
            </div>
