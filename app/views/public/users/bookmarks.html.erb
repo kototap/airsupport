@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 mx-auto pt-5">
-      <h3><span class="public-title">ブックマークした投稿一覧</span></h3>
+      <h3><span class="public-title"><i class="fas fa-bookmark"></i> ブックマークした投稿一覧</span></h3>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6 mx-auto pt-5">
+    <div class="col-md-8 mx-auto pt-5">
         <table class="table">
           <thead>
             <tr>
@@ -19,7 +19,7 @@
             <tr>
               <td><%= post.user.name %></td>
               <td><%= post.title %></td>
-              <td><%= link_to '詳細へ', post_path(post) %></td>
+              <td><%= link_to '詳細へ', post_path(post), class: 'btn btn-sm btn-outline-info' %></td>
             </tr>
             <% end %>
           </tbody>
