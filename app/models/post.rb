@@ -21,7 +21,6 @@ class Post < ApplicationRecord
   validates :body, length: { maximum: 80 }, on: :publicize
 
 
-
   def get_post_image
     unless post_image.attached?
       file_path = Rails.root.join("app/javascript/images/no_post_image.png")

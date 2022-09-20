@@ -6,24 +6,24 @@
   </div>
   <div class="row">
     <div class="col-md-8 mx-auto pt-5">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>ユーザー</th>
-              <th>タイトル</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @bookmark_posts.each do |post| %>
-            <tr>
-              <td><%= post.user.name %></td>
-              <td><%= post.title %></td>
-              <td><%= link_to '詳細へ', post_path(post), class: 'btn btn-sm btn-outline-info' %></td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ユーザー</th>
+            <th>タイトル</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @bookmark_posts.each do |post| %>
+          <tr>
+            <td><%= post.user.name %></td>
+            <td><%= post.title %></td>
+            <td><%= link_to '詳細へ', post_path(post), class: 'btn btn-sm btn-outline-info' %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
