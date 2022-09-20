@@ -7,10 +7,8 @@ RSpec.describe "Tags", type: :request do
     @admin = FactoryBot.create(:admin)      #FactoryBotを利用してadminデータを作成
   end
 
-
   describe 'タグのテスト' do
     let!(:tag) { create(:tag, name:'hoge') }
-
 
     describe "タグ一覧画面(admin_tags_path)のテスト" do
       before do
@@ -42,7 +40,6 @@ RSpec.describe "Tags", type: :request do
         end
       end
     end
-
 
     describe 'タグ編集画面のテスト' do
       before do
