@@ -8,40 +8,13 @@
   <div class="form-group d-flex justify-content-center">
     <%= render "public/posts/error", obj: @user %>
     <%= form_with model: @user, url: user_path(@user), method: :patch do |f| %>
-      <div class="form-group row">
-        <label class="col-md-6 col-form-label"><%= f.label :profile_image %></label>
-        <div class="col-md-6">
-          <%= f.file_field :profile_image, accept: 'image/*' %>
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label class="col-md-6 col-form-label"><%= f.label :name %></label>
-        <div class="col-md-6">
-          <%= f.text_field :name, autofocus: true %>
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label class="col-md-6 col-form-label"><%= f.label :email %></label>
-        <div class="col-md-6">
-          <%= f.email_field :email, autocomplete: "email" %>
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label class="col-md-6 col-form-label"><%= f.label :introduction %></label>
-        <div class="col-md-6">
-          <%= f.text_area :introduction %>
-        </div>
-      </div>
-
-
+      <%= render "public/users/form", f: f %>
       <div class="actions d-flex justify-content-center pb-5">
         <%= f.submit "更新する", class: 'btn btn-outline-primary btn-sm' %>
       </div>
     <% end %>
   </div>
+
   <div class="row d-flex justify-content-end align-items-center mb-5">
       <i class="fas fa-exclamation-triangle"></i>&nbsp;退会をご希望の方は
       <%= link_to "こちら", user_unsubscribe_path(@user.id) %>

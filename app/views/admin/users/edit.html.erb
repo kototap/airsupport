@@ -1,55 +1,19 @@
 <div class="container">
-
   <div class="row">
-  <div class="col-md-8 mx-auto pt-5">
-    <h3><span class="admin-title"><%= "#{@user.name}さんの情報編集" %></span></h3>
+    <div class="col-md-6 mx-auto py-5">
+      <h3><span class="public-title"><i class="fas fa-user-edit"></i><%= @user.name %>さんの情報編集</span></h3>
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-md-8 offset-2 pt-5 center-block">
-
+  <div class="form-group d-flex justify-content-center">
+    <%= render "public/posts/error", obj: @user %>
     <%= form_with model: @user, url: admin_user_path(@user), method: :patch do |f| %>
-      <table class="table table-borderless">
-         <div class="form-group">
-           <tr>
-             <td><%= f.label :profile_image %></td>
-             <td><%= f.file_field :profile_image, accept: 'image/*' %></td>
-           </tr>
-         </div>
-
-         <div class="form-group">
-           <tr>
-             <td><%= f.label :name %></td>
-             <td><%= f.text_field :name, autofocus: true %></td>
-            </tr>
-         </div>
-
-         <div class="form-group">
-           <tr>
-             <td><%= f.label :email %></td>
-             <td><%= f.email_field :email, autocomplete: "email" %></td>
-            </tr>
-         </div>
-
-         <div class="form-group">
-           <tr>
-             <td><%= f.label :introduction %></td>
-             <td><%= f.text_area :introduction %></td>
-            </tr>
-         </div>
-
-         <div class="form-group">
-           <tr>
-             <td></td>
-             <td>
-               <%= f.submit "更新する", class: 'btn btn-primary btn-sm' %>
-               <%= link_to "退会する", user_unsubscribe_path(@user.id), class: 'btn btn-danger btn-sm ml-2' %>
-             </td>
-         </div>
-      </table>
+      <%= render "public/users/form", f: f %>
+      <div class="actions d-flex justify-content-center pb-5">
+        <%= f.submit "更新する", class: 'btn btn-primary btn-sm' %>
+        <%= link_to "退会させる", admin_user_path(@user), method: :delete, class: 'btn btn-danger btn-sm ml-2', data: {confirm: "本当に削除しますか？"} %>
+      </div>
     <% end %>
-  </div>
   </div>
 
   <div class="row">
