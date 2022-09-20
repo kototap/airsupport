@@ -17,7 +17,7 @@
 
 // showページ
 .post-title span{
-  background: linear-gradient(transparent 70%, #ffb677 30%);
+  background: linear-gradient(transparent 80%, #ffb677 80%);
   padding: 0 8px;
   font-weight: bold;
 }
@@ -31,4 +31,10 @@
 #map {
   height: 500px;
   width: 100%;
+}
+
+// userページ
+.card-img-top{
+  width: 100%;
+  height: 300px;
 }

@@ -1,24 +1,16 @@
+// トップページ、投稿ページ以外のタイトルなどの下線
 
-.registration{
+.registration, .public-title, .user-name{
   background: linear-gradient(transparent 80%, #fce38a 80%);
-}
-
-
-.session{
-  background: linear-gradient(transparent 80%, #a1de93 80%);
-}
-
-
-.admin-registration{
-  background: linear-gradient(transparent 80%, #95e1d3 80%);
-}
-
-.admin-title{
-  background: linear-gradient(transparent 80%, #95e1d3 80%);
   padding: 0 5px;
 }
 
-.public-title{
-  background: linear-gradient(transparent 80%, #ffb677 80%);
+.session{
+  background: linear-gradient(transparent 80%, #a1de93 80%);
+  padding: 0 5px;
+}
+
+.admin-registration, .admin-title{
+  background: linear-gradient(transparent 80%, #95e1d3 80%);
   padding: 0 5px;
 }
