@@ -1,66 +1,18 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4 offset-2 mt-5">
-      <h3><span class="public-title">新規投稿</span></h3>
+    <div class="col-md-8 mx-auto py-5">
+      <h3><span class="public-title"><i class="far fa-edit"></i> 新規投稿</span></h3>
     </div>
   </div>
 
- <%= render "error", obj: @post %>
-
-  <div class="row">
-    <div class="col-md-7 offset-2">
-      <%= form_with model: @post do |f| %>
-        <table class="table table-borderless">
-          <div class="form-group">
-             <tr>
-               <td><%= f.label :post_image %></td>
-               <td><%= f.file_field :post_image, accept: 'image/*' %></td>
-             </tr>
-           </div>
-           <div class="form-group">
-             <tr>
-               <td><%= f.label :title %></td>
-               <td><%= f.text_field :title, placeholder: "お店や観光地の名称などを入れてください", autofocus: true,class: 'form-control' %></td>
-             </tr>
-           </div>
-           <div class="form-group">
-             <tr>
-               <td><%= f.label :body %></td>
-               <td><%= f.text_area :body, class: 'form-control' %></td>
-             </tr>
-           </div>
-           <div class="form-group">
-             <tr>
-               <td><%= f.label :airport %></td>
-               <td><%= f.text_field :airport, class: 'form-control' %></td>
-             </tr>
-           </div>
-           <div class="form-group">
-             <tr>
-                <td><%= f.label :tag_id %></td>
-                <td><%= f.collection_select(:tag_id, Tag.all, :id, :name, {prompt: "選択してください"}, {class: 'form-control'}) %></td>
-             </tr>
-           </div>
-           <div class="form-group">
-             <tr>
-               <td><%= f.label :address %></td>
-               <td>
-                 <%= f.text_field :address, placeholder: "東京都〇〇区〇〇1-1-1", class: 'form-control' %>
-                 <small class="text-muted">*数字は半角で入力してください</small>
-               </td>
-             </tr>
-           </div>
-           <div class="form-group">
-             <tr>
-                <td></td>
-                <td>
-                  <%= f.submit '投稿する', :name => 'send', class: 'mr-5 btn btn-outline-warning text-dark' %>
-                  <%= f.submit '下書きに保存', :name => 'draft', class: 'mr-5 btn btn-outline-secondary' %>
-                </td>
-             </tr>
-           </div>
-        </table>
-      <% end %>
-    </div>
+  <div class="form-group d-flex justify-content-center">
+    <%= render "error", obj: @post %>
+    <%= form_with model: @post do |f| %>
+      <%= render 'form', f: f %>
+      <div class="actions d-flex justify-content-around pb-5">
+        <%= f.submit '下書きに保存', :name => 'draft', class: 'mr-5 btn btn-outline-secondary' %>
+        <%= f.submit '投稿する', :name => 'send', class: 'ml-5 btn btn-outline-warning text-dark' %>
+      </div>
+    <% end %>
   </div>
 </div>

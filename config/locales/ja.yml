@@ -16,3 +16,5 @@ ja:
         address: 住所
       tag:
         name: タグ名
+      post_comment:
+        comment: コメント

@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :search, :search_index]
+  before_action :ensure_correct_user, only: [:edit, :update]
 
   def new
     @post = Post.new
@@ -121,5 +122,13 @@ class Public::PostsController < ApplicationController
   private
     def post_params
       params.require(:post).permit(:title, :body, :airport, :post_image, :tag_id, :is_draft, :address)
+    end
+
+    def ensure_correct_user
+      @post = Post.find(params[:id])
+      @user = @post.user
+      unless @user == current_user
+        redirect_to posts_path, notice: "他のユーザーの投稿編集画面へは遷移できません。"
+      end
     end
 end

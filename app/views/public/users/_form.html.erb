@@ -1,0 +1,27 @@
+<div class="form-group row">
+  <label class="col-md-6 col-form-label"><%= f.label :profile_image %></label>
+  <div class="col-md-6">
+    <%= f.file_field :profile_image, accept: 'image/*' %>
+  </div>
+</div>
+
+<div class="form-group row">
+  <label class="col-md-6 col-form-label"><%= f.label :name %></label>
+  <div class="col-md-6">
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+</div>
+
+<div class="form-group row">
+  <label class="col-md-6 col-form-label"><%= f.label :email %></label>
+  <div class="col-md-6">
+    <%= f.email_field :email, autocomplete: "email" %>
+  </div>
+</div>
+
+<div class="form-group row">
+  <label class="col-md-6 col-form-label"><%= f.label :introduction %></label>
+  <div class="col-md-6">
+    <%= f.text_area :introduction %>
+  </div>
+</div>

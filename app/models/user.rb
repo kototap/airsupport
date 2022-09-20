@@ -9,6 +9,10 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :post_comments, dependent: :destroy
 
+    validates :name, presence: true, length: { maximum: 10 }
+    validates :email, presence: true
+
+
 
   # ゲストログイン
   def self.guest
