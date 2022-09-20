@@ -3,7 +3,7 @@
     <%= image_tag user.get_profile_image(150,150), class: "rounded-circle border" %>
   </div>
   <div class="profile-item my-4 d-flex">
-    <h5 class="font-weight-bold mr-5"><%= user.name %></h5>
+    <h5 class="font-weight-bold mr-5"><span class="user-name"><%= user.name %></span></h5>
     <% if user == current_user %>
       <p class="ml-5"><%= link_to edit_user_path(user.id), class: 'text-dark border-bottom' do %>
         <i class="fas fa-user-edit"></i>
@@ -13,10 +13,18 @@
   </div>
   <div class="profile-item my-4">
     <% if user.introduction.present? %>
-      <p><%=safe_join(user.introduction.split("\n"),tag(:br))%></p>
+      <p><i class="far fa-comment-dots"></i> <%=safe_join(user.introduction.split("\n"),tag(:br))%></p>
+    <% else %>
+      <p><i class="far fa-comment-dots"></i><small><span class="text-muted"> まだ自己紹介文がありません。</span></small></p>
     <% end %>
   </div>
   <% if user == current_user %>
+  <div class="profile-item my-2">
+    <%=link_to bookmarks_user_path(user), class: 'text-dark border-bottom' do  %>
+      <i class="fas fa-bookmark"></i>
+      ブックマーク
+    <% end %>
+  </div>
   <div class="profile-item my-2">
     <%= link_to new_post_path, class: 'text-dark border-bottom' do %>
       <i class="fas fa-plus"></i>
@@ -24,14 +32,8 @@
     <% end %>
   </div>
   <div class="profile-item my-2">
-    <%=link_to bookmarks_user_path(user), class: 'text-dark border-bottom' do  %>
-      <i class="far fa-bookmark"></i>
-      ブックマーク
-    <% end %>
-  </div>
-  <div class="profile-item my-2">
     <%=link_to draft_index_posts_path, class: 'text-dark border-bottom' do %>
-      <i class="far fa-copy"></i>
+      <i class="far fa-sticky-note"></i>
       下書き
     <% end %>
   </div>
