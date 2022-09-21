@@ -5,8 +5,8 @@
     </div>
   </div>
 
+  <%= render "error", obj: @post %>
   <div class="form-group d-flex justify-content-center">
-    <%= render "error", obj: @post %>
     <%= form_with model: @post do |f| %>
       <%= render 'form', f: f %>
       <div class="actions d-flex justify-content-around pb-5">
