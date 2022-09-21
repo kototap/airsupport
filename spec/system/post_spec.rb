@@ -133,8 +133,46 @@ RSpec.describe "Posts", type: :request do
         post.update(is_draft: true)
       end
       context '下書きの詳細画面のテスト' do
-        it ''
+        before do
+          visit draft_index_posts_path
+        end
+        it 'draft_index_postsが"/posts/draft_index"であるか' do
+          expect(current_path).to eq('/posts/draft_index')
+        end
+        # it '下書きの投稿が表示されていて、リンクが正しいか' do
+        #   @user = sign_in user
+        #   Post.last.update(is_draft: true)
+        #   expect(page).to have_content 'hoge'
+        #   expect(page).to have_content 'hogehoge'
+        #   expect(page).to have_link Post.last.tag.name, href: search_index_path(tag_id: Post.last.tag.id)
+        #   expect(page).to have_link "fuga", href: search_index_path(airport: "fuga")
+        #   expect(page).to have_link Post.last.user.name, href: user_path(Post.last.user)
+        # end
       end
+    end
+    describe '編集画面のテスト' do
+      before do
+        @user = Post.last.user
+        visit post_path(Post.last)
+        click_link edit_post_path(Post.last)
+      end
+      context '表示の確認' do
+        it 'edit_post_pathが"/posts/:id/edit"である' do
+          expect(current_path).to eq("/posts/#{Post.last.id}/edit")
+        end
+        # it '編集前の投稿の内容がフォームにセットされている' do
+        # end
+        # it '公開されている投稿の場合更新ボタンが表示される' do
+        # end
+        # it '下書きにある投稿の場合、下書きを公開ボタンが表示される' do
+        # end
+        # it '下書きにある投稿の場合、下書きのまま更新ボタンが表示される' do
+        # end
+      end
+      # context '更新処理に関するテスト'　do
+      #   it '更新後のリダイレクト先は正しいか' do
+      #   end
+      # end
     end
   end
 end
