@@ -127,6 +127,14 @@ RSpec.describe "Posts", type: :request do
         end
       end
     end
-
+    describe '下書きのテスト' do
+      before do
+        post = Post.new
+        post.update(is_draft: true)
+      end
+      context '下書きの詳細画面のテスト' do
+        it ''
+      end
+    end
   end
 end
