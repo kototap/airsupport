@@ -9,9 +9,17 @@
     <%= render "public/posts/error", obj: @user %>
     <%= form_with model: @user, url: admin_user_path(@user), method: :patch do |f| %>
       <%= render "public/users/form", f: f %>
+      <div class="form-group row">
+        <div class="col-md-6"></div>
+        <label class="col-md-6 col-form-label">
+          <%= f.radio_button :is_deleted, false, checked: true %>
+          有効
+          <%= f.radio_button :is_deleted, true%>
+          退会
+        </label>
+      </div>
       <div class="actions d-flex justify-content-center pb-5">
-        <%= f.submit "更新する", class: 'btn btn-primary btn-sm' %>
-        <%= link_to "退会させる", admin_user_path(@user), method: :delete, class: 'btn btn-danger btn-sm ml-2', data: {confirm: "本当に削除しますか？"} %>
+        <%= f.submit "更新する", class: 'btn btn-outline-primary btn-sm' %>
       </div>
     <% end %>
   </div>
