@@ -26,7 +26,13 @@
           <td><i class="fas fa-user-edit"></i><%= link_to "編集する", edit_admin_user_path(@user), class: 'text-dark border-bottom ml-1' %></td>
         </tr>
         <tr>
-          <td><i class="fas fa-trash-alt"></i><%= link_to "ユーザーの削除", admin_user_path(@user), method: :delete, class: 'text-dark border-bottom ml-1', data: {confirm: "本当に削除しますか？"} %></td>
+          <td style="font-weight: bold; color: green;"><%= @user.is_deleted ? '利用停止中です' : '有効な会員です' %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <%= link_to "このユーザーを完全に削除する", admin_user_path(@user), method: :delete, class: 'btn btn-outline-danger btn-sm ml-2', data: {confirm: "本当に削除しますか？"} %>
+          </td>
         </tr>
       </table>
     </div>
