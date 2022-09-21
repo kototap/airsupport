@@ -10,12 +10,12 @@ RSpec.describe "Posts", type: :request do
   end
 
   describe 'Postのテスト' do
-    let!(:post) { 
+    let!(:post) {
       create(
-        :post, 
-        title: 'hoge', 
-        body: 'hogehoge', 
-        airport: 'fuga', 
+        :post,
+        title: 'hoge',
+        body: 'hogehoge',
+        airport: 'fuga',
         user_id: @user.id
       )
     }
@@ -28,7 +28,7 @@ RSpec.describe "Posts", type: :request do
         it 'トップ画面(root_path)に一覧ページへのリンクが表示されているか' do
           expect(page).to have_link "投稿一覧", href: posts_path
         end
-        it 'トップ画面(root_path)に新規投稿おエージへのリンクが表示されているか' do
+        it 'トップ画面(root_path)に新規投稿ページへのリンクが表示されているか' do
           expect(page).to have_link "新規投稿", href: new_post_path
         end
         it 'root_pathが"/"であるか' do
@@ -133,6 +133,7 @@ RSpec.describe "Posts", type: :request do
         end
       end
     end
+
     describe '下書きのテスト' do
       before do
         post.update(is_draft: true)
@@ -155,11 +156,11 @@ RSpec.describe "Posts", type: :request do
         end
       end
     end
+
     describe '編集画面のテスト' do
       before do
         visit edit_post_path(post.id)
       end
-
       context '表示の確認' do
         it 'edit_post_pathが"/posts/:id/edit"である' do
           expect(current_path).to eq("/posts/#{post.id}/edit")
@@ -205,6 +206,29 @@ RSpec.describe "Posts", type: :request do
           visit edit_post_path(post.id)
           click_button '下書きを公開'
           expect(current_path).to eq(post_path(post))
+        end
+      end
+    end
+
+    describe '検索についてのテスト' do
+      before do
+        visit search_path
+      end
+      context '検索ページの表示について' do
+        it 'search_pathが"/search"であるか' do
+          expect(current_path).to eq('/search')
+        end
+        it '検索フォームが3つ表示がされているか' do
+          expect(page).to have_field 'q[title_cont]'
+          expect(page).to have_field 'q[tag_id_eq]'
+          expect(page).to have_field 'q[airport_cont]'
+        end
+      end
+      context '検索処理に関して' do
+        it 'フリーワード検索時' do
+          fill_in 'q[title_cont]', with: 'hoge'
+          find("#word").click
+          expect(page).to have_content '"hoge"の検索結果一覧'
         end
       end
     end
