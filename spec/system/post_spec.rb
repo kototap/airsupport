@@ -10,7 +10,7 @@ RSpec.describe "Posts", type: :request do
   end
 
   describe 'Postのテスト' do
-    let!(:post) { create(:post, title: 'hoge', body: 'hogehoge', airport: 'fuga') }
+    let!(:post) { create(:post, title: 'hoge', body: 'hogehoge', airport: 'fuga', user_id: @user.id) }
 
     describe 'トップ画面(root_path)のテスト' do
       before do
@@ -82,31 +82,29 @@ RSpec.describe "Posts", type: :request do
          expect(current_path).to eq('/posts')
         end
         it  '投稿の情報、リンクが表示されているか' do
-          Post.new
-          expect(page).to have_link "hoge", href: post_path(Post.last)
-          expect(page).to have_link "hogehoge", href: post_path(Post.last)
-          expect(page).to have_link Post.last.tag.name, href: search_index_path(tag_id: Post.last.tag.id)
+          expect(page).to have_link "hoge", href: post_path(post)
+          expect(page).to have_link "hogehoge", href: post_path(post)
+          expect(page).to have_link post.tag.name, href: search_index_path(tag_id: post.tag.id)
           expect(page).to have_link "fuga", href: search_index_path(airport: "fuga")
-          expect(page).to have_link Post.last.user.name, href: user_path(Post.last.user)
+          expect(page).to have_link post.user.name, href: user_path(post.user)
         end
       end
     end
 
     describe '投稿詳細画面のテスト' do
       before do
-        Post.new
-        visit post_path(Post.last)
+        visit post_path(post)
       end
       context '投稿の詳細情報、リンクの確認' do
         it 'post_pathが"/posts/Post.id"であるか' do
-          expect(current_path).to eq("/posts/#{Post.last.id}")
+          expect(current_path).to eq("/posts/#{post.id}")
         end
         it '投稿の内容、リンクが反映されているか' do
           expect(page).to have_content 'hoge'
           expect(page).to have_content 'hogehoge'
-          expect(page).to have_link Post.last.tag.name, href: search_index_path(tag_id: Post.last.tag.id)
+          expect(page).to have_link post.tag.name, href: search_index_path(tag_id: post.tag.id)
           expect(page).to have_link "fuga", href: search_index_path(airport: "fuga")
-          expect(page).to have_link Post.last.user.name, href: user_path(Post.last.user)
+          expect(page).to have_link post.user.name, href: user_path(post.user)
         end
       end
       context 'コメントの確認' do
@@ -116,20 +114,19 @@ RSpec.describe "Posts", type: :request do
         end
         it 'コメントがない時の表示' do
           post_comments = PostComment.new
-          unless Post.last.post_comments.presence
+          unless post.post_comments.presence
             expect(page).to have_content 'まだコメントがありません。'
           end
         end
       end
       context 'ブックマークの確認' do
         it 'ブックマークの件数が表示されているか' do
-          expect(page).to have_link "#{Post.last.bookmarks.count}"
+          expect(page).to have_link "#{post.bookmarks.count}"
         end
       end
     end
     describe '下書きのテスト' do
       before do
-        post = Post.new
         post.update(is_draft: true)
       end
       context '下書きの詳細画面のテスト' do
@@ -139,26 +136,26 @@ RSpec.describe "Posts", type: :request do
         it 'draft_index_postsが"/posts/draft_index"であるか' do
           expect(current_path).to eq('/posts/draft_index')
         end
-        # it '下書きの投稿が表示されていて、リンクが正しいか' do
-        #   @user = sign_in user
-        #   Post.last.update(is_draft: true)
-        #   expect(page).to have_content 'hoge'
-        #   expect(page).to have_content 'hogehoge'
-        #   expect(page).to have_link Post.last.tag.name, href: search_index_path(tag_id: Post.last.tag.id)
-        #   expect(page).to have_link "fuga", href: search_index_path(airport: "fuga")
-        #   expect(page).to have_link Post.last.user.name, href: user_path(Post.last.user)
-        # end
+        it '下書きの投稿が表示されていて、リンクが正しいか' do
+          post.update(is_draft: true)
+          visit draft_index_posts_path
+          expect(page).to have_content 'hoge'
+          expect(page).to have_content 'hogehoge'
+          expect(page).to have_link post.tag.name, href: search_index_path(tag_id: post.tag.id)
+          expect(page).to have_link "fuga", href: search_index_path(airport: "fuga")
+          expect(page).to have_link post.user.name, href: user_path(post.user)
+        end
       end
     end
     describe '編集画面のテスト' do
       before do
-        @user = Post.last.user
-        visit post_path(Post.last)
-        click_link edit_post_path(Post.last)
+
+        visit edit_post_path(post.id)
       end
+
       context '表示の確認' do
         it 'edit_post_pathが"/posts/:id/edit"である' do
-          expect(current_path).to eq("/posts/#{Post.last.id}/edit")
+          expect(current_path).to eq("/posts/#{post.id}/edit")
         end
         # it '編集前の投稿の内容がフォームにセットされている' do
         # end
