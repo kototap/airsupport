@@ -8,7 +8,7 @@ RSpec.describe "Tags", type: :request do
   end
 
   describe 'タグのテスト' do
-    let!(:tag) { create(:tag, name:'hoge') }
+    let!(:tag) { create(:tag, name: 'hoge') }
 
     describe "タグ一覧画面(admin_tags_path)のテスト" do
       before do
