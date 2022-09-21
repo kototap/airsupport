@@ -2,8 +2,14 @@
   <%= link_to :back, class: 'btn btn-sm mb-3' do %>
     <i class="fas fa-angle-double-left"></i> Back
   <% end %>
-  <div class="row">
+      <!--下書きの投稿であることを表示-->
+  <% if @post.is_draft == true %>
+    <div class="col-md-6 mb-5">
+      <h4>※この投稿は下書きです。</h4>
+    </div>
+  <% end %>
 
+  <div class="row">
     <div class="col-md-6">
       <div class="row d-flex justify-content-center">
         <div class="post-image">
