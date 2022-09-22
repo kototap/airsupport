@@ -3,12 +3,16 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body{
   font-family: 'Noto Sans JP', sans-serif;
   background: #fffdfb;
 }
-
-
 
 // リンクの下線（全ページ共通）
 a {
