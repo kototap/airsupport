@@ -1,48 +1,51 @@
 
 <!--メインビジュアル部分-->
-<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
-	 <ol class="carousel-indicators">
-    <li data-target="#carouselExampleFade" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleFade" data-slide-to="1"></li>
-    <li data-target="#carouselExampleFade" data-slide-to="2"></li>
-  </ol>
-	<div class="carousel-inner bgCarousel">
-		<div class="carousel-item bgCarousel__item active"></div>
-		<div class="carousel-item bgCarousel__item"></div>
-		<div class="carousel-item bgCarousel__item"></div>
-		<div class="carousel-caption d-none d-block">
-      <h2 class="bgCarousel__mv-title"><span class="bgCarousel__caption--bg">旅をもっと快適に</span></h2>
-      <p class="bgCarousel__mv-body"><span class="bgCarousel__caption--bg">旅行も出張も、時間を持て余すことなく楽しみ尽くす<span></p>
+<div class="mvTop">
+  <div class="row">
+    <div class="col-md-7">
+      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+      	 <ol class="carousel-indicators">
+          <li data-target="#carouselExampleFade" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleFade" data-slide-to="1"></li>
+          <li data-target="#carouselExampleFade" data-slide-to="2"></li>
+        </ol>
+      	<div class="carousel-inner bgCarousel">
+      		<div class="carousel-item bgCarousel__item active"></div>
+      		<div class="carousel-item bgCarousel__item"></div>
+      		<div class="carousel-item bgCarousel__item"></div>
+      		<div class="carousel-caption d-none d-block">
+            <h2 class="bgCarousel__mv-title"><span class="bgCarousel__caption--bg">旅をもっと快適に</span></h2>
+            <p class="bgCarousel__mv-body"><span class="bgCarousel__caption--bg">旅行も出張も、時間を持て余すことなく楽しみ尽くす<span></p>
+          </div>
+      	</div>
+      </div>
     </div>
-	</div>
+    <div class="col-md-5">
+      <div class="row py-5 my-5 d-flex justify-content-center text-center">
+          <h1><span class="topMain__about">It's Fun To Travel <i class="fas fa-plane"></i></span></h1>
+          <h4 class="pt-3 topMain__body">AIRSUPPORTで旅をもっと気軽に楽しもう</h4>
+          <h4 class="pt-2 topMain__body"><i class="fas fa-search-location"></i> 空港からすぐ近くの、お店や場所を探す</h4>
+        <div class="row align-self-center d-flex justify-content-around mt-5">
+          <div class="topLink d-inline">
+            <%= link_to about_path, class: 'btn topLink__btn pr-5 mr-2' do %>
+              <i class="fas fa-check fa-lg"></i>
+            　About
+            <% end %>
+          </div>
+          <div class="topLink d-inline">
+            <%= link_to search_path, class: 'btn topLink__btn pr-5 ml-2' do %>
+              <i class="fas fa-search fa-lg"></i>
+            　Search
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!--メインビジュアル下の説明-->
-<div class="top-bg py-5">
-  <div class="container topMain">
-    <div class="row py-5 my-5 d-flex justify-content-center text-center">
-      <div class="col-md-6 about-box">
-        <h1><span class="topMain__about">It's Fun To Travel <i class="fas fa-plane"></i></span></h1>
-        <h4 class="pt-3 topMain__body">AIRSUPPORTで旅をもっと気軽に楽しもう</h4>
-        <h4 class="pt-2 topMain__body"><i class="fas fa-search-location"></i> 空港からすぐ近くの、お店や場所を探す</h4>
-      </div>
-      <div class="col-md-6 align-self-center d-flex justify-content-around">
-        <div class="top-link d-inline">
-          <%= link_to about_path, class: 'btn btn-outline-warning text-dark pr-5' do %>
-            <i class="fas fa-check fa-lg" style="color: #95e1d3;"></i>
-          　About
-          <% end %>
-        </div>
-        <div class="top-link d-inline">
-          <%= link_to search_path, class: 'btn btn-outline-info text-dark pr-5' do %>
-            <i class="fas fa-search fa-lg" style="color: #95e1d3;"></i>
-          　Search
-          <% end %>
-        </div>
-      </div>
-    </div>
-
 <!--NEWPOST部分-->
+  <div class="container topMain">
     <div class="row pt-5 mt-5">
       <div class="col-md-7">
         <h3><span class='newPosts'><i class="far fa-star"></i> New Posts</span></h3>
@@ -114,8 +117,6 @@
       </div>
     </div>
   </div>
-</div>
-
 
 
 
