@@ -1,32 +1,32 @@
-          <div class="card">
-            <%= link_to post_path(post), class: 'text-dark' do %>
-              <%= image_tag post.get_post_image, class: 'card__img-top' %>
-              <div class="card-body ml-2">
-                <div class="row">
-                  <h4 class="card-title"><%= post.title %></h4>
-                </div>
-                <div class="row">
-                  <p class="card-text"><i class="fas fa-comment-dots"></i> <%= post.body.truncate(20) %></p>
-                </div>
-              <% end %>
-                <div class="row">
-                  <p class="card__posts-tags">
-                    <i class="fas fa-tag"></i>
-                    <% if post.tag.present? %>
-                      <%= link_to post.tag.name, search_index_path(tag_id: post.tag.id), class: "text-dark border-bottom" %>
-                    <% end %>
-                  <span> | </span>
-                  <i class="fas fa-plane"></i>
-                  <%= link_to post.airport, search_index_path(airport: post.airport), class: "text-dark border-bottom" %>
-                  </p>
-                </div>
+<div class="card">
+  <%= link_to post_path(post), class: 'text-dark' do %>
+    <%= image_tag post.get_post_image, class: 'card__img-top' %>
+    <div class="card-body ml-2">
+      <div class="row">
+        <h4 class="card-title"><span class="link-border"><%= post.title %></span></h4>
+      </div>
+      <div class="row">
+        <p class="card-text"><i class="fas fa-comment-dots"></i> <%= post.body.truncate(20) %></p>
+      </div>
+    <% end %>
+      <div class="row">
+        <p class="card__posts-tags">
+          <i class="fas fa-tag"></i>
+          <% if post.tag.present? %>
+            <%= link_to post.tag.name, search_index_path(tag_id: post.tag.id), class: "text-dark border-bottom" %>
+          <% end %>
+        <span> | </span>
+        <i class="fas fa-plane"></i>
+        <%= link_to post.airport, search_index_path(airport: post.airport), class: "text-dark border-bottom" %>
+        </p>
+      </div>
 
-                <div class="row top-image d-flex justify-content-between">
-                  <%= link_to user_path(post.user), class: 'd-flex align-items-end text-dark' do %>
-                    <%= image_tag post.user.get_profile_image(25,25), class: 'rounded-circle border' %>&nbsp; &nbsp;
-                    <span class="border-bottom"><%= post.user.name %></span>
-                  <% end %>
-                  <span class="text-muted pr-3"><small><%= post.created_at.strftime('%Y/%m/%d') %></small></span>
-                </div>
-            </div>
-          </div>
+      <div class="row top-image d-flex justify-content-between">
+        <%= link_to user_path(post.user), class: 'd-flex align-items-end text-dark' do %>
+        <%= image_tag post.user.get_profile_image(25,25), class: 'rounded-circle border' %>&nbsp; &nbsp;
+        <span class="border-bottom"><%= post.user.name %></span>
+        <% end %>
+      <span class="text-muted pr-3"><small><%= post.created_at.strftime('%Y/%m/%d') %></small></span>
+    </div>
+  </div>
+</div>
