@@ -227,8 +227,19 @@ RSpec.describe "Posts", type: :request do
       context '検索処理に関して' do
         it 'フリーワード検索時' do
           fill_in 'q[title_cont]', with: 'hoge'
-          find("#word").click
+          find("#search-word").click
           expect(page).to have_content '"hoge"の検索結果一覧'
+        end
+        # it 'タグ検索時' do
+        #   byebug
+        #   fill_in 'q[tag_id_eq]', with: @tag
+        #   find("#search-tag").click
+        #   expect(page).to have_content "#{@tag.name}"
+        # end
+        it '空港名検索時' do
+          fill_in 'q[airport_cont]', with: 'fuga'
+          find("#search-airport").click
+          expect(page).to have_content '"fuga"の検索結果一覧'
         end
       end
     end
