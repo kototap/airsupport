@@ -16,75 +16,75 @@
       <ul class="navbar-nav ml-auto d-flex align-items-center">
       <% if user_signed_in? %>
         <li class="nav-item">
-          <%= link_to search_path, class: 'nav-link' do %>
+          <%= link_to search_path, class: 'nav-link link-border' do %>
             <i class="fas fa-search"></i>
             検索
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to posts_path, class: 'nav-link' do %>
+          <%= link_to posts_path, class: 'nav-link link-border' do %>
             <i class="far fa-copy"></i>
             投稿一覧
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to new_post_path, class: 'nav-link' do %>
+          <%= link_to new_post_path, class: 'nav-link link-border' do %>
             <i class="fas fa-plus"></i>
             新規投稿
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to user_path(current_user.id), class: 'nav-link' do %>
+          <%= link_to user_path(current_user.id), class: 'nav-link link-border' do %>
             <i class="far fa-user"></i>
             マイページ
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %>
+          <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link link-border' do %>
             <i class="fas fa-sign-out-alt"></i>
             ログアウト
           <% end %>
         </li>
       <% elsif admin_signed_in? %>
         <li class="nav-item">
-          <%= link_to admin_users_path, class: 'nav-link' do %>
+          <%= link_to admin_users_path, class: 'nav-link link-border' do %>
             <i class="fas fa-users"></i>
             会員一覧
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to admin_posts_path, class: 'nav-link' do %>
+          <%= link_to admin_posts_path, class: 'nav-link link-border' do %>
             <i class="far fa-copy"></i>
             投稿一覧
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to admin_tags_path, class: 'nav-link' do %>
+          <%= link_to admin_tags_path, class: 'nav-link link-border' do %>
             <i class="fas fa-tags"></i>
             タグ
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link' do %>
+          <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link link-border' do %>
             <i class="fas fa-sign-out-alt"></i>
             ログアウト
           <% end %>
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to new_user_registration_path, class: 'nav-link' do %>
+          <%= link_to new_user_registration_path, class: 'nav-link link-border' do %>
             <i class="fas fa-user-plus"></i>
             会員登録
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to new_user_session_path, class: 'nav-link' do %>
+          <%= link_to new_user_session_path, class: 'nav-link link-border' do %>
             <i class="fas fa-sign-in-alt"></i>
             ログイン
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to public_guest_sign_in_path, class: 'nav-link', method: :post do %>
+          <%= link_to public_guest_sign_in_path, class: 'nav-link link-border', method: :post do %>
             <i class="fas fa-users"></i>
             ゲストログイン
           <% end %>

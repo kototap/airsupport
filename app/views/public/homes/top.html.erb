@@ -59,7 +59,7 @@
 
               <div class="col-md-8 d-flex flex-column justify-content-between">
                 <%= link_to post_path(post), class: 'text-dark' do %>
-                <h5 class="card-title font-weight-bold pt-3"><%= post.title %></h5>
+                <h5 class="card-title font-weight-bold pt-3"><span class="link-border"><%= post.title %></span></h5>
                 <% end %>
                 <p class="card-text"><%= post.body.truncate(30) %></p>
                 <div class="card-text d-flex justify-content-between pb-3 pr-3">
@@ -82,9 +82,9 @@
         <% end %>
 
         <div class="d-flex justify-content-end my-3">
-          <%= link_to posts_path do %>
-            <i class="fas fa-check fa-lg" style="color: #95e1d3;"></i>
-            <span class="text-dark border-bottom">全ての投稿を見てみる</span>
+          <%= link_to posts_path, class: 'link-border' do %>
+            <i class="fas fa-check fa-lg" style="color: #ff7f50;"></i>
+            <span class="text-dark link-border">全ての投稿を見てみる</span>
           <% end %>
         </div>
       </div>
