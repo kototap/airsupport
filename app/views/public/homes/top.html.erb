@@ -45,10 +45,10 @@
 
 
 <!--NEWPOST部分-->
-<div class="container topMain pt-5 my-5">
-  <div class="row">
-    <div class="col-md-7">
-      <h3><span class='newPosts'><i class="fas fa-star", style="color: #ff7f50;"></i> New Posts</span></h3>
+<div class="container topMain">
+  <div class="row newPosts py-5 my-5">
+    <div class="col-md-7 pl-md-5">
+      <h3><span class='newPosts__span'><i class="fas fa-star", style="color: #ff7f50;"></i> New Posts</span></h3>
 
       <% @posts.each do |post| %>
         <div class="card mt-4">
@@ -90,7 +90,7 @@
     </div>
 
     <!--best3部分-->
-    <div class="col-md-4 offset-md-1">
+    <div class="col-md-4 offset-md-1 pr-md-5">
       <h3 class="mb-4"><span class='weeklyPosts'><i class="fas fa-crown", style="color: #ff7f50;"></i> Weekly Best3</span></h3>
       <div id="carouselExampleIndicators" class="carousel slide  d-flex align-items-center flex-column" data-ride="carousel" data-interval="5000">
         <div class="carousel-inner">
@@ -118,8 +118,24 @@
   </div>
 </div>
 
+<div class="container topGuidance py-5 my-5">
+  <div class="col-10 mx-auto topGuidance__row d-flex align-items-center flex-column">
+    <h3 class="topGuidance__title mb-4"><span class="topGuidance__title--span"><i class="fas fa-user-plus"></i> </span>会員登録するとできること</h3>
+    <ul class="topGuidance__body">
+      <li>あなたの投稿をシェアできるようになります</li>
+      <li>投稿は下書きとして非公開にしておくことも可能です</li>
+      <li>お気に入りの投稿をブックマークに保存することができます</li>
+    </ul>
+    <%= link_to '新規会員登録する', new_user_registration_path, class: 'btn topGuidance__btn' %>
+  </div>
+</div>
 
-
+<!--トップに戻るボタン-->
+<span id="back">
+  <a href="#">
+    <h1><i class="far fa-arrow-alt-circle-up" style="color: #ff7f50;"></i></h1>
+  </a>
+</span>
 
 
 
