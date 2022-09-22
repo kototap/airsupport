@@ -67,7 +67,6 @@
 .topMain{
   width: 100%;
   &__about{
-    // background: linear-gradient(transparent 60%, #fce38a 80%);
     font-weight: bold;
   }
   &__body{
@@ -75,6 +74,7 @@
   }
 }
 
+// aboutとsearchのボタン
 .topLink{
   &__btn{
     background: #ff7f50;
@@ -117,6 +117,10 @@
       color: #ff7f50;
     }
   }
+  &__body{
+    font-weight: bold;
+    font-size: 20px;
+  }
 }
 
 .cardBody{
@@ -135,10 +139,10 @@
 
 
 
-@media screen and (max-width:820px) {
+@media screen and (max-width: 768px) {
   .logo{
     &__maintitle{
-      font-size: 20px;
+      font-size: 17px;
     }
     &__description{
       font-size: 10px;
