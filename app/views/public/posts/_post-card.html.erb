@@ -6,7 +6,7 @@
         <h4 class="card-title"><span class="link-border"><%= post.title %></span></h4>
       </div>
       <div class="row">
-        <p class="card-text"><i class="fas fa-comment-dots"></i> <%= post.body.truncate(20) %></p>
+        <p class="card-text"><i class="fas fa-comment-dots"></i> <%= post.body.truncate(18) %></p>
       </div>
     <% end %>
       <div class="row">
@@ -15,9 +15,12 @@
           <% if post.tag.present? %>
             <%= link_to post.tag.name, search_index_path(tag_id: post.tag.id), class: "text-dark border-bottom" %>
           <% end %>
-        <span> | </span>
-        <i class="fas fa-plane"></i>
-        <%= link_to post.airport, search_index_path(airport: post.airport), class: "text-dark border-bottom" %>
+          <span> | </span>
+          <i class="fas fa-plane"></i>
+          <%= link_to post.airport, search_index_path(airport: post.airport), class: "text-dark border-bottom" %>
+          <span> | </span>
+          <i class="fas fa-bookmark"></i>
+          <%= post.bookmarks.count %>
         </p>
       </div>
 

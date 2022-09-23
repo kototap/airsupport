@@ -9,7 +9,7 @@ RSpec.describe "Posts", type: :request do
     sign_in @user
   end
 
-  describe 'Postのテスト' do
+  describe 'Public/Postのテスト' do
     let!(:post) {
       create(
         :post,

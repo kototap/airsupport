@@ -9,6 +9,10 @@ class Post < ApplicationRecord
   geocoded_by :address
   after_validation :geocode
 
+  scope :latest, -> {order(created_at: :desc)}
+  scope :draft, -> {where(is_draft: true)}
+  scope :release, -> {where(is_draft: false)}
+
 
   with_options presence: true, on: :publicize do
     validates :title
