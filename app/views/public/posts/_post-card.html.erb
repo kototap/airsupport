@@ -15,9 +15,12 @@
           <% if post.tag.present? %>
             <%= link_to post.tag.name, search_index_path(tag_id: post.tag.id), class: "text-dark border-bottom" %>
           <% end %>
-        <span> | </span>
-        <i class="fas fa-plane"></i>
-        <%= link_to post.airport, search_index_path(airport: post.airport), class: "text-dark border-bottom" %>
+          <span> | </span>
+          <i class="fas fa-plane"></i>
+          <%= link_to post.airport, search_index_path(airport: post.airport), class: "text-dark border-bottom" %>
+          <span> | </span>
+          <i class="fas fa-bookmark"></i>
+          <%= post.bookmarks.count %>
         </p>
       </div>
 

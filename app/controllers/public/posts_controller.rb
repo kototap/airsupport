@@ -29,24 +29,31 @@ class Public::PostsController < ApplicationController
 
   # 公開されている投稿のみ表示
   def index
-    @posts = Post.where(is_draft: false).order(created_at: :desc).page(params[:page])
+    # 人気記事順
+    if params[:popular]
+      @posts = Post.release.sort{ |a, b| b.bookmarks.where(created_at: Time.current.all_week).count <=> a.bookmarks.where(created_at: Time.current.all_week).count }
+    # 新着順
+    else
+      @posts = Post.release.latest
+    end
+    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(6)
   end
 
 
   # 下書きの投稿のみ表示
   def draft_index
-    @posts = current_user.posts.where(is_draft: true).order(created_at: :desc).page(params[:page])
+    @posts = current_user.posts.draft.latest.page(params[:page])
   end
 
 
   def search
-    @search = Post.where(is_draft: false).ransack(params[:q])
+    @search = Post.release.ransack(params[:q])
     # OR検索
     @search.combinator = "or"
   end
 
   def search_index
-    @search = Post.where(is_draft: false).ransack(params[:q])
+    @search = Post.release.ransack(params[:q])
     posts = @search.result(distinct: true)
     posts = if params[:tag_id]
       posts.where(tag_id: params[:tag_id])
@@ -55,7 +62,7 @@ class Public::PostsController < ApplicationController
     else
       posts
     end
-    @posts = posts.order(created_at: :desc).page(params[:page])
+    @posts = posts.latest.page(params[:page])
   end
 
 
