@@ -1,7 +1,8 @@
-<!--メインビジュアル部分-->
+<!--MV-->
 <div class="container-fluid">
   <div class="row mvTop">
-    <div class="col-md-7">
+    <!--カルーセル部分-->
+    <div class="col-md-7 p-0">
       <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
       	 <ul class="carousel-indicators">
           <li data-target="#carouselExampleFade" data-slide-to="0" class="active"></li>
@@ -19,24 +20,23 @@
       	</div>
       </div>
     </div>
-    <div class="col-md-5">
-      <div class="row py-5 my-5 d-flex justify-content-center text-center flex-column">
-          <h1><span class="topMain__about">It's Fun To Travel <i class="fas fa-plane"></i></span></h1>
-          <h4 class="pt-3 topMain__body">AIRSUPPORTで旅をもっと気軽に楽しもう</h4>
-          <h4 class="pt-2 topMain__body"><i class="fas fa-search-location"></i> 空港からすぐ近くの、お店や場所を探す</h4>
-        <div class="row align-self-center d-flex justify-content-around mt-5">
-          <div class="topLink d-inline">
-            <%= link_to about_path, class: 'btn topLink__btn pr-5 mr-2' do %>
-              <i class="fas fa-check fa-lg"></i>
-            　About
-            <% end %>
-          </div>
-          <div class="topLink d-inline">
-            <%= link_to search_path, class: 'btn topLink__btn pr-5 ml-2' do %>
-              <i class="fas fa-search fa-lg"></i>
-            　Search
-            <% end %>
-          </div>
+    <!--文字部分-->
+    <div class="col-md-5 d-flex flex-column justify-content-center">
+      <div class="row justify-content-center">
+        <h1><span class="topMain__about">It's Fun To Travel <i class="fas fa-plane" style="color: #ff7f50;"></i></span></h1>
+        <h4 class="pt-3 topMain__body"><span class="topMain__body--span">AIRSUPPORT</span>で旅をもっと気軽に楽しもう</h4>
+        <h4 class="pt-2 topMain__body"><i class="fas fa-search-location"></i> 空港からすぐ近くの、お店や場所を探す</h4>
+      </div>
+      <div class="row d-flex justify-content-center mt-5">
+        <div class="topLink">
+          <%= link_to about_path, class: 'btn topLink__btn px-5 mr-2' do %>
+            <i class="fas fa-check fa-lg"></i>
+            About
+          <% end %>
+          <%= link_to search_path, class: 'btn topLink__btn px-5 ml-2' do %>
+            <i class="fas fa-search fa-lg"></i>
+            Search
+          <% end %>
         </div>
       </div>
     </div>
@@ -44,12 +44,11 @@
 </div>
 
 
-<!--NEWPOST部分-->
-<div class="container topMain">
+<div class="container">
+  <!--NEWPOST-->
   <div class="row newPosts py-5 my-5">
     <div class="col-md-7 pl-md-5">
-      <h3><span class='newPosts__span'><i class="fas fa-star", style="color: #ff7f50;"></i> New Posts</span></h3>
-
+      <h3><span class='newPosts__span'><i class="fas fa-star", style="color: #ff7f50;"></i> New Post</span></h3>
       <% @posts.each do |post| %>
         <div class="card mt-4">
           <div class="row">
@@ -74,14 +73,14 @@
                   <%= link_to post.user.name, user_path(post.user), class: 'text-dark border-bottom' %>
                   <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
                 </small></p>
-                <div class="align-self-center"><%= link_to "Read More", post_path(post), class: 'btn btn-outline-success btn-sm align-left' %></div>
+                <div class="align-self-center"><%= link_to "Read More", post_path(post), class: 'btn newPosts__btn align-left' %></div>
               </div>
             </div>
           </div>
         </div>
       <% end %>
 
-      <div class="d-flex justify-content-end my-3">
+      <div class="d-flex justify-content-end mt-3">
         <%= link_to posts_path, class: 'link-border' do %>
           <i class="fas fa-check fa-lg" style="color: #ff7f50;"></i>
           <span class="text-dark link-border">全ての投稿を見てみる</span>
@@ -91,7 +90,7 @@
 
     <!--best3部分-->
     <div class="col-md-4 offset-md-1 pr-md-5">
-      <h3 class="mb-4"><span class='weeklyPosts'><i class="fas fa-crown", style="color: #ff7f50;"></i> Weekly Best3</span></h3>
+      <h3 class="mb-4"><span class='weeklyPosts'><i class="fas fa-crown", style="color: #ff7f50;"></i> Weekly Best 3</span></h3>
       <div id="carouselExampleIndicators" class="carousel slide  d-flex align-items-center flex-column" data-ride="carousel" data-interval="5000">
         <div class="carousel-inner">
           <div class="carousel-item active">
