@@ -60,7 +60,7 @@
               <%= link_to post_path(post), class: 'text-dark' do %>
               <h5 class="card-title font-weight-bold pt-3"><span class="link-border"><%= post.title %></span></h5>
               <% end %>
-              <p class="card-text"><%= post.body.truncate(30) %></p>
+              <p class="card-text"><%= post.body.truncate(25) %></p>
               <div class="card-text d-flex justify-content-between pb-3 pr-3">
                 <p><small>
                   <i class="fas fa-tag"></i>
