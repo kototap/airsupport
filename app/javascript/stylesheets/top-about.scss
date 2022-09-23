@@ -13,7 +13,6 @@
     font-size: 30px;
     font-weight: bold;
     text-align: center;
-    letter-spacing: 0.05em;
     }
   &__description{
     display: block;
@@ -67,14 +66,18 @@
 .topMain{
   width: 100%;
   &__about{
-    // background: linear-gradient(transparent 60%, #fce38a 80%);
     font-weight: bold;
   }
   &__body{
     font-weight: bold;
+    &--span{
+      font-weight: bold;
+      font-size: larger;
+    }
   }
 }
 
+// aboutとsearchのボタン
 .topLink{
   &__btn{
     background: #ff7f50;
@@ -93,11 +96,27 @@
 
 // NEW POST部分
 .newPosts{
-  font-weight: bold;
-  padding: 0 10px;
-    &__img-fluid{
+  background: #fef9d9;
+  border-radius: 75px 0px 75px 75px;
+  &__span{
+    font-weight: bold;
+    padding: 0 10px;
+  }
+  &__img-fluid{
     width: 100%;
     height: 100%;
+  }
+  &__btn{
+    background: #ff7f50;
+    border: 2px solid #ff7f50;
+    border-radius: 60px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.85rem;
+  }
+    &__btn:hover{
+    background: #fff;
+    color: #ff701e;
   }
 }
 
@@ -106,16 +125,56 @@
   padding: 0 10px;
 }
 
+// 会員登録説明
+.topGuidance{
+  background: #fef9d9;
+  border-radius: 0px 75px 75px 75px;
+  &__row{
+    background: white;
+    padding: 20px;
+  }
+  &__title{
+    font-weight: bold;
+    font-size: 1.7rem;
+    &--span{
+      color: #ff7f50;
+    }
+  }
+  &__body li{
+    line-height: 2.5rem;
+  }
+  &__btn{
+    background: #ff7f50;
+    border: 2px solid #ff7f50;
+    border-radius: 60px;
+    color: #fff;
+    padding: 10px 20px;
+    font-weight: bold;
+  }
+    &__btn:hover{
+    background: #fff;
+    color: #ff701e;
+  }
+}
+
 
 // アバウトページ
+.card-bg{
+  background: #fef9d9;
+  border-radius: 0px 75px 75px 75px;
+}
+
 .about{
-  background: #f3ecc8;
   &__title{
     font-weight: bold;
     font-size: 40px;
     &--span{
       color: #ff7f50;
     }
+  }
+  &__body{
+    font-weight: bold;
+    font-size: 20px;
   }
 }
 
@@ -135,10 +194,11 @@
 
 
 
-@media screen and (max-width:820px) {
+// レスポンシブ
+@media screen and (max-width: 768px) {
   .logo{
     &__maintitle{
-      font-size: 20px;
+      font-size: 17px;
     }
     &__description{
       font-size: 10px;
@@ -161,6 +221,25 @@
       font-size: 17px;
     }
   }
+  .topGuidance{
+    border-radius: 0px 50px 50px 50px
+    &__row{
+      padding: 15px;
+    }
+    &__title{
+      font-size: 1.15rem;
+    }
+  }
 }
 
+
+
+
+// JavaScript
+// トップに戻るボタン
+#back {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
 
