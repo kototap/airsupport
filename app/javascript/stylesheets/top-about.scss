@@ -13,7 +13,6 @@
     font-size: 30px;
     font-weight: bold;
     text-align: center;
-    letter-spacing: 0.05em;
     }
   &__description{
     display: block;
@@ -71,6 +70,10 @@
   }
   &__body{
     font-weight: bold;
+    &--span{
+      font-weight: bold;
+      font-size: larger;
+    }
   }
 }
 
@@ -93,15 +96,27 @@
 
 // NEW POST部分
 .newPosts{
-  background: #f3ecc8;
+  background: #fef9d9;
   border-radius: 75px 0px 75px 75px;
   &__span{
     font-weight: bold;
     padding: 0 10px;
   }
-    &__img-fluid{
+  &__img-fluid{
     width: 100%;
     height: 100%;
+  }
+  &__btn{
+    background: #ff7f50;
+    border: 2px solid #ff7f50;
+    border-radius: 60px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.85rem;
+  }
+    &__btn:hover{
+    background: #fff;
+    color: #ff701e;
   }
 }
 
@@ -110,40 +125,9 @@
   padding: 0 10px;
 }
 
-
-// アバウトページ
-.about{
-  background: #f3ecc8;
-  &__title{
-    font-weight: bold;
-    font-size: 40px;
-    &--span{
-      color: #ff7f50;
-    }
-  }
-  &__body{
-    font-weight: bold;
-    font-size: 20px;
-  }
-}
-
-.cardBody{
-  padding: 20px;
-  &__title{
-    font-weight: bold;
-    &--span{
-      background: linear-gradient(transparent 60%, #ffb677 80%);
-      padding: 0 10px;
-    }
-  }
-  &__text{
-    line-height: 2em;
-  }
-}
-
-
+// 会員登録説明
 .topGuidance{
-  background: #f3ecc8;
+  background: #fef9d9;
   border-radius: 0px 75px 75px 75px;
   &__row{
     background: white;
@@ -170,6 +154,41 @@
     &__btn:hover{
     background: #fff;
     color: #ff701e;
+  }
+}
+
+
+// アバウトページ
+.card-bg{
+  background: #fef9d9;
+  border-radius: 0px 75px 75px 75px;
+}
+
+.about{
+  &__title{
+    font-weight: bold;
+    font-size: 40px;
+    &--span{
+      color: #ff7f50;
+    }
+  }
+  &__body{
+    font-weight: bold;
+    font-size: 20px;
+  }
+}
+
+.cardBody{
+  padding: 20px;
+  &__title{
+    font-weight: bold;
+    &--span{
+      background: linear-gradient(transparent 60%, #ffb677 80%);
+      padding: 0 10px;
+    }
+  }
+  &__text{
+    line-height: 2em;
   }
 }
 
@@ -202,15 +221,14 @@
       font-size: 17px;
     }
   }
-}
-
   .topGuidance{
-  border-radius: 0px 50px 50px 50px
-  &__row{
-    padding: 15px;
-  }
-  &__title{
-    font-size: 1.15rem;
+    border-radius: 0px 50px 50px 50px
+    &__row{
+      padding: 15px;
+    }
+    &__title{
+      font-size: 1.15rem;
+    }
   }
 }
 
