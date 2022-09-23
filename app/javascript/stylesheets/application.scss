@@ -18,12 +18,10 @@ body{
 a {
     text-decoration: none !important;
 }
-
 .link-border{
   padding-bottom: 5px;
   position: relative;
 }
-
 .link-border::before {
   background: #ff7f50;
   content: '';
@@ -37,8 +35,19 @@ a {
   transform: scale(0, 1);
   transition: transform .3s;
 }
-
 .link-border:hover::before {
   transform-origin: left top;
   transform: scale(1, 1);
+}
+
+// ボタン共通
+.btn-other{
+  background: #ff7f50;
+  border: 1px solid #ff7f50;
+  border-radius: 60px;
+  color: #fff;
+}
+.btn-other:hover{
+  background: #fff;
+  color: #ff701e;
 }

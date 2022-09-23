@@ -16,17 +16,17 @@
 
 
 // showページ
-.post-title span{
+.post-title span, .comment-title{
   background: linear-gradient(transparent 80%, #ffb677 80%);
   padding: 0 8px;
   font-weight: bold;
 }
 
-.comment-title{
-  background: linear-gradient(transparent 70%, #95e1d3 30%);
-  padding: 0 8px;
-  font-weight: bold;
-}
+// .comment-title{
+//   background: linear-gradient(transparent 70%, #95e1d3 30%);
+//   padding: 0 8px;
+//   font-weight: bold;
+// }
 
 #map {
   height: 500px;
