@@ -16,6 +16,7 @@ import '@fortawesome/fontawesome-free/js/all'
 import '../stylesheets/top-about.scss'
 import '../stylesheets/posts.scss'
 import '../stylesheets/title.scss'
+import '../stylesheets/user.scss'
 import '../js/script.js'
 
 Rails.start()
