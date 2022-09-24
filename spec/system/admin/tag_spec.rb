@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe "Tags", type: :request do
   before do
-    @admin = FactoryBot.create(:admin)      # FactoryBotを利用してadminデータを作成
+    @admin = FactoryBot.create(:admin)
   end
 
   describe "タグのテスト" do
