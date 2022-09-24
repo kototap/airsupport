@@ -33,27 +33,27 @@
     </div>
 
       <!--投稿詳細右半分-->
-    <div class="col-md-6">
-      <div class="postRight">
-        <div class="row d-flex flex-column pl-1">
-          <div class="post-title">
-            <h3><span><%= @post.title %></span></h3>
-          </div>
-          <div class="post-body">
-            <p class="ml-2 mt-3"><%=safe_join(@post.body.split("\n"),tag(:br))%></p>
-          </div>
-          <div class="post-tags">
-            <p><i class="fas fa-tag"></i>
-              <% if @post.tag.present? %>
-                <%= link_to  search_index_path(tag_id: @post.tag.id), class: 'text-dark border-bottom' do %>
-                  <%= @post.tag.name if @post.tag.present? %>
+      <div class="col-md-6">
+        <div class="postRight">
+          <div class="row d-flex flex-column pl-1">
+            <div class="post-title">
+              <h3><span><%= @post.title %></span></h3>
+            </div>
+            <div class="post-body">
+              <p class="ml-2 mt-3"><%=safe_join(@post.body.split("\n"),tag(:br))%></p>
+            </div>
+            <div class="post-tags">
+              <p><i class="fas fa-tag"></i>
+                <% if @post.tag.present? %>
+                  <%= link_to  search_index_path(tag_id: @post.tag.id), class: 'text-dark border-bottom' do %>
+                    <%= @post.tag.name if @post.tag.present? %>
+                  <% end %>
                 <% end %>
-              <% end %>
-              <span>　|　</span>
-              <i class="fas fa-plane"></i> <%= link_to @post.airport, search_index_path(airport: @post.airport), class: 'text-dark border-bottom' %>
-            </p>
+                <span>　|　</span>
+                <i class="fas fa-plane"></i> <%= link_to @post.airport, search_index_path(airport: @post.airport), class: 'text-dark border-bottom' %>
+              </p>
+            </div>
           </div>
-        </div>
         <div class="row d-flex justify-content-between pr-1">
           <div>
             <%= link_to user_path(@post.user), class: 'd-flex align-items-end text-dark' do %>
