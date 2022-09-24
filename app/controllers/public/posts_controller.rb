@@ -75,17 +75,14 @@ class Public::PostsController < ApplicationController
     if (@post.is_draft == true) && @post.user != current_user
       redirect_to root_path
     end
-
-    # 前ページセッションを記録=>indexページ（全体or個人）
-    session[:previous_url] = request.referer
   end
 
 
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    # showで記録したページに戻る
-    redirect_to session[:previous_url]
+    @user = current_user
+    redirect_to user_path(@user)
   end
 
 
