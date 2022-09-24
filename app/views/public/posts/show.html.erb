@@ -33,7 +33,8 @@
     </div>
 
       <!--投稿詳細右半分-->
-      <div class="col-md-6">
+    <div class="col-md-6">
+      <div class="postRight">
         <div class="row d-flex flex-column pl-1">
           <div class="post-title">
             <h3><span><%= @post.title %></span></h3>
@@ -53,29 +54,29 @@
             </p>
           </div>
         </div>
-      <div class="row d-flex justify-content-between pr-1">
-        <div>
-          <%= link_to user_path(@post.user), class: 'd-flex align-items-end text-dark' do %>
-            <%= image_tag @post.user.get_profile_image(35,35), class: 'rounded-circle border' %>&nbsp;&nbsp;
-            <span class="border-bottom"><%= @post.user.name %></span>
-          <% end %>
-        </div>
+        <div class="row d-flex justify-content-between pr-1">
+          <div>
+            <%= link_to user_path(@post.user), class: 'd-flex align-items-end text-dark' do %>
+              <%= image_tag @post.user.get_profile_image(35,35), class: 'rounded-circle border' %>&nbsp;&nbsp;
+              <span class="border-bottom"><%= @post.user.name %></span>
+            <% end %>
+          </div>
 
-        <div class="d-flex align-items-end">
-          <%= @post.created_at.strftime('%Y/%m/%d') %>
-          <% if current_user == @post.user %>
-            <span>　|　</span>
-            <%= link_to edit_post_path(@post.id), class: 'text-dark border-bottom text-muted' do %>
-              <i class="far fa-edit"></i>
+          <div class="d-flex align-items-end">
+            <%= @post.created_at.strftime('%Y/%m/%d') %>
+            <% if current_user == @post.user %>
+              <span>　|　</span>
+              <%= link_to edit_post_path(@post.id), class: 'text-dark border-bottom text-muted' do %>
+                <i class="far fa-edit"></i>
+              <% end %>
+              <span>　|　</span>
+              <%= link_to post_path(@post.id), method: :delete, class: 'text-dark border-bottom text-muted', data: {confirm: "この投稿を削除しますか？"} do %>
+                <i class="fas fa-trash-alt"></i>
+              <% end %>
             <% end %>
-            <span>　|　</span>
-            <%= link_to post_path(@post.id), method: :delete, class: 'text-dark border-bottom text-muted', data: {confirm: "この投稿を削除しますか？"} do %>
-              <i class="fas fa-trash-alt"></i>
-            <% end %>
-          <% end %>
+          </div>
         </div>
       </div>
-
     </div>
   </div>
 
