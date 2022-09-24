@@ -99,7 +99,7 @@
       <div class="not-signin d-flex">
         <% unless user_signed_in? %>
           <i class="fas fa-bullhorn mt-1"></i>
-          <p class="ml-4"><%= link_to 'ログイン', new_user_session_path %>して投稿をブックマークしたり、<br>
+          <p class="ml-4"><%= link_to '会員登録', new_user_registration_path, class: 'border-bottom', style: 'color: #ff7f50;' %>して投稿をブックマークしたり、<br>
              コメントしてみよう！
           </p>
         <% end %>

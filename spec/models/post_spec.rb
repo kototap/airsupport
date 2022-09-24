@@ -17,7 +17,6 @@ RSpec.describe Post, "モデルに関するテスト", type: :model do
       )
       if post.save
         expect(post).to be_invalid
-        byebug
         expect(post.errors[:title]).to include("タイトルを入力してください")
       end
     end
