@@ -20,15 +20,14 @@ class Public::SessionsController < Devise::SessionsController
 
 
   protected
+    def user_state
+      @user = User.find_by(email: params[:user][:email])
+      return if !@user
 
-  def user_state
-    @user = User.find_by(email: params[:user][:email])
-    return if !@user
-
-    if @user.valid_password?(params[:user][:password]) && @user.is_deleted == true
-      redirect_to new_user_registration_path, notice: 'アカウントの利用が停止されています。'
+      if @user.valid_password?(params[:user][:password]) && @user.is_deleted == true
+        redirect_to new_user_registration_path, notice: "アカウントの利用が停止されています。"
+      end
     end
-  end
 
   # GET /resource/sign_in
   # def new

@@ -56,5 +56,4 @@ class Public::UsersController < ApplicationController
         redirect_to user_path(current_user), notice: "他のユーザーのプロフィール編集画面へは遷移できません。"
       end
     end
-
 end
