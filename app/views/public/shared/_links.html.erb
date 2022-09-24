@@ -1,9 +1,12 @@
 <%- if controller_name != 'sessions' %>
-  <p><i class="fas fa-sign-in-alt fa-lg"></i>
-  すでにアカウントをお持ちの方は、こちらから<%= link_to "ログイン", new_session_path(resource_name), class: 'text-primary border-bottom' %></p>
+  <p>
+    <i class="fas fa-sign-in-alt fa-lg"></i>
+    すでにアカウントをお持ちの方は、こちらから
+    <%= link_to "ログイン", new_session_path(resource_name), class: 'border-bottom', style: 'color: #ff7f50;' %>
+  </p>
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
   <p><i class="fas fa-user-plus fa-lg"></i>
-  新規会員登録は<%= link_to "こちら", new_registration_path(resource_name), class: 'text-primary border-bottom' %>から</p>
+  新規会員登録は<%= link_to "こちら", new_registration_path(resource_name), class: 'border-bottom', style: 'color: #ff7f50;' %>から</p>
 <% end %>
