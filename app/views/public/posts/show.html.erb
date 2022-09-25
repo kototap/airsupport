@@ -1,11 +1,8 @@
-<div class="container my-5">
-  <%= link_to :back, class: 'btn btn-sm mb-3' do %>
-    <i class="fas fa-angle-double-left"></i> Back
-  <% end %>
+<div class="container my-5 py-5">
       <!--下書きの投稿であることを表示-->
   <% if @post.is_draft == true %>
     <div class="col-md-6 mb-5">
-      <h4>※この投稿は下書きです。</h4>
+      <h4>※これは下書きです。</h4>
     </div>
   <% end %>
 
@@ -33,7 +30,7 @@
     </div>
 
       <!--投稿詳細右半分-->
-      <div class="col-md-6">
+      <div class="col-md-6 mx-auto">
         <div class="postRight">
           <div class="row d-flex flex-column pl-1">
             <div class="post-title">
@@ -81,17 +78,21 @@
   </div>
 
 
-  <div class="row offset-md-1 my-2">
-    <h5 class="comment-title ml-1"><i class="far fa-comments"></i> コメント</h5>
-  </div>
-    <!--コメントエリア-->
+  <% if @post.is_draft == false && user_signed_in? %>
+    <div class="row offset-md-1 my-3">
+      <h5 class="comment-title ml-1"><i class="far fa-comments"></i> コメント</h5>
+    </div>
+  <% end %>
+      <!--コメントエリア-->
   <div class="row">
     <div class="comment-area col-md-5 offset-md-1">
-      <%= render 'public/post_comments/comment-area', post: @post, comments: @comments %>
+      <% if @post.is_draft == false && user_signed_in? %>
+        <%= render 'public/post_comments/comment-area', post: @post, comments: @comments %>
+      <% end %>
     </div>
 
     <div class="col-md-6">
-        <!--コメントフォーム-->
+      <!--コメントフォーム-->
       <div class="comment-form">
         <%= render 'public/post_comments/comment-form', post: @post, post_comment: @post_comment %>
       </div>
@@ -99,8 +100,10 @@
       <div class="not-signin d-flex">
         <% unless user_signed_in? %>
           <i class="fas fa-bullhorn mt-1"></i>
-          <p class="ml-4"><%= link_to '会員登録', new_user_registration_path, class: 'border-bottom', style: 'color: #ff7f50;' %>して投稿をブックマークしたり、<br>
-             コメントしてみよう！
+          <p class="ml-4">
+            <%= link_to '会員登録', new_user_registration_path, class: 'border-bottom', style: 'color: #ff7f50;' %>
+            して投稿をブックマークしたり、<br>
+            コメントしてみよう！
           </p>
         <% end %>
       </div>
@@ -155,7 +158,6 @@
       <script async
           src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.map_api_key %>&callback=initMap">
       </script>
-
     </div>
   </div>
 </div>
