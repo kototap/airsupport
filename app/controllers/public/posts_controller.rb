@@ -31,7 +31,7 @@ class Public::PostsController < ApplicationController
   def index
     # 人気記事順
     if params[:popular]
-      @posts = Post.release.sort { |a, b| b.bookmarks.where(created_at: Time.current.all_week).count <=> a.bookmarks.where(created_at: Time.current.all_week).count }
+      @posts = Post.release.sort { |a, b| b.bookmarks.count <=> a.bookmarks.count }
     # 新着順
     else
       @posts = Post.release.latest
