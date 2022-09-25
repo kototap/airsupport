@@ -13,8 +13,8 @@
           <%= f.submit "下書きを公開", :name => 'publicize_draft', class: 'mr-5 btn btn-sm btn-warning mr-5' %>
           <%= f.submit "下書きのまま更新", :name => 'update_draft', class: 'mr-5 btn btn-sm btn-outline-secondary' %>
         <% else %>
-          <%= link_to '戻る', post_path(@post), class: 'btn btn-sm btn-outline-success mr-5' %>
-          <%= f.submit "更新", :name => 'update_post', class: 'ml-5 btn btn-outline-warning text-dark' %>
+          <%= link_to "戻る", post_path(@post), class: 'mr-5 btn btn-outline-success' %>
+          <%= f.submit "更新", :name => 'update_post', class: 'ml-5 btn btn-other px-4' %>
         <% end %>
       </div>
     <% end %>

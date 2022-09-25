@@ -19,16 +19,9 @@
         </label>
       </div>
       <div class="actions d-flex justify-content-center pb-5">
-        <%= f.submit "更新する", class: 'btn btn-outline-primary btn-sm' %>
+        <%= link_to "戻る", admin_user_path(@user), class: 'btn btn-outline-success btn-sm mr-3' %>
+        <%= f.submit "更新する", class: 'btn btn-outline-info btn-sm ml-3' %>
       </div>
     <% end %>
-  </div>
-
-  <div class="row">
-    <div class="col-md-8 mx-auto">
-      <%= link_to :back, class: 'btn btn-sm mb-5' do %>
-        <i class="fas fa-angle-double-left"></i> Back
-      <% end %>
-    </div>
   </div>
 </div>
