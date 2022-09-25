@@ -4,7 +4,6 @@
       <h3><span class="public-title"><i class="far fa-edit"></i> 投稿編集</span></h3>
     </div>
   </div>
-
   <%= render "error", obj: @post %>
   <div class="form-group d-flex justify-content-center">
     <%= form_with model: @post, method: :patch do |f| %>
