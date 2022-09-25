@@ -51,3 +51,20 @@ a {
   background: #fff;
   color: #ff701e;
 }
+
+
+// ページネーション
+.pagination>li>a {
+  border: none;
+  color: #ff7f50;
+}
+
+.pagination>.active>a {
+  background: #ff7f50;
+  border-radius: 15px;
+}
+
+.pagination>li>a:hover {
+  border-radius: 15px;
+  color: #ff7f50;
+}
