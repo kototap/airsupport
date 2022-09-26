@@ -113,21 +113,27 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
+      <div class="d-flex justify-content-end mt-3">
+        <%= link_to 'posts?popular=true', class: 'link-border' do %>
+          <i class="fas fa-check fa-lg" style="color: #ff7f50;"></i>
+          <span class="text-dark link-border">人気投稿順に見てみる</span>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="container topGuidance py-5 my-5">
   <div class="col-10 mx-auto topGuidance__row d-flex align-items-center flex-column">
-    <h3 class="topGuidance__title mb-4"><span class="topGuidance__title--span"><i class="fas fa-user-plus"></i> </span>会員登録するとできること</h3>
-    <ul class="topGuidance__body">
+    <h3 class="topGuidance__title my-4"><span class="topGuidance__title--span"><i class="fas fa-user-plus"></i> </span>会員登録するとできること</h3>
+    <ul class="topGuidance__body p-3">
       <li>あなたの投稿をシェアできるようになります</li>
       <li>お気に入りの投稿をブックマークに保存することができます</li>
       <li>投稿は下書きとして非公開にしておくことも可能です</li>
       <li>マイページ、他のユーザーのページにアクセスできます</li>
       <li>ユーザーごとの投稿一覧が閲覧可能になります</li>
     </ul>
-    <%= link_to '新規会員登録する', new_user_registration_path, class: 'btn topGuidance__btn' %>
+    <%= link_to '新規会員登録する', new_user_registration_path, class: 'btn topGuidance__btn mb-3' %>
   </div>
 </div>
 
