@@ -6,24 +6,26 @@
   </div>
   <div class="row">
     <div class="col-md-8 mx-auto pt-5">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @users.each do |user| %>
-          <tr>
-            <td><%= image_tag user.get_profile_image(50,50) %></td>
-            <td><%= user.name %></td>
-            <td><%= link_to "詳細へ" ,admin_user_path(user), class: 'btn btn-sm btn-outline-info' %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+            <tr>
+              <td><%= image_tag user.get_profile_image(50,50) %></td>
+              <td><%= user.name %></td>
+              <td><%= link_to "詳細へ" ,admin_user_path(user), class: 'btn btn-sm btn-outline-info' %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   <div class="row">
