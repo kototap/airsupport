@@ -12,10 +12,11 @@
       <div class="row">
         <p class="card__posts-tags">
           <i class="fas fa-tag"></i>
-          <% if post.post_tags.present? %>
-            <%= post.tags.each do |tag| %>
-              <!--%= link_to tag.name, search_index_path(tag_id: post.tag.id), class: "text-dark border-bottom" %>-->
-              <%= post.tag.name %>
+          <% if post.tags.present? %>
+            <% post.tags.each do |tag| %>
+              <%= link_to search_index_path(tag_ids: tag.id), class: 'text-dark border-bottom' do %>
+                <%= tag.name if tag.present? %>
+              <% end %>
             <% end %>
           <% end %>
           <span> | </span>

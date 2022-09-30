@@ -19,7 +19,6 @@ class Post < ApplicationRecord
     validates :title
     validates :body
     validates :airport
-    validates :tag_id
   end
 
   validates :title, length: { maximum: 20 }, on: :publicize

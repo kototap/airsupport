@@ -4,7 +4,7 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @post.post_tags.build
+    # @post.post_tags.build
   end
 
   def create
@@ -57,8 +57,8 @@ class Public::PostsController < ApplicationController
   def search_index
     @search = Post.release.ransack(params[:q])
     posts = @search.result(distinct: true)
-    posts = if params[:tag_id]
-      posts.where(tag_id: params[:tag_id])
+    posts = if params[:tag_ids]
+      posts.where(tag_ids: params[:tag_ids])
     elsif params[:airport]
       posts.where(airport: params[:airport])
     else
@@ -128,10 +128,6 @@ class Public::PostsController < ApplicationController
   private
     def post_params
       params.require(:post).permit(:title, :body, :airport, :post_image, :is_draft, :address, tag_ids: [])
-      if values[:tag_ids].nil?
-        values[:tag_ids] = []
-      end
-      return values
     end
 
     def ensure_correct_user
