@@ -12,8 +12,11 @@
       <div class="row">
         <p class="card__posts-tags">
           <i class="fas fa-tag"></i>
-          <% if post.tag.present? %>
-            <%= link_to post.tag.name, search_index_path(tag_id: post.tag.id), class: "text-dark border-bottom" %>
+          <% if post.post_tags.present? %>
+            <%= post.tags.each do |tag| %>
+              <!--%= link_to tag.name, search_index_path(tag_id: post.tag.id), class: "text-dark border-bottom" %>-->
+              <%= post.tag.name %>
+            <% end %>
           <% end %>
           <span> | </span>
           <i class="fas fa-plane"></i>

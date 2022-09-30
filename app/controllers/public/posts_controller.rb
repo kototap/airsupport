@@ -4,6 +4,7 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @post.post_tags.build
   end
 
   def create
@@ -43,6 +44,7 @@ class Public::PostsController < ApplicationController
   # 下書きの投稿のみ表示
   def draft_index
     @posts = current_user.posts.draft.latest.page(params[:page])
+
   end
 
 
@@ -125,7 +127,11 @@ class Public::PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:title, :body, :airport, :post_image, :tag_id, :is_draft, :address)
+      params.require(:post).permit(:title, :body, :airport, :post_image, :is_draft, :address, tag_ids: [])
+      if values[:tag_ids].nil?
+        values[:tag_ids] = []
+      end
+      return values
     end
 
     def ensure_correct_user

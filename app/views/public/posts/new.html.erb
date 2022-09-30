@@ -8,7 +8,7 @@
   <%= render "error", obj: @post %>
   <div class="form-group d-flex justify-content-center">
     <%= form_with model: @post do |f| %>
-      <%= render 'form', f: f %>
+      <%= render 'form', f: f, post: @post%>
       <div class="actions d-flex justify-content-around pb-5">
         <%= f.submit '下書きに保存', :name => 'draft', class: 'mr-5 btn btn-outline-secondary' %>
         <%= f.submit '投稿する', :name => 'send', class: 'ml-5 btn btn-other px-4' %>
