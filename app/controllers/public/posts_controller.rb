@@ -50,6 +50,7 @@ class Public::PostsController < ApplicationController
 
   def search
     @search = Post.release.ransack(params[:q])
+    @tags = Tag.all
     # OR検索
     @search.combinator = "or"
   end
@@ -57,8 +58,9 @@ class Public::PostsController < ApplicationController
   def search_index
     @search = Post.release.ransack(params[:q])
     posts = @search.result(distinct: true)
-    posts = if params[:post_tag_relations_tag_id]
-      posts.where(tag_ids: params[:post_tag_relations_tag_id])
+    posts = if params[:tag_id_in]
+      # posts.where(tag_ids: params[:tags_id_in])
+      post.tags.map{ |tag_id| Tag.find(post_id).name}.join(', ')
     elsif params[:airport]
       posts.where(airport: params[:airport])
     else

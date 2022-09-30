@@ -2,8 +2,8 @@
   <div class="row mt-5">
     <% if params[:q].present? && params[:q][:title_cont].present? %>
       <h2><span class="public-title"><i class="fas fa-search"></i> "<%= params[:q][:title_cont] %>"の検索結果一覧<span></h2>
-    <% elsif params[:q].present? && params[:q][:post_tag_relations_tag_id_in].present? %>
-      <h2><span class="public-title"><i class="fas fa-search"></i> "<%= Tag.find(params[:q][:post_tag_relations_tag_id_in]).name %>"の検索結果一覧</span></h2>
+    <% elsif params[:q].present? && params[:q][:tag_id_in].present? %>
+      <h2><span class="public-title"><i class="fas fa-search"></i> "<%= Tag.find(params[:q][:tag_id_in]).name %>"の検索結果一覧</span></h2>
     <% elsif params[:q].present? && params[:q][:airport_cont].present? %>
       <h2><span class="public-title"><i class="fas fa-search"></i> "<%= params[:q][:airport_cont] %>"の検索結果一覧</span></h2>
     <% else %>
