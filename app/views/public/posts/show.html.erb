@@ -41,7 +41,7 @@
             </div>
             <div class="post-tags">
               <p><i class="fas fa-tag"></i>
-                <% if @post.tag.present? %>
+                <% if @post.tags.present? %>
                   <%= link_to  search_index_path(tag_id: @post.tag.id), class: 'text-dark border-bottom' do %>
                     <%= @post.tag.name if @post.tag.present? %>
                   <% end %>
