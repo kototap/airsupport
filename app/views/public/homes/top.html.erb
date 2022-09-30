@@ -27,13 +27,13 @@
         <h4 class="pt-3 topMain__body"><span class="topMain__body--span">AIRSUPPORT</span>で旅をもっと気軽に楽しもう</h4>
         <h4 class="pt-2 topMain__body"><i class="fas fa-search-location"></i> 空港からすぐ近くの、お店や場所を探す</h4>
       </div>
-      <div class="row d-flex justify-content-center mt-5">
-        <div class="topLink">
-          <%= link_to about_path, class: 'btn topLink__btn px-5 mr-2' do %>
+      <div class="row d-flex justify-content-center">
+        <div class="topLink d-flex">
+          <%= link_to about_path, class: 'btn topLink__btn px-5 mr-5 mt-5' do %>
             <i class="fas fa-check fa-lg"></i>
             About
           <% end %>
-          <%= link_to search_path, class: 'btn topLink__btn px-5 ml-2' do %>
+          <%= link_to search_path, class: 'btn topLink__btn px-5 mt-5' do %>
             <i class="fas fa-search fa-lg"></i>
             Search
           <% end %>
@@ -92,7 +92,7 @@
 
     <!--best3部分-->
     <div class="col-md-4 offset-md-1 pr-md-5">
-      <h3 class="mb-4"><span class='weeklyPosts'><i class="fas fa-crown", style="color: #ff7f50;"></i> Weekly Best 3</span></h3>
+      <h3 class="mb-4"><span class='weeklyPosts'><i class="fas fa-crown", style="color: #ff7f50;"></i> Best 3</span></h3>
       <div id="carouselExampleIndicators" class="carousel slide  d-flex align-items-center flex-column" data-ride="carousel" data-interval="5000">
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -126,7 +126,7 @@
 </div>
 
 <div class="container topGuidance py-5 my-5">
-  <div class="col-10 mx-auto topGuidance__row d-flex align-items-center flex-column">
+  <div class="col-11 mx-auto topGuidance__row d-flex align-items-center flex-column">
     <h3 class="topGuidance__title my-4"><span class="topGuidance__title--span"><i class="fas fa-user-plus"></i> </span>会員登録するとできること</h3>
     <ul class="topGuidance__body p-3">
       <li>あなたの投稿をシェアできるようになります</li>
