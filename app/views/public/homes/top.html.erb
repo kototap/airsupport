@@ -64,7 +64,9 @@
               <div class="card-text d-flex justify-content-between pb-3 pr-3">
                 <p><small>
                   <i class="fas fa-tag"></i>
-                  <%= link_to post.tag.name, search_index_path(tag_id: post.tag.id), class: "text-dark border-bottom" %>
+                  <% post.tags.each do |tag| %>
+                    <%= link_to tag.name, search_index_path(tag_ids: tag.id), class: "text-dark border-bottom" %>
+                  <% end %>
                   <span> | </span>
                   <i class="fas fa-plane"></i>
                   <%= link_to post.airport, search_index_path(airport: post.airport), class: "text-dark border-bottom" %>

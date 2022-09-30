@@ -31,10 +31,12 @@
   <div class="col-md-8">
 
     <% Tag.all.each do |tag| %>
+    <div>
       <%= f.check_box :tag_ids, { multiple: true, checked: post.tags.find_by(id: tag.id).present?, include_hidden: false }, tag[:id] %>
       <span class="form-check-label">
         <%= tag.name %>
       </span>
+    </div>
     <% end %>
 
     <!--%= f.collection_select(:tag_ids, Tag.all , :id, :name, {prompt: "選択してください"}, {class: "form-control js-example-basic-multiple",multiple: true, include_hidden: false}) %>-->
