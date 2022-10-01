@@ -13,7 +13,7 @@
         <p class="card__posts-tags">
           <i class="fas fa-tag"></i>
             <% post.tags.each do |tag| %>
-              <%= link_to search_index_path(tags_id: tag.id), class: 'text-dark border-bottom' do %>
+              <%= link_to search_index_path(tag_id: tag.id), class: 'text-dark border-bottom' do %>
                 <%= tag.name %>
               <% end %>
             <% end %>

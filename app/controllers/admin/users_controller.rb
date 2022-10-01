@@ -17,6 +17,9 @@ class Admin::UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    if @user.name == 'guestuser'
+      redirect_to admin_user_path(@user), notice: 'ゲストユーザーは編集できません'
+    end
   end
 
   def update
@@ -27,8 +30,12 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
-    redirect_to admin_users_path
+    if @user.name == 'guestuser'
+      redirect_to admin_user_path(@user), notice: 'ゲストユーザーは削除できません'
+    else
+      @user.destroy
+      redirect_to admin_users_path
+    end
   end
 
   def unsubscribe
