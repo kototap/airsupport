@@ -22,7 +22,12 @@
         <div class="col-md-5 mb-5">
           <h4 class="mb-3"><i class="far fa-lightbulb"></i> 目的から探す</h4>
             <%= search_form_for @search, url: search_index_path do |f| %>
-              <%= f.collection_check_boxes :tag_id_in, @tags, :id, :name, value: "", class: 'form-control' %>
+              <% Tag.all.each do |tag| %>
+              <div>
+                <%= f.check_box :tags_id_in, { multiple: true, checked: tag[:checked], disabled: tag[:disabled], include_hidden: false }, tag[:id] %>
+                <label><%= tag.name %></label>
+              </div>
+              <% end %>
               <%= button_tag type: "submit", class: "btn btn-default", id: 'search-tag' do %>
                 <h5><i class="fas fa-search fa-lg" style="color: #ff7f50;"></i></h5>
               <% end %>

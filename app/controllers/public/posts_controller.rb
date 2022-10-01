@@ -58,9 +58,8 @@ class Public::PostsController < ApplicationController
   def search_index
     @search = Post.release.ransack(params[:q])
     posts = @search.result(distinct: true)
-    posts = if params[:tag_id_in]
-      # posts.where(tag_ids: params[:tags_id_in])
-      post.tags.map{ |tag_id| Tag.find(post_id).name}.join(', ')
+    posts = if params[:tag_ids]
+      posts.where(tag_ids: params[:tag_ids])
     elsif params[:airport]
       posts.where(airport: params[:airport])
     else
