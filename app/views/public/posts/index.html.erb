@@ -1,21 +1,36 @@
-<div class="container pb-5 mb-5">
-      <div class="row d-flex flex-column mt-5">
-        <h3><span class="public-title"><i class="far fa-copy"></i> 投稿一覧</span></h3>
-        <p class="font-weight-bold py-3">
-          <%= link_to '新しい順', posts_path, style: 'color: #ff7f50;' %>
-          ／<%= link_to 'ブックマーク順', posts_path(popular: "true"), style: 'color: #ff7f50;' %>
-        </p>
+<div class="container">
+  <div class="row d-flex flex-column mt-5">
+    <h2><span class="public-title"><i class="far fa-copy"></i> 投稿一覧</span></h2>
+    <p class="font-weight-bold py-3">
+      <%= link_to '新しい順', posts_path(latest: "true"), style: 'color: #ff7f50;' %>
+      ／<%= link_to 'ブックマーク順', posts_path(popular: "true"), style: 'color: #ff7f50;' %>
+      ／<a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="color: #ff7f50;" >クリックしてね（aタグ）</a>
+    </p>
+  </div>
+  <!--検索フォーム-->
+  <div class="row card-bg collapse" id="collapseExample">
+    <div class="col-md-10 mx-auto m-4 p-4 bg-white">
+      <%= render 'search-form', search: @search %>
+    </div>
+  </div>
+
+  <div class="row">
+    <!--検索結果がある場合-->
+    <% @posts.each do |post| %>
+      <div class="col-md-4 my-4">
+        <%= render 'post-card', post: post %>
       </div>
-      <div class="row">
-        <% @posts.each do |post| %>
-          <div class="col-md-4 mb-5">
-            <%= render 'post-card', post: post %>
-          </div>
-        <% end %>
-      </div>
-      <div class="row">
-        <div class="col-md-6 mx-auto py-5 d-flex justify-content-center">
-          <p><%= paginate @posts %></p>
-        </div>
-      </div>
+    <% end %>
+    <!--検索結果がない場合-->
+    <% unless @posts.present? %>
+    <div class="col-md-4 my-4">
+      <p class="text-muted h6">まだ投稿がありません。</p>
+    </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mx-auto py-5 d-flex justify-content-center">
+      <p><%= paginate @posts %></p>
+    </div>
+  </div>
 </div>

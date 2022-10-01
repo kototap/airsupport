@@ -32,12 +32,30 @@ class Public::PostsController < ApplicationController
   def index
     # 人気記事順
     if params[:popular]
-      @posts = Post.release.sort { |a, b| b.bookmarks.count <=> a.bookmarks.count }
+      posts = Post.release.sort { |a, b| b.bookmarks.count <=> a.bookmarks.count }
+      @posts = Kaminari.paginate_array(posts).page(params[:page]).per(6)
     # 新着順
+    elsif params[:latest]
+      posts = Post.release.latest
+      @posts = Kaminari.paginate_array(posts).page(params[:page]).per(6)
+    # 検索時
     else
-      @posts = Post.release.latest
+      @search = Post.left_joins(:tags).release.ransack(params[:q])
+      # OR検索
+      # @search.combinator = "or"
+      posts = @search.result(distinct: true)
+      # 投稿のタグを押した時
+      posts =
+        if params[:tag_ids]
+          posts.where(tags: {id: params[:tag_ids]})
+        elsif params[:airport]
+          posts.where(airport: params[:airport])
+        else
+          posts
+        end
+
+      @posts = posts.latest.page(params[:page])
     end
-    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(6)
   end
 
 
@@ -48,24 +66,24 @@ class Public::PostsController < ApplicationController
   end
 
 
-  def search
-    @search = Post.left_joins(:tags).release.ransack(params[:q])
-    # OR検索
-    @search.combinator = "or"
+  # def search
+  #   @search = Post.left_joins(:tags).release.ransack(params[:q])
+  #   # OR検索
+  #   @search.combinator = "or"
 
-    posts = @search.result(distinct: true)
-    # 投稿のタグを押した時
-    posts =
-      if params[:tag_ids]
-        posts.where(tags: {id: params[:tag_ids]})
-      elsif params[:airport]
-        posts.where(airport: params[:airport])
-      else
-        posts
-      end
+  #   posts = @search.result(distinct: true)
+  #   # 投稿のタグを押した時
+  #   posts =
+  #     if params[:tag_ids]
+  #       posts.where(tags: {id: params[:tag_ids]})
+  #     elsif params[:airport]
+  #       posts.where(airport: params[:airport])
+  #     else
+  #       posts
+  #     end
 
-    @posts = posts.latest.page(params[:page])
-  end
+  #   @posts = posts.latest.page(params[:page])
+  # end
 
 
   def show

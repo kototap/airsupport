@@ -13,13 +13,13 @@
         <p class="card__posts-tags">
           <i class="fas fa-tag"></i>
             <% post.tags.each do |tag| %>
-              <%= link_to search_path(tag_ids: tag.id), class: 'btn btn-sm btn-other' do %>
+              <%= link_to posts_path(tag_ids: tag.id), class: 'btn btn-sm btn-other' do %>
                 <%= tag.name %>
               <% end %>
             <% end %>
           <span> | </span>
           <i class="fas fa-plane"></i>
-          <%= link_to post.airport, search_path(airport: post.airport), class: "text-dark border-bottom" %>
+          <%= link_to post.airport, posts_path(airport: post.airport), class: "text-dark border-bottom" %>
           <span> | </span>
           <i class="fas fa-bookmark"></i>
           <%= post.bookmarks.count %>
