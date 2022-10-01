@@ -2,7 +2,7 @@
   <div class="row d-flex flex-column mt-5">
     <h2><span class="public-title"><i class="far fa-copy"></i> 投稿一覧</span></h2>
     <p class="font-weight-bold py-3">
-      <%= link_to '新しい順', posts_path, style: 'color: #ff7f50;' %>
+      <%= link_to '新しい順', posts_path(latest: "true"), style: 'color: #ff7f50;' %>
       ／<%= link_to 'ブックマーク順', posts_path(popular: "true"), style: 'color: #ff7f50;' %>
       ／<a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="color: #ff7f50;" >クリックしてね（aタグ）</a>
     </p>
@@ -10,28 +10,7 @@
   <!--検索フォーム-->
   <div class="row card-bg collapse" id="collapseExample">
     <div class="col-md-10 mx-auto m-4 p-4 bg-white">
-      <%= search_form_for @search, url: search_path, class: 'd-flex flex-column' do |f| %>
-        <div class="search-form">
-          <h5><i class="fas fa-pen"></i> フリーワードで探す</h5>
-          <%= f.search_field :title_cont, placeholder: 'キーワードを入力...', value: "", class: 'form-control mr-3' %>
-        </div>
-        <div class="search-form">
-          <h5><i class="far fa-lightbulb"></i> 目的から探す</h5>
-          <% Tag.all.each do |tag| %>
-            <%= f.check_box :tags_id_in, { multiple: true, checked: tag[:checked], disabled: tag[:disabled], include_hidden: false }, tag[:id] %>
-            <label><%= tag.name %></label>
-          <% end %>
-        </div>
-        <div class="search-form">
-          <h5><i class="fas fa-plane"></i> 空港から検索する</h5>
-          <%= f.search_field :airport_cont, placeholder: '空港名', value: "", class: 'form-control' %>
-        </div>
-        <div class="search-btn text-center">
-          <%= button_tag type: "submit", class: "btn btn-other btn-sm", id: 'search-airport' do %>
-            <i class="fas fa-search fa-lg"></i> 検索する
-          <% end %>
-        </div>
-      <% end %>
+      <%= render 'search-form', search: @search %>
     </div>
   </div>
 

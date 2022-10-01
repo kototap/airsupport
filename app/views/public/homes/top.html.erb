@@ -33,7 +33,7 @@
             <i class="fas fa-check fa-lg"></i>
             About
           <% end %>
-          <%= link_to search_path, class: 'btn topLink__btn px-5 mt-5' do %>
+          <%= link_to posts_path, class: 'btn topLink__btn px-5 mt-5' do %>
             <i class="fas fa-search fa-lg"></i>
             Search
           <% end %>
@@ -65,11 +65,11 @@
                 <p><small>
                   <i class="fas fa-tag"></i>
                   <% post.tags.each do |tag| %>
-                    <%= link_to tag.name, search_path(tag_ids: tag.id), class: "text-dark border-bottom" %>
+                    <%= link_to tag.name, posts_path(tag_ids: tag.id), class: "text-dark border-bottom" %>
                   <% end %>
                   <span> | </span>
                   <i class="fas fa-plane"></i>
-                  <%= link_to post.airport, search_path(airport: post.airport), class: "text-dark border-bottom" %>
+                  <%= link_to post.airport, posts_path(airport: post.airport), class: "text-dark border-bottom" %>
                   <br>
                   <i class="fas fa-user"></i>
                   <%= link_to post.user.name, user_path(post.user), class: 'text-dark border-bottom' %>

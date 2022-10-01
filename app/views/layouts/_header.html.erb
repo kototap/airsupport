@@ -16,12 +16,6 @@
       <ul class="navbar-nav ml-auto d-flex align-items-center">
       <% if user_signed_in? %>
         <li class="nav-item">
-          <%= link_to search_path, class: 'nav-link link-border' do %>
-            <i class="fas fa-search"></i>
-            検索
-          <% end %>
-        </li>
-        <li class="nav-item">
           <%= link_to posts_path, class: 'nav-link link-border' do %>
             <i class="far fa-copy"></i>
             投稿一覧
