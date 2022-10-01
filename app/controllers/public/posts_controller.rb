@@ -49,24 +49,21 @@ class Public::PostsController < ApplicationController
 
 
   def search
-    @search = Post.release.ransack(params[:q])
-    @tags = Tag.all
+    @search = Post.left_joins(:tags).release.ransack(params[:q])
     # OR検索
     @search.combinator = "or"
-  end
 
-  def search_index
-    @search = Post.release.ransack(params[:q])
     posts = @search.result(distinct: true)
-
     # 投稿のタグを押した時
-    posts = if params[:tag_id]
-      posts.where(tag_id: params[:tag_id])
-    elsif params[:airport]
-      posts.where(airport: params[:airport])
-    else
-      posts
-    end
+    posts =
+      if params[:tag_ids]
+        posts.where(tags: {id: params[:tag_ids]})
+      elsif params[:airport]
+        posts.where(airport: params[:airport])
+      else
+        posts
+      end
+
     @posts = posts.latest.page(params[:page])
   end
 

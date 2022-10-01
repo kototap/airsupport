@@ -1,15 +1,10 @@
 <div class="container pb-5 mb-5">
-  <div class="row mt-5 d-flex flex-column">
-    <h2><span class="public-title"><i class="fas fa-search"></i> 検索ページ</span></h2>
-    <p class="py-3">キーワードや目的、空港名から投稿を検索できます</p>
-  </div>
-
   <div class="row card-bg">
-    <div class="col-md-10 mx-auto my-5 bg-white">
-      <div class="form-group row pt-5">
-        <div class="col-md-6 mx-auto">
-          <h4 class="mb-3"><i class="fas fa-pen"></i> フリーワードで探す</h4>
-          <%= search_form_for @search, url: search_index_path, class: 'd-flex' do |f| %>
+    <div class="col-md-10 mx-auto my-4 bg-white">
+      <div class="form-group row pt-2">
+        <div class="col-md-6">
+          <h5><i class="fas fa-pen"></i> フリーワードで探す</h5>
+          <%= search_form_for @search, url: search_path, class: 'd-flex' do |f| %>
             <%= f.search_field :title_cont, placeholder: 'キーワードを入力...', value: "", class: 'form-control mr-3' %>
             <%= button_tag type: "submit", class: "btn btn-default", id: 'search-word' do %>
               <h5><i class="fas fa-search fa-lg" style="color: #ff7f50;"></i></h5>
@@ -18,15 +13,13 @@
         </div>
       </div>
 
-      <div class="row d-flex justify-content-center pt-5 mt-5">
-        <div class="col-md-5 mb-5">
-          <h4 class="mb-3"><i class="far fa-lightbulb"></i> 目的から探す</h4>
-            <%= search_form_for @search, url: search_index_path do |f| %>
+      <div class="row d-flex">
+        <div class="col-md-5">
+          <h5 class="mb-3"><i class="far fa-lightbulb"></i> 目的から探す</h5>
+            <%= search_form_for @search, url: search_path do |f| %>
               <% Tag.all.each do |tag| %>
-              <div>
                 <%= f.check_box :tags_id_in, { multiple: true, checked: tag[:checked], disabled: tag[:disabled], include_hidden: false }, tag[:id] %>
                 <label><%= tag.name %></label>
-              </div>
               <% end %>
               <%= button_tag type: "submit", class: "btn btn-default", id: 'search-tag' do %>
                 <h5><i class="fas fa-search fa-lg" style="color: #ff7f50;"></i></h5>
@@ -34,8 +27,8 @@
             <% end %>
         </div>
         <div class="col-md-5 mb-5">
-          <h4 class="mb-3"><i class="fas fa-plane"></i> 空港から検索する</h4>
-          <%= search_form_for @search, url: search_index_path, class: 'd-flex' do |f| %>
+          <h5 class="mb-3"><i class="fas fa-plane"></i> 空港から検索する</h5>
+          <%= search_form_for @search, url: search_path, class: 'd-flex' do |f| %>
             <%= f.search_field :airport_cont, placeholder: '空港名', value: "", class: 'form-control' %>
             <%= button_tag type: "submit", class: "btn btn-default", id: 'search-airport' do %>
               <h5><i class="fas fa-search fa-lg" style="color: #ff7f50;"></i></h5>
@@ -46,3 +39,53 @@
     </div>
   </div>
 </div>
+
+<div class="container">
+  <div class="row mt-5">
+    <% if params[:q].present? && params[:q][:title_cont].present? %>
+      <h2><span class="public-title"><i class="fas fa-search"></i> "<%= params[:q][:title_cont] %>"の検索結果一覧<span></h2>
+    <% elsif params[:q].present? && params[:q][:tags_id_in].present? %>
+      <h2>
+        <span class="public-title">
+          <i class="fas fa-search"></i>
+          <% Tag.find(params[:q][:tags_id_in]).each do |tag| %>
+          "<%= tag.name %>"
+          <% end %>
+          の検索結果一覧
+        </span>
+      </h2>
+    <% elsif params[:q].present? && params[:q][:airport_cont].present? %>
+      <h2><span class="public-title"><i class="fas fa-search"></i> "<%= params[:q][:airport_cont] %>"の検索結果一覧</span></h2>
+    <% else %>
+      <div class="row d-flex flex-column mt-5">
+        <h2><span class="public-title"><i class="far fa-copy"></i> 投稿一覧</span></h2>
+        <p class="font-weight-bold py-3">
+          <%= link_to '新しい順', posts_path, style: 'color: #ff7f50;' %>
+          ／<%= link_to 'ブックマーク順', posts_path(popular: "true"), style: 'color: #ff7f50;' %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <!--検索結果がある場合-->
+    <% @posts.each do |post| %>
+      <div class="col-md-4 my-4">
+        <%= render 'post-card', post: post %>
+      </div>
+    <% end %>
+    <!--検索結果がない場合-->
+    <% unless @posts.present? %>
+    <div class="col-md-4 my-4">
+      <p class="text-muted h6">まだ投稿がありません。</p>
+    </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mx-auto py-5 d-flex justify-content-center">
+      <p><%= paginate @posts %></p>
+    </div>
+  </div>
+</div>
+
