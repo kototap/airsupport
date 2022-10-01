@@ -43,7 +43,7 @@
               <p><i class="fas fa-tag"></i>
                 <% if @post.tags.present? %>
                   <% @post.tags.each do |tag| %>
-                    <%= link_to search_index_path(tag_id: tag.id), class: 'text-dark border-bottom' do %>
+                    <%= link_to search_index_path(tags_id: tag.id), class: 'text-dark border-bottom' do %>
                       <%= tag.name if tag.present? %>
                     <% end %>
                   <% end %>

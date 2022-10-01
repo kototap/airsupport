@@ -6,20 +6,20 @@
         <h4 class="card-title"><span class="link-border"><%= post.title %></span></h4>
       </div>
       <div class="row">
-        <p class="card-text"><i class="fas fa-comment-dots"></i> <%= post.body.truncate(18) %></p>
+        <p class="card-text"><i class="fas fa-comment-dots"></i> <%= post.body.truncate(17) %></p>
       </div>
     <% end %>
       <div class="row">
         <p class="card__posts-tags">
           <i class="fas fa-tag"></i>
             <% post.tags.each do |tag| %>
-              <%= link_to search_index_path(tag_id: tag.id), class: 'text-dark border-bottom' do %>
+              <%= link_to search_path(tag_ids: tag.id), class: 'btn btn-sm btn-other' do %>
                 <%= tag.name %>
               <% end %>
             <% end %>
           <span> | </span>
           <i class="fas fa-plane"></i>
-          <%= link_to post.airport, search_index_path(airport: post.airport), class: "text-dark border-bottom" %>
+          <%= link_to post.airport, search_path(airport: post.airport), class: "text-dark border-bottom" %>
           <span> | </span>
           <i class="fas fa-bookmark"></i>
           <%= post.bookmarks.count %>

@@ -55,7 +55,6 @@ Rails.application.routes.draw do
     end
 
     get "/search" => "posts#search"
-    get "/search/index" => "posts#search_index"
   end
 
 

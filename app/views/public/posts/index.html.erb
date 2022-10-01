@@ -1,21 +1,32 @@
-<div class="container pb-5 mb-5">
-  <div class="row d-flex flex-column mt-5">
-    <h2><span class="public-title"><i class="far fa-copy"></i> 投稿一覧</span></h2>
-    <p class="font-weight-bold py-3">
-      <%= link_to '新しい順', posts_path, style: 'color: #ff7f50;' %>
-      ／<%= link_to 'ブックマーク順', posts_path(popular: "true"), style: 'color: #ff7f50;' %>
-    </p>
-  </div>
+<div class="container-fluid pb-5 mb-5">
+
   <div class="row">
-    <% @posts.each do |post| %>
-      <div class="col-lg-4 mb-5">
-        <%= render 'post-card', post: post %>
-      </div>
-    <% end %>
+    
+  <div class="col-md-3">
+
   </div>
-  <div class="row">
-    <div class="col-md-6 mx-auto py-5 d-flex justify-content-center">
-      <p><%= paginate @posts %></p>
+
+  <div class="col-md-8 mx-auto">
+    <div class="row d-flex flex-column mt-5">
+      <h3><span class="public-title"><i class="far fa-copy"></i> 投稿一覧</span></h3>
+      <p class="font-weight-bold py-3">
+        <%= link_to '新しい順', posts_path, style: 'color: #ff7f50;' %>
+        ／<%= link_to 'ブックマーク順', posts_path(popular: "true"), style: 'color: #ff7f50;' %>
+      </p>
     </div>
+    <div class="row">
+      <% @posts.each do |post| %>
+        <div class="col-md-4 mb-5">
+          <%= render 'post-card', post: post %>
+        </div>
+      <% end %>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mx-auto py-5 d-flex justify-content-center">
+        <p><%= paginate @posts %></p>
+      </div>
+    </div>
+  </div>
+
   </div>
 </div>
