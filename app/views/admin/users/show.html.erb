@@ -23,7 +23,9 @@
           <td><i class="far fa-sticky-note"></i><%= link_to "#{@user.name}さんの投稿一覧", posts_admin_user_path(@user), class: 'text-dark border-bottom ml-1' %></td>
         </tr>
         <tr>
-          <td><i class="fas fa-user-edit"></i><%= link_to "編集する", edit_admin_user_path(@user), class: 'text-dark border-bottom ml-1' %></td>
+          <% unless @user.name == 'guestuser' %>
+            <td><i class="fas fa-user-edit"></i><%= link_to "編集する", edit_admin_user_path(@user), class: 'text-dark border-bottom ml-1' %></td>
+          <% end %>
         </tr>
         <tr>
           <td style="font-weight: bold; color: green;"><%= @user.is_deleted ? '利用停止中です' : '有効な会員です' %></td>
@@ -31,7 +33,9 @@
         <tr>
           <td></td>
           <td>
-            <%= link_to "このユーザーを完全に削除する", admin_user_path(@user), method: :delete, class: 'btn btn-outline-danger btn-sm ml-2', data: {confirm: "本当に削除しますか？"} %>
+            <% unless @user.name == 'guestuser' %>
+              <%= link_to "このユーザーを完全に削除する", admin_user_path(@user), method: :delete, class: 'btn btn-outline-danger btn-sm ml-2', data: {confirm: "本当に削除しますか？"} %>
+            <% end %>
           </td>
         </tr>
       </table>
