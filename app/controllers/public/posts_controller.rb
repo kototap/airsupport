@@ -58,6 +58,8 @@ class Public::PostsController < ApplicationController
   def search_index
     @search = Post.release.ransack(params[:q])
     posts = @search.result(distinct: true)
+    
+    # 投稿のタグを押した時
     posts = if params[:tag_ids]
       posts.where(tag_ids: params[:tag_ids])
     elsif params[:airport]
