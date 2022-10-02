@@ -4,7 +4,6 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
-    # @post.post_tags.build
   end
 
   def create

@@ -29,14 +29,13 @@
 <div class="form-group row">
   <label class="col-md-4 col-form-label"><%= f.label :tag_id %></label>
   <div class="col-md-8">
-
-    <% Tag.all.each do |tag| %>
-    <div>
-      <%= f.check_box :tag_ids, { multiple: true, checked: post.tags.find_by(id: tag.id).present?, include_hidden: false }, tag[:id] %>
-      <span class="form-check-label">
-        <%= tag.name %>
-      </span>
-    </div>
+    <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+      <div class='form-check'>
+        <%= tag.label class: 'form-check-label' do %>
+          <%= tag.check_box class: 'form-check-input' %>
+          <%= tag.text %>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>
