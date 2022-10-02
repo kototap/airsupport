@@ -4,7 +4,6 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
-    # @post.post_tags.build
   end
 
   def create
@@ -41,8 +40,6 @@ class Public::PostsController < ApplicationController
     # 検索時
     else
       @search = Post.left_joins(:tags).release.ransack(params[:q])
-      # OR検索
-      # @search.combinator = "or"
       posts = @search.result(distinct: true)
       # 投稿のタグを押した時
       posts =
@@ -53,7 +50,6 @@ class Public::PostsController < ApplicationController
         else
           posts
         end
-
       @posts = posts.latest.page(params[:page])
     end
   end
@@ -62,28 +58,7 @@ class Public::PostsController < ApplicationController
   # 下書きの投稿のみ表示
   def draft_index
     @posts = current_user.posts.draft.latest.page(params[:page])
-
   end
-
-
-  # def search
-  #   @search = Post.left_joins(:tags).release.ransack(params[:q])
-  #   # OR検索
-  #   @search.combinator = "or"
-
-  #   posts = @search.result(distinct: true)
-  #   # 投稿のタグを押した時
-  #   posts =
-  #     if params[:tag_ids]
-  #       posts.where(tags: {id: params[:tag_ids]})
-  #     elsif params[:airport]
-  #       posts.where(airport: params[:airport])
-  #     else
-  #       posts
-  #     end
-
-  #   @posts = posts.latest.page(params[:page])
-  # end
 
 
   def show

@@ -3,26 +3,29 @@
     <%= image_tag post.get_post_image, class: 'card__img-top' %>
     <div class="card-body ml-2">
       <div class="row">
-        <h4 class="card-title"><span class="link-border"><%= post.title %></span></h4>
+        <h4 class="card__title"><span class="link-border"><%= post.title %></span></h4>
       </div>
       <div class="row">
-        <p class="card-text"><i class="fas fa-comment-dots"></i> <%= post.body.truncate(17) %></p>
+        <p class="card__text"><i class="fas fa-comment-dots"></i> <%= post.body %></p>
       </div>
     <% end %>
       <div class="row">
         <p class="card__posts-tags">
-          <i class="fas fa-tag"></i>
-            <% post.tags.each do |tag| %>
-              <%= link_to posts_path(tag_ids: tag.id), class: 'btn btn-sm btn-other' do %>
-                <%= tag.name %>
-              <% end %>
-            <% end %>
+          <i class="fas fa-bookmark"></i>
+          <%= post.bookmarks.count %>
           <span> | </span>
           <i class="fas fa-plane"></i>
           <%= link_to post.airport, posts_path(airport: post.airport), class: "text-dark border-bottom" %>
-          <span> | </span>
-          <i class="fas fa-bookmark"></i>
-          <%= post.bookmarks.count %>
+        </p>
+      </div>
+      <div class="row">
+        <p class="card__post-tags">
+          <i class="fas fa-tag"></i>
+          <% post.tags.each do |tag| %>
+            <%= link_to posts_path(tag_ids: tag.id), class: 'btn btn-sm btn-other' do %>
+              <%= tag.name %>
+            <% end %>
+          <% end %>
         </p>
       </div>
 
