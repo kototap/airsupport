@@ -43,13 +43,13 @@
               <p><i class="fas fa-tag"></i>
                 <% if @post.tags.present? %>
                   <% @post.tags.each do |tag| %>
-                    <%= link_to search_path(tag_ids: tag.id), class: 'text-dark border-bottom' do %>
+                    <%= link_to posts_path(tag_ids: tag.id), class: 'text-dark border-bottom' do %>
                       <%= tag.name if tag.present? %>
                     <% end %>
                   <% end %>
                 <% end %>
                 <span>　|　</span>
-                <i class="fas fa-plane"></i> <%= link_to @post.airport, search_path(airport: @post.airport), class: 'text-dark border-bottom' %>
+                <i class="fas fa-plane"></i> <%= link_to @post.airport, posts_path(airport: @post.airport), class: 'text-dark border-bottom' %>
               </p>
             </div>
           </div>
