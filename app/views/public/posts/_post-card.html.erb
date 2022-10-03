@@ -3,7 +3,7 @@
     <%= image_tag post.get_post_image, class: 'card__img-top' %>
     <div class="card-body ml-2">
       <div class="row">
-        <h4 class="card__title"><span class="link-border"><%= post.title %></span></h4>
+        <h4 class="card__title"><%= post.title %></h4>
       </div>
       <div class="row">
         <p class="card__text"><i class="fas fa-comment-dots"></i> <%= post.body %></p>
@@ -29,11 +29,11 @@
         </p>
       </div>
 
-      <div class="row top-image d-flex justify-content-between">
-        <%= link_to user_path(post.user), class: 'd-flex align-items-end text-dark' do %>
+    <div class="row top-image d-flex justify-content-between">
+      <%= link_to user_path(post.user), class: 'd-flex align-items-end text-dark' do %>
         <%= image_tag post.user.get_profile_image(25,25), class: 'rounded-circle border' %>&nbsp; &nbsp;
         <span class="border-bottom"><%= post.user.name %></span>
-        <% end %>
+      <% end %>
       <span class="text-muted pr-3"><small><%= post.created_at.strftime('%Y/%m/%d') %></small></span>
     </div>
   </div>

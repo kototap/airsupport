@@ -1,16 +1,16 @@
 <%= search_form_for search, url: posts_path, class: 'd-flex flex-column' do |f| %>
-        <div class="search-form">
+        <div class="search-form mb-3">
           <h5><i class="fas fa-pen"></i> フリーワードで探す</h5>
           <%= f.search_field :title_cont, placeholder: 'キーワードを入力...', value: "", class: 'form-control mr-3' %>
         </div>
-        <div class="search-form">
+        <div class="search-form mb-3">
           <h5><i class="far fa-lightbulb"></i> 目的から探す</h5>
           <% Tag.all.each do |tag| %>
             <%= f.check_box :tags_id_in, { multiple: true, checked: tag[:checked], disabled: tag[:disabled], include_hidden: false }, tag[:id] %>
             <label><%= tag.name %></label>
           <% end %>
         </div>
-        <div class="search-form">
+        <div class="search-form mb-3">
           <h5><i class="fas fa-plane"></i> 空港から検索する</h5>
           <%= f.search_field :airport_cont, placeholder: '空港名', value: "", class: 'form-control' %>
         </div>

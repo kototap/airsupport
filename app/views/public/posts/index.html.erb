@@ -4,7 +4,10 @@
     <p class="font-weight-bold py-3">
       <%= link_to '新しい順', posts_path(latest: "true"), style: 'color: #ff7f50;' %>
       ／<%= link_to 'ブックマーク順', posts_path(popular: "true"), style: 'color: #ff7f50;' %>
-      ／<a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="color: #ff7f50;" >クリックしてね（aタグ）</a>
+      ／<a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="color: #ff7f50;" >
+          検索する
+          <i class="fas fa-search"></i>
+        </a>
     </p>
   </div>
   <!--検索フォーム-->

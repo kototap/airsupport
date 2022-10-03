@@ -27,6 +27,36 @@
           <% end %>
         </div>
       </div>
+      <% if @post.is_draft == false && user_signed_in? %>
+      <div class="row offset-md-1 my-3">
+        <h5 class="comment-title ml-1"><i class="far fa-comments"></i> コメント</h5>
+      </div>
+    <% end %>
+        <!--コメントエリア-->
+    <div class="row d-flex flex-column">
+      <div class="comment-area col-md-10 mx-auto">
+        <% if @post.is_draft == false && user_signed_in? %>
+          <%= render 'public/post_comments/comment-area', post: @post, comments: @comments %>
+        <% end %>
+      </div>
+      <!--コメントフォーム-->
+      <div class="comment-form col-md-10 mx-auto">
+        <%= render 'public/post_comments/comment-form', post: @post, post_comment: @post_comment %>
+      </div>
+      <!--ユーザーがログインしていないとき-->
+      <div class="not-signin d-flex">
+        <% unless user_signed_in? %>
+          <i class="fas fa-bullhorn mt-1"></i>
+          <p class="ml-4">
+            <%= link_to '会員登録', new_user_registration_path, class: 'border-bottom', style: 'color: #ff7f50;' %>
+            して投稿をブックマークしたり、<br>
+            コメントしてみよう！
+          </p>
+        <% end %>
+      </div>
+    </div>
+
+
     </div>
 
       <!--投稿詳細右半分-->
@@ -75,39 +105,6 @@
             <% end %>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-
-
-  <% if @post.is_draft == false && user_signed_in? %>
-    <div class="row offset-md-1 my-3">
-      <h5 class="comment-title ml-1"><i class="far fa-comments"></i> コメント</h5>
-    </div>
-  <% end %>
-      <!--コメントエリア-->
-  <div class="row">
-    <div class="comment-area col-md-5 offset-md-1">
-      <% if @post.is_draft == false && user_signed_in? %>
-        <%= render 'public/post_comments/comment-area', post: @post, comments: @comments %>
-      <% end %>
-    </div>
-
-    <div class="col-md-6">
-      <!--コメントフォーム-->
-      <div class="comment-form">
-        <%= render 'public/post_comments/comment-form', post: @post, post_comment: @post_comment %>
-      </div>
-      <!--ユーザーがログインしていないとき-->
-      <div class="not-signin d-flex">
-        <% unless user_signed_in? %>
-          <i class="fas fa-bullhorn mt-1"></i>
-          <p class="ml-4">
-            <%= link_to '会員登録', new_user_registration_path, class: 'border-bottom', style: 'color: #ff7f50;' %>
-            して投稿をブックマークしたり、<br>
-            コメントしてみよう！
-          </p>
-        <% end %>
       </div>
 
       <!--マップ表示-->
