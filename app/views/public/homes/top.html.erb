@@ -49,15 +49,17 @@
         <div class="card mt-4">
           <div class="row">
             <div class="col-md-4">
-              <%= image_tag post.get_post_image, class: 'newPosts__img-fluid' %>
+              <%= link_to post_path(post), class: 'text-dark' do %>
+                <%= image_tag post.get_post_image, class: 'newPosts__img-fluid' %>
+              <% end %>
             </div>
 
             <div class="col-md-8 d-flex flex-column justify-content-between">
               <%= link_to post_path(post), class: 'text-dark' do %>
-              <h5 class="card-title font-weight-bold pt-3"><span class="link-border"><%= post.title %></span></h5>
+                <h5 class="font-weight-bold pt-3"><span class="link-border"><%= post.title %></span></h5>
+                <p class="card__text"><%= post.body %></p>
               <% end %>
-              <p class="card-text"><%= post.body.truncate(25) %></p>
-              <div class="card-text d-flex justify-content-between pb-3 pr-3">
+              <div class="d-flex justify-content-between pb-3 pr-3">
                 <p><small>
                   <i class="fas fa-tag"></i>
                   <% post.tags.each do |tag| %>
@@ -67,9 +69,7 @@
                   <i class="fas fa-plane"></i>
                   <%= link_to post.airport, posts_path(airport: post.airport), class: "text-dark border-bottom" %>
                   <br>
-                  <i class="fas fa-user"></i>
-                  <%= link_to post.user.name, user_path(post.user), class: 'text-dark border-bottom' %>
-                  <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
+                  <%= post.created_at.strftime('%Y/%m/%d') %>
                 </small></p>
                 <div class="align-self-center"><%= link_to "Read More", post_path(post), class: 'btn newPosts__btn align-left' %></div>
               </div>
