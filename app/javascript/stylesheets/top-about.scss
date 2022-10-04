@@ -97,6 +97,10 @@
 .newPosts{
   background: #fef9d9;
   border-radius: 75px 0px 75px 75px;
+  &__col{
+    background: white;
+    padding: 20px;
+  }
   &__span{
     font-weight: bold;
     padding: 0 10px;
@@ -128,7 +132,7 @@
 .topGuidance{
   background: #fef9d9;
   border-radius: 0px 75px 75px 75px;
-  &__row{
+  &__col{
     background: white;
     padding: 20px;
   }

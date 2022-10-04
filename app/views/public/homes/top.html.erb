@@ -35,27 +35,29 @@
   </div>
 </div>
 
-
-<div class="container">
-  <!--NEWPOST-->
-  <div class="row newPosts py-5 my-5">
-    <div class="col-md-7 pl-md-5">
-      <h3><span class='newPosts__span'><i class="fas fa-star", style="color: #ff7f50;"></i> New Post</span></h3>
+<!--NEWPOST-->
+<div class="container newPosts py-5 my-5">
+  <div class="col-11 mx-auto newPosts__col">
+    <div class="col-md-8 mx-auto py-5 mx-3 bg-white">
+      <h3 class="mt-3"><span class='newPosts__span'><i class="fas fa-star", style="color: #ff7f50;"></i> New Post</span></h3>
       <% @posts.each do |post| %>
         <div class="card mt-4">
           <div class="row">
+            <!--写真部分-->
             <div class="col-md-4">
               <%= link_to post_path(post), class: 'text-dark' do %>
                 <%= image_tag post.get_post_image, class: 'newPosts__img-fluid' %>
               <% end %>
             </div>
-
+            <!--文章部分-->
             <div class="col-md-8 d-flex flex-column justify-content-between">
-              <%= link_to post_path(post), class: 'text-dark' do %>
-                <h4 class="font-weight-bold pt-3"><span class="link-border"><%= post.title %></span></h4>
-                <p class="card__text pt-3"><%= post.body %></p>
-              <% end %>
-              <div class="d-flex justify-content-between">
+              <div>
+                <%= link_to post_path(post), class: 'text-dark' do %>
+                  <h4 class="font-weight-bold pt-3"><span class="link-border"><%= post.title %></span></h4>
+                  <p class="card__text pt-3"><%= post.body %></p>
+                <% end %>
+              </div>
+              <div>
                 <p><small>
                   <i class="fas fa-tag"></i>
                   <% post.tags.each do |tag| %>
@@ -75,15 +77,29 @@
           </div>
         </div>
       <% end %>
-
-      <div class="d-flex justify-content-end mt-3">
-        <%= link_to posts_path, class: 'link-border' do %>
-          <i class="fas fa-check fa-lg" style="color: #ff7f50;"></i>
-          <span class="text-dark link-border">全ての投稿を見てみる</span>
-        <% end %>
-      </div>
     </div>
+  </div>
+</div>
 
+
+<div class="container topGuidance py-5 my-5">
+  <div class="col-11 mx-auto topGuidance__col d-flex align-items-center flex-column">
+    <h3 class="topGuidance__title my-4"><span class="topGuidance__title--span"><i class="fas fa-user-plus"></i> </span>会員登録するとできること</h3>
+    <ul class="topGuidance__body p-3">
+      <li>あなたの思い出や情報をシェアできるようになります</li>
+      <li>お気に入りの投稿をブックマークに保存できます</li>
+      <li>投稿は下書きとして非公開にしておくことも可能です</li>
+      <li>気になるユーザーの投稿一覧がチェックできます</li>
+    </ul>
+    <%= link_to '新規会員登録する', new_user_registration_path, class: 'btn topLink__btn mb-3 px-5' %>
+  </div>
+</div>
+
+
+
+
+<div class="container">
+  <div class="row newPosts py-5 my-5">
     <!--best3部分-->
     <div class="col-md-4 offset-md-1 pr-md-5">
       <h3 class="mb-4"><span class='weeklyPosts'><i class="fas fa-crown", style="color: #ff7f50;"></i> Best 3</span></h3>
@@ -116,19 +132,6 @@
         <% end %>
       </div>
     </div>
-  </div>
-</div>
-
-<div class="container topGuidance py-5 my-5">
-  <div class="col-11 mx-auto topGuidance__row d-flex align-items-center flex-column">
-    <h3 class="topGuidance__title my-4"><span class="topGuidance__title--span"><i class="fas fa-user-plus"></i> </span>会員登録するとできること</h3>
-    <ul class="topGuidance__body p-3">
-      <li>あなたの思い出や情報をシェアできるようになります</li>
-      <li>お気に入りの投稿をブックマークに保存できます</li>
-      <li>投稿は下書きとして非公開にしておくことも可能です</li>
-      <li>気になるユーザーの投稿一覧がチェックできます</li>
-    </ul>
-    <%= link_to '新規会員登録する', new_user_registration_path, class: 'btn topLink__btn mb-3 px-5' %>
   </div>
 </div>
 

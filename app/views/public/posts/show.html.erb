@@ -1,11 +1,11 @@
 <div class="container my-5 py-5">
-      <!--下書きの投稿であることを表示-->
+  <!--下書きの投稿であることを表示-->
   <% if @post.is_draft == true %>
     <div class="col-md-6 mb-5">
       <h4>※これは下書きです。</h4>
     </div>
   <% end %>
-
+  <!--投稿の写真部分-->
   <div class="row">
     <div class="col-md-6">
       <div class="row d-flex justify-content-center">
@@ -14,7 +14,7 @@
         </div>
       </div>
 
-      <!--ここからブックマーク-->
+      <!--ブックマーク-->
       <div class="row offset-md-2 mb-4 pl-1">
         <div class="bookmark-btn my-3 h4">
           <!--ユーザーがログインしていて、投稿が公開されている時-->
@@ -78,7 +78,7 @@
                     <% end %>
                   <% end %>
                 <% end %>
-                <span>　|　</span>
+                <br>
                 <i class="fas fa-plane"></i> <%= link_to @post.airport, posts_path(airport: @post.airport), class: 'text-dark border-bottom' %>
               </p>
             </div>
