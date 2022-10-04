@@ -1,7 +1,8 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 
 * {
   margin: 0;
@@ -10,7 +11,7 @@
 }
 
 body{
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
   background: #fffdfb;
 }
 
@@ -42,14 +43,14 @@ a {
 
 // ボタン共通
 .btn-other{
-  background: #ff7f50;
+  background: #fff;
   border: 1px solid #ff7f50;
   border-radius: 60px;
-  color: #fff;
+  color: #ff701e;
 }
 .btn-other:hover{
-  background: #fff;
-  color: #ff701e;
+  background: #ff7f50;
+  color: #fff;
 }
 
 

@@ -13,10 +13,6 @@
       		<div class="carousel-item bgCarousel__item active"></div>
       		<div class="carousel-item bgCarousel__item"></div>
       		<div class="carousel-item bgCarousel__item"></div>
-      		<div class="carousel-caption d-none d-block">
-            <h2 class="bgCarousel__mv-title"><span class="bgCarousel__caption--bg">旅をもっと快適に</span></h2>
-            <p class="bgCarousel__mv-body"><span class="bgCarousel__caption--bg">時間を持て余すことなく楽しみ尽くす<span></p>
-          </div>
       	</div>
       </div>
     </div>
@@ -29,7 +25,7 @@
       </div>
       <div class="row d-flex justify-content-center">
         <div class="topLink d-flex">
-          <%= link_to about_path, class: 'btn topLink__btn px-5 mr-5 mt-5' do %>
+          <%= link_to about_path, class: 'btn topLink__btn px-5 mt-5' do %>
             <i class="fas fa-check fa-lg"></i>
             AIRSUPPORTについて
           <% end %>
@@ -132,7 +128,7 @@
       <li>投稿は下書きとして非公開にしておくことも可能です</li>
       <li>気になるユーザーの投稿一覧がチェックできます</li>
     </ul>
-    <%= link_to '新規会員登録する', new_user_registration_path, class: 'btn topGuidance__btn mb-3' %>
+    <%= link_to '新規会員登録する', new_user_registration_path, class: 'btn topLink__btn mb-3 px-5' %>
   </div>
 </div>
 
