@@ -89,7 +89,8 @@
         <div class='d-flex justify-content-end'>*管理者でログインしています</div>
       <% else %>
         <div class="nav-item mt-3">
-          <%= search_form_for @search, url: posts_path do |f| %>
+          <%= search_form_for @search, url: posts_path, class: ' d-flex align-items-center' do |f| %>
+            <i class="fas fa-search fa-lg mr-3" style="color: #52616b;"></i>
             <%= f.search_field :title_cont, placeholder: 'キーワードで検索...', value: "", class: 'form-control' %>
           <% end %>
         </div>
