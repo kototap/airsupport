@@ -8,7 +8,7 @@
         </div>
       </div>
 
-      <!--ここからブックマーク-->
+      <!--ブックマーク-->
       <div class="row offset-md-2 mb-4 pl-1">
         <div class="bookmark-btn my-3 h4">
             <i class="far fa-bookmark"></i> <%= @post.bookmarks.count %>
@@ -16,27 +16,27 @@
       </div>
     </div>
 
-      <!--投稿詳細右半分-->
-      <div class="col-md-6">
-        <div class="row d-flex flex-column pl-1">
-          <div class="post-title">
-            <h3><span><%= @post.title %></span></h3>
-          </div>
-          <div class="post-body">
-            <p class="ml-2 mt-3"><%=safe_join(@post.body.split("\n"),tag(:br))%></p>
-          </div>
-          <div class="post-tags">
-            <p><i class="fas fa-tag"></i>
-              <% if @post.tags.present? %>
-                <% @post.tags.each do |tag| %>
-                  <%= tag.name if tag.present? %>
-                <% end %>
-              <% end %>
-              <br>
-              <i class="fas fa-plane"></i> <%= @post.airport %>
-            </p>
-          </div>
+    <!--投稿詳細右半分-->
+    <div class="col-md-6">
+      <div class="row d-flex flex-column pl-1">
+        <div class="post-title">
+          <h3><span><%= @post.title %></span></h3>
         </div>
+        <div class="post-body">
+          <p class="ml-2 mt-3"><%=safe_join(@post.body.split("\n"),tag(:br))%></p>
+        </div>
+        <div class="post-tags">
+          <p><i class="fas fa-tag"></i>
+            <% if @post.tags.present? %>
+              <% @post.tags.each do |tag| %>
+                <%= tag.name if tag.present? %>
+              <% end %>
+            <% end %>
+            <br>
+            <i class="fas fa-plane"></i> <%= @post.airport %>
+          </p>
+        </div>
+      </div>
       <div class="row d-flex justify-content-between pr-1">
         <div>
           <%= link_to admin_user_path(@post.user), class: 'd-flex align-items-end text-dark' do %>
@@ -66,7 +66,7 @@
   <div class="row offset-md-1 my-2">
     <h5 class="comment-title ml-1"><i class="far fa-comments"></i> コメント</h5>
   </div>
-    <!--コメントエリア-->
+  <!--コメントエリア-->
   <div class="row">
     <div class="comment-area col-md-5 offset-md-1">
       <% unless @post.post_comments.present? %>
