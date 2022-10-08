@@ -1,31 +1,41 @@
 <div class="container">
   <div class="row d-flex flex-column mt-5">
+    <!--キーワード検索-->
     <% if params[:q].present? && params[:q][:title_cont].present? %>
-      <h2><span class="public-title"><i class="fas fa-search"></i> "<%= params[:q][:title_cont] %>"の検索結果一覧<span></h2>
+      <h2><span class="public-title">
+        <i class="fas fa-search"></i>
+        "<%= params[:q][:title_cont] %>"
+        <%= "の検索結果一覧(#{@posts.total_count}件)" %>
+      <span></h2>
+    <!--タグ検索-->
     <% elsif params[:q].present? && params[:q][:tags_id_in].present? %>
-      <h2>
-        <span class="public-title">
-          <i class="fas fa-search"></i>
-          <% Tag.find(params[:q][:tags_id_in]).each do |tag| %>
+      <h2><span class="public-title">
+        <i class="fas fa-search"></i>
+        <% Tag.find(params[:q][:tags_id_in]).each do |tag| %>
           "<%= tag.name %>"
-          <% end %>
-          の検索結果一覧
-        </span>
-      </h2>
+        <% end %>
+        <%= "の検索結果一覧(#{@posts.total_count}件)" %>
+      </span></h2>
+    <!--空港名検索-->
     <% elsif params[:q].present? && params[:q][:airport_cont].present? %>
-      <h2><span class="public-title"><i class="fas fa-search"></i> "<%= params[:q][:airport_cont] %>"の検索結果一覧</span></h2>
+      <h2><span class="public-title">
+        <i class="fas fa-search"></i>
+        "<%= params[:q][:airport_cont] %>"
+        <%= "の検索結果一覧(#{@posts.total_count}件)" %>
+      </span></h2>
     <% else %>
-    <h2><span class="public-title"><i class="far fa-copy"></i> 投稿一覧</span></h2>
+      <h2><span class="public-title"><i class="far fa-copy"></i> 投稿一覧</span></h2>
     <% end %>
     <p class="font-weight-bold py-3">
-      <%= link_to '新しい順', posts_path(latest: "true"), style: 'color: #ff7f50;' %>
-      ／<%= link_to 'ブックマーク順', posts_path(popular: "true"), style: 'color: #ff7f50;' %>
-      ／<a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="color: #ff7f50;" >
-          検索する
-          <i class="fas fa-angle-double-down"></i>
-        </a>
+      <%= link_to '新しい順', posts_path(latest: "true"), style: 'color: #ff7f50;' %>／
+      <%= link_to 'ブックマーク順', posts_path(popular: "true"), style: 'color: #ff7f50;' %>／
+      <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="color: #ff7f50;">
+        検索する
+        <i class="fas fa-angle-double-down"></i>
+      </a>
     </p>
   </div>
+
   <!--検索フォーム-->
   <div class="row card-bg collapse" id="collapseExample">
     <div class="col-md-10 mx-auto m-4 p-4 bg-white">
