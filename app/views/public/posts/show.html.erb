@@ -8,14 +8,11 @@
   <!--投稿の写真部分-->
   <div class="row">
     <div class="col-md-6">
-      <div class="row d-flex justify-content-center">
+      <div class="row d-flex flex-column justify-content-center">
         <div class="post-image">
-          <%= image_tag @post.get_post_image, size: '350x350' %>
+          <%= image_tag @post.get_post_image, size: '400x400' %>
         </div>
-      </div>
-
-      <!--ブックマーク-->
-      <div class="row offset-md-2 mb-4 pl-1">
+              <!--ブックマーク-->
         <div class="bookmark-btn my-3 h4">
           <!--ユーザーがログインしていて、投稿が公開されている時-->
           <% if @post.is_draft == false && user_signed_in? %>
@@ -27,40 +24,39 @@
           <% end %>
         </div>
       </div>
+
+      <!--コメントエリア-->
       <% if @post.is_draft == false && user_signed_in? %>
-      <div class="row offset-md-1 my-3">
-        <h5 class="comment-title ml-1"><i class="far fa-comments"></i> コメント</h5>
+        <div class="row my-3">
+          <h5 class="comment-title ml-1"><i class="far fa-comments"></i> コメント</h5>
+        </div>
+      <% end %>
+      <div class="row d-flex flex-column">
+        <div class="comment-area col-md-11 mx-auto">
+          <% if @post.is_draft == false && user_signed_in? %>
+            <%= render 'public/post_comments/comment-area', post: @post, comments: @comments %>
+          <% end %>
+        </div>
+        <!--コメントフォーム-->
+        <div class="comment-form col-md-10 mx-auto">
+          <%= render 'public/post_comments/comment-form', post: @post, post_comment: @post_comment %>
+        </div>
+        <!--ユーザーがログインしていないとき-->
+        <div class="not-signin d-flex">
+          <% unless user_signed_in? %>
+            <i class="fas fa-bullhorn mt-1"></i>
+            <p class="ml-4">
+              <%= link_to '会員登録', new_user_registration_path, class: 'border-bottom', style: 'color: #ff7f50;' %>
+              して投稿をブックマークしたり、<br>
+              コメントしてみよう！
+            </p>
+          <% end %>
+        </div>
       </div>
-    <% end %>
-        <!--コメントエリア-->
-    <div class="row d-flex flex-column">
-      <div class="comment-area col-md-10 mx-auto">
-        <% if @post.is_draft == false && user_signed_in? %>
-          <%= render 'public/post_comments/comment-area', post: @post, comments: @comments %>
-        <% end %>
-      </div>
-      <!--コメントフォーム-->
-      <div class="comment-form col-md-10 mx-auto">
-        <%= render 'public/post_comments/comment-form', post: @post, post_comment: @post_comment %>
-      </div>
-      <!--ユーザーがログインしていないとき-->
-      <div class="not-signin d-flex">
-        <% unless user_signed_in? %>
-          <i class="fas fa-bullhorn mt-1"></i>
-          <p class="ml-4">
-            <%= link_to '会員登録', new_user_registration_path, class: 'border-bottom', style: 'color: #ff7f50;' %>
-            して投稿をブックマークしたり、<br>
-            コメントしてみよう！
-          </p>
-        <% end %>
-      </div>
-    </div>
-
-
     </div>
 
       <!--投稿詳細右半分-->
-      <div class="col-md-6 mx-auto">
+      <div class="col-md-6">
         <div class="postRight">
           <div class="row d-flex flex-column pl-1">
             <div class="post-title">
@@ -73,7 +69,7 @@
               <p><i class="fas fa-tag"></i>
                 <% if @post.tags.present? %>
                   <% @post.tags.each do |tag| %>
-                    <%= link_to posts_path(tag_ids: tag.id), class: 'text-dark border-bottom' do %>
+                    <%= link_to posts_path(tag_ids: tag.id), class: 'text-dark border-bottom mr-3' do %>
                       <%= tag.name if tag.present? %>
                     <% end %>
                   <% end %>

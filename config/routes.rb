@@ -53,7 +53,6 @@ Rails.application.routes.draw do
         get "draft_index"
       end
     end
-
   end
 
 

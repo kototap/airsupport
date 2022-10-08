@@ -13,4 +13,3 @@ class Public::BookmarksController < ApplicationController
     # redirect_to post_path(@post)
   end
 end
-

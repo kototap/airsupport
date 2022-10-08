@@ -4,5 +4,4 @@ FactoryBot.define do
     user
     post
   end
-  
 end

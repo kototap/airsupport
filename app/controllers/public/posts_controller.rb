@@ -44,7 +44,7 @@ class Public::PostsController < ApplicationController
       # 投稿のタグを押した時
       posts =
         if params[:tag_ids]
-          posts.where(tags: {id: params[:tag_ids]})
+          posts.where(tags: { id: params[:tag_ids] })
         elsif params[:airport]
           posts.where(airport: params[:airport])
         else
