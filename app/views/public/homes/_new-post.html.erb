@@ -1,0 +1,37 @@
+<% posts.each do |post| %>
+  <div class="card mt-4">
+    <div class="row">
+      <!--写真部分-->
+      <div class="col-md-4">
+        <%= link_to post_path(post), class: 'text-dark' do %>
+          <%= image_tag post.get_post_image, class: 'newPosts__img-fluid' %>
+        <% end %>
+      </div>
+      <!--文章部分-->
+      <div class="col-md-8 d-flex flex-column justify-content-between">
+        <div>
+          <%= link_to post_path(post), class: 'text-dark' do %>
+            <h4 class="font-weight-bold pt-3"><span class="link-border"><%= post.title %></span></h4>
+            <p class="card__text pt-3"><%= post.body %></p>
+          <% end %>
+        </div>
+        <div>
+          <p><small>
+            <i class="fas fa-tag"></i>
+            <% post.tags.each do |tag| %>
+              <%= link_to tag.name, posts_path(tag_ids: tag.id), class: "text-dark border-bottom" %>
+            <% end %>
+            <br>
+            <i class="fas fa-bookmark"></i>
+            <%= post.bookmarks.count %>
+            <span> | </span>
+            <i class="fas fa-plane"></i>
+            <%= link_to post.airport, posts_path(airport: post.airport), class: "text-dark border-bottom" %>
+            <span> | </span>
+            <%= post.created_at.strftime('%Y/%m/%d') %>
+          </small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
