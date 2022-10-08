@@ -28,7 +28,11 @@
           <% end %>
         </tr>
         <tr>
-          <td style="font-weight: bold; color: green;"><%= @user.is_deleted ? '利用停止中です' : '有効な会員です' %></td>
+          <% if @user.is_deleted? %>
+            <td style="font-weight: bold; color: red;">利用停止中です</td>
+          <% else %>
+            <td style="font-weight: bold; color: green;">有効な会員です</td>
+          <% end %>
         </tr>
         <tr>
           <td></td>
