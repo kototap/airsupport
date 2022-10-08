@@ -104,38 +104,38 @@
 <div class="container newPosts py-5 my-5">
   <div class="col-11 mx-auto newPosts__col">
     <div class="col-md-8 mx-auto py-5 mx-3 bg-white">
-    <!--best3部分-->
-    <div class="col-md-8 mx-auto">
-      <h3 class="mb-4"><span class='weeklyPosts'><i class="fas fa-crown", style="color: #ff7f50;"></i> Best 3</span></h3>
-      <div id="carouselExampleIndicators" class="carousel slide  d-flex align-items-center flex-column" data-ride="carousel" data-interval="5000">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <% @ranks.first(1).each do |rank| %>
-              <%= render 'public/posts/post-card', post: rank %>
+      <!--best3部分-->
+      <div class="col-md-8 mx-auto">
+        <h3 class="mt-3"><span class='newPosts__span'><i class="fas fa-star", style="color: #ff7f50;"></i> Best 3</span></h3>
+        <div id="carouselExampleIndicators" class="carousel slide  d-flex align-items-center flex-column" data-ride="carousel" data-interval="5000">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <% @ranks.first(1).each do |rank| %>
+                <%= render 'public/posts/post-card', post: rank %>
+              <% end %>
+            </div>
+            <% @ranks.drop(1).each do |rank| %>
+              <div class="carousel-item">
+                <%= render 'public/posts/post-card', post: rank %>
+              </div>
             <% end %>
           </div>
-          <% @ranks.drop(1).each do |rank| %>
-            <div class="carousel-item">
-              <%= render 'public/posts/post-card', post: rank %>
-            </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+        <div class="d-flex justify-content-end mt-3">
+          <%= link_to 'posts?popular=true', class: 'link-border' do %>
+            <i class="fas fa-check fa-lg" style="color: #ff7f50;"></i>
+            <span class="text-dark link-border">人気投稿順に見てみる</span>
           <% end %>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
       </div>
-      <div class="d-flex justify-content-end mt-3">
-        <%= link_to 'posts?popular=true', class: 'link-border' do %>
-          <i class="fas fa-check fa-lg" style="color: #ff7f50;"></i>
-          <span class="text-dark link-border">人気投稿順に見てみる</span>
-        <% end %>
-      </div>
-    </div>
     </div>
   </div>
 </div>
