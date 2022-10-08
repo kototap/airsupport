@@ -8,11 +8,11 @@
   <!--投稿の写真部分-->
   <div class="row">
     <div class="col-md-6">
-      <div class="row d-flex flex-column justify-content-center">
+      <div class="row d-flex flex-column align-content-center">
         <div class="post-image">
           <%= image_tag @post.get_post_image, size: '400x400' %>
         </div>
-              <!--ブックマーク-->
+        <!--ブックマーク-->
         <div class="bookmark-btn my-3 h4">
           <!--ユーザーがログインしていて、投稿が公開されている時-->
           <% if @post.is_draft == false && user_signed_in? %>
@@ -21,35 +21,6 @@
           <!--ユーザーがログインしていない時-->
           <% unless user_signed_in? %>
             <i class="far fa-bookmark"></i> <%= @post.bookmarks.count %>
-          <% end %>
-        </div>
-      </div>
-
-      <!--コメントエリア-->
-      <% if @post.is_draft == false && user_signed_in? %>
-        <div class="row my-3">
-          <h5 class="comment-title ml-1"><i class="far fa-comments"></i> コメント</h5>
-        </div>
-      <% end %>
-      <div class="row d-flex flex-column">
-        <div class="comment-area col-md-11 mx-auto">
-          <% if @post.is_draft == false && user_signed_in? %>
-            <%= render 'public/post_comments/comment-area', post: @post, comments: @comments %>
-          <% end %>
-        </div>
-        <!--コメントフォーム-->
-        <div class="comment-form col-md-10 mx-auto">
-          <%= render 'public/post_comments/comment-form', post: @post, post_comment: @post_comment %>
-        </div>
-        <!--ユーザーがログインしていないとき-->
-        <div class="not-signin d-flex">
-          <% unless user_signed_in? %>
-            <i class="fas fa-bullhorn mt-1"></i>
-            <p class="ml-4">
-              <%= link_to '会員登録', new_user_registration_path, class: 'border-bottom', style: 'color: #ff7f50;' %>
-              して投稿をブックマークしたり、<br>
-              コメントしてみよう！
-            </p>
           <% end %>
         </div>
       </div>
@@ -102,7 +73,43 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
+
+  <div class="row">
+    <div class="col-md-6">
+            <!--コメントエリア-->
+      <% if @post.is_draft == false && user_signed_in? %>
+        <div class="row my-3">
+          <h5 class="comment-title ml-1"><i class="far fa-comments"></i> コメント</h5>
+        </div>
+      <% end %>
+      <div class="row d-flex flex-column">
+        <div class="comment-area col-md-11 mx-auto">
+          <% if @post.is_draft == false && user_signed_in? %>
+            <%= render 'public/post_comments/comment-area', post: @post, comments: @comments %>
+          <% end %>
+        </div>
+        <!--コメントフォーム-->
+        <div class="comment-form col-md-10 mx-auto">
+          <%= render 'public/post_comments/comment-form', post: @post, post_comment: @post_comment %>
+        </div>
+        <!--ユーザーがログインしていないとき-->
+        <div class="not-signin d-flex">
+          <% unless user_signed_in? %>
+            <i class="fas fa-bullhorn mt-1"></i>
+            <p class="ml-4">
+              <%= link_to '会員登録', new_user_registration_path, class: 'border-bottom', style: 'color: #ff7f50;' %>
+              して投稿をブックマークしたり、<br>
+              コメントしてみよう！
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
       <!--マップ表示-->
       <div class="address py-2 mt-4">
         <% if @post.address.present? %>
