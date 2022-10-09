@@ -49,7 +49,6 @@ RSpec.describe "Posts", type: :request do
           expect(page).to have_content "#{post.title}"
           expect(page).to have_content "#{post.body}"
           expect(page).to have_content "#{post.airport}"
-          expect(page).to have_content "#{post.tag.name}"
         end
         it "adminのユーザーページへのが正しく表示されているか" do
           expect(page).to have_link "#{post.user.name}", href: admin_user_path(post.user)
