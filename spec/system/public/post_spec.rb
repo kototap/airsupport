@@ -16,7 +16,8 @@ RSpec.describe "Posts", type: :request do
         title: "hoge",
         body: "hogehoge",
         airport: "fuga",
-        user_id: @user.id
+        user_id: @user.id,
+        tag_ids: @tag.id
       )
     }
 
@@ -50,7 +51,7 @@ RSpec.describe "Posts", type: :request do
           expect(page).to have_field "post[title]"
           expect(page).to have_field "post[body]"
           expect(page).to have_field "post[airport]"
-          expect(page).to have_field "post[tag_id]"
+          expect(page).to have_unchecked_field
           expect(page).to have_field "post[address]"
           expect(page).to have_button "投稿する"
           expect(page).to have_button "下書きに保存"
@@ -61,7 +62,6 @@ RSpec.describe "Posts", type: :request do
           fill_in "post[title]", with: Faker::Lorem.characters(number: 5)
           fill_in "post[body]", with: Faker::Lorem.characters(number: 10)
           fill_in "post[airport]", with: Faker::Lorem.characters(number: 5)
-          find("#post_tag_id").find("option[value='1']").select_option
           fill_in "post[address]", with: Faker::Address.full_address
           click_button "投稿する"
           expect(page).to have_content "投稿しました。"
@@ -92,8 +92,7 @@ RSpec.describe "Posts", type: :request do
         it "投稿の情報、リンクが表示されているか" do
           expect(page).to have_link "hoge", href: post_path(post)
           expect(page).to have_link "hogehoge", href: post_path(post)
-          expect(page).to have_link post.tag.name, href: search_index_path(tag_id: post.tag.id)
-          expect(page).to have_link "fuga", href: search_index_path(airport: "fuga")
+          expect(page).to have_link "fuga", href: posts_path(airport: "fuga")
           expect(page).to have_link post.user.name, href: user_path(post.user)
         end
       end
@@ -110,8 +109,7 @@ RSpec.describe "Posts", type: :request do
         it "投稿の内容、リンクが反映されているか" do
           expect(page).to have_content "hoge"
           expect(page).to have_content "hogehoge"
-          expect(page).to have_link post.tag.name, href: search_index_path(tag_id: post.tag.id)
-          expect(page).to have_link "fuga", href: search_index_path(airport: "fuga")
+          expect(page).to have_link "fuga", href: posts_path(airport: "fuga")
           expect(page).to have_link post.user.name, href: user_path(post.user)
         end
       end
@@ -150,8 +148,7 @@ RSpec.describe "Posts", type: :request do
           visit draft_index_posts_path
           expect(page).to have_content "hoge"
           expect(page).to have_content "hogehoge"
-          expect(page).to have_link post.tag.name, href: search_index_path(tag_id: post.tag.id)
-          expect(page).to have_link "fuga", href: search_index_path(airport: "fuga")
+          expect(page).to have_link "fuga", href: posts_path(airport: "fuga")
           expect(page).to have_link post.user.name, href: user_path(post.user)
         end
       end
@@ -175,7 +172,6 @@ RSpec.describe "Posts", type: :request do
           expect(page).to have_field "post[title]", with: post.title
           expect(page).to have_field "post[body]", with: post.body
           expect(page).to have_field "post[airport]", with: post.airport
-          expect(page).to have_field "post[tag_id]", with: post.tag.id
           expect(page).to have_field "post[address]", with: post.address
         end
         it "公開されている投稿の場合のボタンとリンク" do
@@ -206,40 +202,6 @@ RSpec.describe "Posts", type: :request do
           visit edit_post_path(post.id)
           click_button "下書きを公開"
           expect(current_path).to eq(post_path(post))
-        end
-      end
-    end
-
-    describe "検索についてのテスト" do
-      before do
-        visit search_path
-      end
-      context "検索ページの表示について" do
-        it 'search_pathが"/search"であるか' do
-          expect(current_path).to eq("/search")
-        end
-        it "検索フォームが3つ表示がされているか" do
-          expect(page).to have_field "q[title_cont]"
-          expect(page).to have_field "q[tag_id_eq]"
-          expect(page).to have_field "q[airport_cont]"
-        end
-      end
-      context "検索処理に関して" do
-        it "フリーワード検索時" do
-          fill_in "q[title_cont]", with: "hoge"
-          find("#search-word").click
-          expect(page).to have_content '"hoge"の検索結果一覧'
-        end
-        # it 'タグ検索時' do
-        #   byebug
-        #   fill_in 'q[tag_id_eq]', with: @tag
-        #   find("#search-tag").click
-        #   expect(page).to have_content "#{@tag.name}"
-        # end
-        it "空港名検索時" do
-          fill_in "q[airport_cont]", with: "fuga"
-          find("#search-airport").click
-          expect(page).to have_content '"fuga"の検索結果一覧'
         end
       end
     end

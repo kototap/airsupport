@@ -15,7 +15,7 @@ RSpec.describe "Bookmarks", type: :request do
     end
     context "表示の確認" do
       it "ブックマーク追加のボタンが表示されているか" do
-        expect(page).to have_button, href: "/posts/#{@post.id}/bookmarks"
+        expect(page).to have_link, href: "/posts/#{@post.id}/bookmarks"
       end
       # it "ブックマーク登録" do
       #   find(".off").click
