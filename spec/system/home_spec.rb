@@ -14,9 +14,6 @@ RSpec.describe "Homes", type: :request do
       visit root_path
     end
     context "ヘッダーに必要なリンクがあるか" do
-      it "検索へのリンク" do
-        expect(page).to have_link "検索", href: search_path
-      end
       it "マイページへのリンク" do
         expect(page).to have_link "マイページ", href: user_path(@user)
       end
@@ -26,10 +23,7 @@ RSpec.describe "Homes", type: :request do
     end
     context "Aboutページ、searchページへのリンクがあるか" do
       it "Aboutへのリンク" do
-        expect(page).to have_link "About", href: about_path
-      end
-      it "Searchへのリンク" do
-        expect(page).to have_link "Search", href: search_path
+        expect(page).to have_link "AIRSUPPORTについて", href: about_path
       end
     end
     context "ログアウト後の遷移先" do

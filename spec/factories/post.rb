@@ -5,6 +5,6 @@ FactoryBot.define do
     airport { Faker::Lorem.characters(number: 5) }
     address { Faker::Address.full_address }
     user
-    tag
+    tags
   end
 end
