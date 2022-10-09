@@ -61,7 +61,7 @@ RSpec.describe Post, "モデルに関するテスト", type: :model do
   context "文字数のバリデーション" do
     it "タイトルが20字以上のバリデーション" do
       post = Post.new(
-        title: "hogehogehogehogehoge",
+        title: "hoge" * 5,
         body: "hogehoge",
         airport: "hoge"
       )
@@ -73,7 +73,7 @@ RSpec.describe Post, "モデルに関するテスト", type: :model do
     it "コメントが80字以上のバリデーション" do
       post = Post.new(
         title: "hoge",
-        body: "hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge",
+        body: "hoge" * 20,
         airport: "hoge"
       )
       if post.save

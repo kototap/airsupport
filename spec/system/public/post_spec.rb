@@ -17,26 +17,9 @@ RSpec.describe "Posts", type: :request do
         body: "hogehoge",
         airport: "fuga",
         user_id: @user.id,
-        tag_ids: @tag.id
+        tag_id: @tag.id
       )
     }
-
-    describe "トップ画面(root_path)のテスト" do
-      before do
-        visit root_path
-      end
-      context "表示の確認" do
-        it "トップ画面(root_path)に一覧ページへのリンクが表示されているか" do
-          expect(page).to have_link "投稿一覧", href: posts_path
-        end
-        it "トップ画面(root_path)に新規投稿ページへのリンクが表示されているか" do
-          expect(page).to have_link "新規投稿", href: new_post_path
-        end
-        it 'root_pathが"/"であるか' do
-          expect(current_path).to eq("/")
-        end
-      end
-    end
 
     describe "新規投稿画面(new_post_path)のテスト" do
       before do
@@ -89,6 +72,12 @@ RSpec.describe "Posts", type: :request do
         it 'posts_pathが"/posts"であるか' do
           expect(current_path).to eq("/posts")
         end
+        it "新しい順に並び替えるリンクが表示されている" do
+          expect(page).to have_link "新しい順", href: posts_path(latest: "true")
+        end
+        it "ブックマーク順に並び替えるリンクが表示されている" do
+          expect(page).to have_link "ブックマーク順", href: posts_path(popular: "true")
+        end
         it "投稿の情報、リンクが表示されているか" do
           expect(page).to have_link "hoge", href: post_path(post)
           expect(page).to have_link "hogehoge", href: post_path(post)
@@ -119,7 +108,6 @@ RSpec.describe "Posts", type: :request do
           expect(page).to have_button "送信する"
         end
         it "コメントがない時の表示" do
-          post_comments = PostComment.new
           unless post.post_comments.presence
             expect(page).to have_content "まだコメントがありません。"
           end
@@ -136,7 +124,7 @@ RSpec.describe "Posts", type: :request do
       before do
         post.update(is_draft: true)
       end
-      context "下書きの詳細画面のテスト" do
+      context "下書きの一覧画面のテスト" do
         before do
           visit draft_index_posts_path
         end

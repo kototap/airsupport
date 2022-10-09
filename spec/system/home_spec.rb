@@ -20,10 +20,22 @@ RSpec.describe "Homes", type: :request do
       it "ログアウトへのリンク" do
         expect(page).to have_link "ログアウト", href: destroy_user_session_path
       end
+      it "トップ画面(root_path)に一覧ページへのリンクが表示されているか" do
+        expect(page).to have_link "投稿一覧", href: posts_path
+      end
+      it "トップ画面(root_path)に新規投稿ページへのリンクが表示されているか" do
+        expect(page).to have_link "新規投稿", href: new_post_path
+      end
     end
-    context "Aboutページ、searchページへのリンクがあるか" do
+    context "その他必要なリンクがあるか" do
       it "Aboutへのリンク" do
         expect(page).to have_link "AIRSUPPORTについて", href: about_path
+      end
+      it 'NEW POSTの最下部に投稿一覧へのリンクがあるか' do
+        expect(page).to have_link "全ての投稿を見る", href: posts_path
+      end
+      it "BEST3の最下部に投稿一覧（ブックマーク順）へのリンクがあるか" do
+        expect(page).to have_link "ブックマーク順", href: "posts?popular=true"
       end
     end
     context "ログアウト後の遷移先" do
