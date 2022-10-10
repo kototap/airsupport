@@ -26,10 +26,12 @@
     <% else %>
       <h2><span class="public-title"><i class="far fa-copy"></i> 投稿一覧</span></h2>
     <% end %>
+
+    <!--タイトル下のリンク-->
     <p class="font-weight-bold py-3">
-      <%= link_to '新しい順', posts_path(latest: "true"), style: 'color: #ff7f50;' %>／
-      <%= link_to 'ブックマーク順', posts_path(popular: "true"), style: 'color: #ff7f50;' %>／
-      <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="color: #ff7f50;">
+      <%= link_to '新しい順', posts_path(latest: "true"), class: 'link-border text-dark' %>／
+      <%= link_to 'ブックマーク順', posts_path(popular: "true"), class: 'link-border text-dark' %>／
+      <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" class='link-border text-dark'>
         検索する
         <i class="fas fa-angle-double-down"></i>
       </a>
