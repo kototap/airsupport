@@ -6,24 +6,24 @@
   </div>
   <div class="row">
     <div class="col-md-6 mx-auto pt-5">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>タイトル</th>
-              <th>投稿日時</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @user_posts.each do |user_post| %>
-            <tr>
-              <td><%= user_post.title %></td>
-              <td><%= user_post.created_at.strftime('%Y/%m/%d') %></td>
-              <td><%= link_to '詳細へ', admin_post_path(user_post), class: 'btn btn-outline-info' %></td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <th>投稿日時</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user_posts.each do |user_post| %>
+          <tr>
+            <td><%= user_post.title %></td>
+            <td><%= user_post.created_at.strftime('%Y/%m/%d') %></td>
+            <td><%= link_to '詳細へ', admin_post_path(user_post), class: 'btn btn-outline-info' %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
   <div class="row">
