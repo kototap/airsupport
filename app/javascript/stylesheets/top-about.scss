@@ -106,8 +106,8 @@
     padding: 0 10px;
   }
   &__img-fluid{
-    width: 100%;
-    height: 100%;
+    width: 200px;
+    height: 200px;
   }
   &__btn{
     background: #ff7f50;
@@ -195,6 +195,7 @@
       font-size: 10px;
     }
   }
+
   .bgCarousel{
     &__mv-title{
       font-size: 20px;
@@ -213,6 +214,19 @@
       font-size: 17px;
     }
   }
+
+  .newPosts{
+    &__img-fluid{
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .box-responsive{
+    width: 100%;
+    height: 55px;
+  }
+
   .topGuidance{
     border-radius: 0px 50px 50px 50px
     &__row{
