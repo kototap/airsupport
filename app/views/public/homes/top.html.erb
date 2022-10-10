@@ -49,31 +49,27 @@
   </div>
 </div>
 
-<!--NEWPOST-->
-<div class="container newPosts py-5 my-5">
-  <div class="col-11 mx-auto newPosts__col">
-    <div class="col-md-8 mx-auto py-5 mx-3 bg-white">
+
+<div class="container-fluid newPosts py-5 my-5">
+  <div class="col-md-11 mx-auto d-md-flex newPosts__col">
+    <!--NEWPOST-->
+    <div class="col-md-6 bg-white">
       <h3 class="mt-3"><span class='newPosts__span'><i class="fas fa-star", style="color: #ff7f50;"></i> New Post</span></h3>
         <%= render 'new-post', posts: @posts %>
       <div class="newPosts__more d-flex justify-content-end">
-        <%= link_to posts_path, class: 'btn btn-other px-5 mt-2' do %>
+        <%= link_to posts_path, class: 'btn btn-other px-3 mt-2' do %>
           <i class="fas fa-plane"></i>
           全ての投稿を見る
         <% end %>
       </div>
     </div>
-  </div>
-</div>
-
-<div class="container newPosts py-5 my-5">
-  <div class="col-11 mx-auto newPosts__col">
-    <div class="col-md-8 mx-auto py-5 mx-3 bg-white">
-      <!--best3部分-->
-      <div class="col-md-8 mx-auto">
+    <!--best3部分-->
+    <div class="col-md-6 bg-white">
+      <div class="col-md-9 mx-auto">
         <h3 class="mt-3"><span class='newPosts__span'><i class="fas fa-star", style="color: #ff7f50;"></i> Best 3</span></h3>
           <%= render 'best-post', ranks: @ranks %>
         <div class="newPosts__more d-flex justify-content-end">
-          <%= link_to 'posts?popular=true', class: 'btn btn-other px-5 mt-2' do %>
+          <%= link_to 'posts?popular=true', class: 'btn btn-other px-3 mt-2' do %>
             <i class="fas fa-plane"></i>
             ブックマーク順
           <% end %>
@@ -82,6 +78,7 @@
     </div>
   </div>
 </div>
+
 
 <!--トップに戻るボタン-->
 <span id="back">
