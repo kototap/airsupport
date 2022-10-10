@@ -3,6 +3,7 @@
     <div class="profile-item">
       <%= image_tag user.get_profile_image(150,150), class: "rounded-circle bg-white myPageSide__image" %>
     </div>
+
     <div class="profile-item my-4 d-flex">
       <h5 class="font-weight-bold mr-5"><span class="user-name"><%= user.name %></span></h5>
       <% if user == current_user %>
@@ -12,6 +13,7 @@
         </p>
       <% end %>
     </div>
+
     <div class="profile-item my-4">
       <% if user.introduction.present? %>
         <p><i class="far fa-comment-dots"></i> <%=safe_join(user.introduction.split("\n"),tag(:br))%></p>
@@ -19,25 +21,28 @@
         <p><i class="far fa-comment-dots"></i><small><span class="text-muted"> まだ自己紹介文がありません。</span></small></p>
       <% end %>
     </div>
+
     <% if user == current_user %>
-    <div class="profile-item my-2">
-      <%=link_to bookmarks_user_path(user), class: 'text-dark' do  %>
-        <i class="fas fa-bookmark"></i>
-        <span class="link-border">ブックマーク</span>
-      <% end %>
-    </div>
-    <div class="profile-item my-2">
-      <%= link_to new_post_path, class: 'text-dark' do %>
-        <i class="fas fa-plus"></i>
-        <span class="link-border">新規投稿</span>
-      <% end %>
-    </div>
-    <div class="profile-item my-2">
-      <%=link_to draft_index_posts_path, class: 'text-dark' do %>
-        <i class="far fa-sticky-note"></i>
-        <span class="link-border">下書き</span>
-      <% end %>
-    </div>
+      <div class="profile-item my-2">
+        <%=link_to bookmarks_user_path(user), class: 'text-dark' do  %>
+          <i class="fas fa-bookmark"></i>
+          <span class="link-border">ブックマーク</span>
+        <% end %>
+      </div>
+
+      <div class="profile-item my-2">
+        <%= link_to new_post_path, class: 'text-dark' do %>
+          <i class="fas fa-plus"></i>
+          <span class="link-border">新規投稿</span>
+        <% end %>
+      </div>
+
+      <div class="profile-item my-2">
+        <%=link_to draft_index_posts_path, class: 'text-dark' do %>
+          <i class="far fa-sticky-note"></i>
+          <span class="link-border">下書き</span>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>
