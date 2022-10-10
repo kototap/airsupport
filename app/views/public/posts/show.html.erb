@@ -26,30 +26,30 @@
       </div>
     </div>
 
-      <!--投稿詳細右半分-->
-      <div class="col-md-6">
-        <div class="postRight">
-          <div class="row d-flex flex-column pl-1">
-            <div class="post-title">
-              <h3><span><%= @post.title %></span></h3>
-            </div>
-            <div class="post-body">
-              <p class="ml-2 mt-3"><%=safe_join(@post.body.split("\n"),tag(:br))%></p>
-            </div>
-            <div class="post-tags">
-              <p><i class="fas fa-tag"></i>
-                <% if @post.tags.present? %>
-                  <% @post.tags.each do |tag| %>
-                    <%= link_to posts_path(tag_ids: tag.id), class: 'text-dark border-bottom mr-3' do %>
-                      <%= tag.name if tag.present? %>
-                    <% end %>
+    <!--投稿詳細右半分-->
+    <div class="col-md-6">
+      <div class="postRight">
+        <div class="row d-flex flex-column pl-1">
+          <div class="post-title">
+            <h3><span><%= @post.title %></span></h3>
+          </div>
+          <div class="post-body">
+            <p class="ml-2 mt-3"><%=safe_join(@post.body.split("\n"),tag(:br))%></p>
+          </div>
+          <div class="post-tags">
+            <p><i class="fas fa-tag"></i>
+              <% if @post.tags.present? %>
+                <% @post.tags.each do |tag| %>
+                  <%= link_to posts_path(tag_ids: tag.id), class: 'text-dark border-bottom mr-3' do %>
+                    <%= tag.name if tag.present? %>
                   <% end %>
                 <% end %>
-                <br>
-                <i class="fas fa-plane"></i> <%= link_to @post.airport, posts_path(airport: @post.airport), class: 'text-dark border-bottom' %>
-              </p>
-            </div>
+              <% end %>
+              <br>
+              <i class="fas fa-plane"></i> <%= link_to @post.airport, posts_path(airport: @post.airport), class: 'text-dark border-bottom' %>
+            </p>
           </div>
+        </div>
         <div class="row d-flex justify-content-between pr-1">
           <div>
             <%= link_to user_path(@post.user), class: 'd-flex align-items-end text-dark' do %>
@@ -79,7 +79,7 @@
 
   <div class="row">
     <div class="col-md-6">
-            <!--コメントエリア-->
+      <!--コメントエリア-->
       <div class="row d-flex flex-column">
         <div class="comment-area col-md-10 mx-auto">
           <% if @post.is_draft == false && user_signed_in? %>

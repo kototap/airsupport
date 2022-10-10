@@ -4,15 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-
   has_many :posts, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :post_comments, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 10 }
   validates :email, presence: true
-
-
 
   # ゲストログイン
   def self.guest
@@ -21,8 +18,6 @@ class User < ApplicationRecord
       user.name = "guestuser"
     end
   end
-
-
 
   # プロフィール画像
   has_one_attached :profile_image

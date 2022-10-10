@@ -3,7 +3,6 @@
       <h4><span class="registration px-2">新規会員登録</span></h4>
   </div>
 
-
   <div class="form-group d-flex justify-content-center">
     <%= form_with model: @user, url: user_registration_path do |f| %>
       <%= render "public/shared/error_messages", resource: resource %>
@@ -51,6 +50,4 @@
   <div class="row d-flex justify-content-center pb-5">
     <%= render "public/shared/links" %>
   </div>
-
-
 </div>
