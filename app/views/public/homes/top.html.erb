@@ -53,7 +53,7 @@
 <div class="container-fluid newPosts py-5 my-5">
   <div class="col-md-11 mx-auto d-md-flex newPosts__col">
     <!--NEWPOST-->
-    <div class="col-md-7 bg-white">
+    <div class="col-md-7">
       <h3 class="mt-3"><span class='newPosts__span'><i class="fas fa-star", style="color: #ff7f50;"></i> New Post</span></h3>
       <div class="col-md-11 mx-auto">
         <%= render 'new-post', posts: @posts %>
@@ -66,7 +66,7 @@
       </div>
     </div>
     <!--best3部分-->
-    <div class="col-md-5 bg-white box-responsive">
+    <div class="col-md-5 box-responsive">
       <h3 class="mt-3"><span class='newPosts__span'><i class="fas fa-star", style="color: #ff7f50;"></i> Best 3</span></h3>
       <div class="col-md-10 mx-auto">
         <%= render 'best-post', ranks: @ranks %>
