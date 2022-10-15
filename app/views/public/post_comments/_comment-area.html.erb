@@ -8,7 +8,7 @@
   <span>  : <%= post_comment.comment %></span>
   <small class="text-muted"><p class="d-flex justify-content-end pr-5">
     <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-    <% if post_comment.user == current_user %>
+    <% if post_comment.user == current_user || admin_signed_in? %>
       <%= link_to post_post_comment_path(post_comment.post, post_comment), method: :delete, class: 'text-dark border-bottom text-muted', data: {confirm: "このコメントを削除しますか？"}, remote: true do %>
         <i class="fas fa-trash-alt"></i>
       <% end %>
