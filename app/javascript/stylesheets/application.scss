@@ -15,10 +15,11 @@ body{
   background: #fffdfb;
 }
 
-// リンクの下線（全ページ共通）
+// リンク（全ページ共通）
 a {
-    text-decoration: none !important;
+  text-decoration: none !important;
 }
+
 .link-border{
   padding-bottom: 5px;
   position: relative;
