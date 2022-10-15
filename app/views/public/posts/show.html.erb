@@ -97,7 +97,7 @@
           <%= render 'public/post_comments/comment-form', post: @post, post_comment: @post_comment %>
         </div>
         <!--ユーザーがログインしていないとき-->
-        <div class="not-signin d-flex">
+        <div class="not-signin col-md-8 mx-auto d-flex mt-5">
           <% unless user_signed_in? %>
             <i class="fas fa-bullhorn mt-1"></i>
             <p class="ml-4">
