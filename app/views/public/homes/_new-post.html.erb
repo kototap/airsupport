@@ -10,8 +10,8 @@
       <!--文章部分-->
       <div class="col-md-8 d-flex flex-column justify-content-between">
         <div>
-          <%= link_to post_path(post), class: 'text-dark' do %>
-            <h4 class="font-weight-bold pt-3"><span class="link-border"><%= post.title %></span></h4>
+          <%= link_to post_path(post) do %>
+            <h4 class="card__title pt-3"><%= post.title %></h4>
             <p class="card__text pt-3"><%= post.body %></p>
           <% end %>
         </div>

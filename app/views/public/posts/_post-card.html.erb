@@ -15,14 +15,14 @@
           <%= post.bookmarks.count %>
           <span> | </span>
           <i class="fas fa-plane"></i>
-          <%= link_to post.airport, posts_path(airport: post.airport), class: "text-dark border-bottom" %>
+          <%= link_to post.airport, posts_path(airport: post.airport), class: "border-bottom" %>
         </p>
       </div>
       <div class="row">
         <p class="card__post-tags">
           <i class="fas fa-tag"></i>
           <% post.tags.each do |tag| %>
-            <%= link_to posts_path(tag_ids: tag.id), class: "text-dark border-bottom mr-2" do %>
+            <%= link_to posts_path(tag_ids: tag.id), class: "border-bottom mr-2" do %>
               <%= tag.name %>
             <% end %>
           <% end %>
