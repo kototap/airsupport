@@ -1,14 +1,14 @@
 <div class="container my-5 py-5">
   <!--投稿詳細-->
   <%= render "post-detail", post: @post %>
-  
+
   <div class="row">
     <div class="col-md-6">
       <!--コメントエリア-->
       <div class="row d-flex flex-column">
         <div class="col-md-10 mx-auto">
           <% if @post.is_draft == false && user_signed_in? %>
-            <h5 class="ml-1 my-3"><span class="comment-title"><i class="far fa-comments"></i> コメント</span></h5>
+            <h5 class="my-3"><span class="comment-title"><i class="far fa-comments"></i> コメント</span></h5>
             <div class="comment-area">
               <%= render 'public/post_comments/comment-area', post: @post, comments: @comments %>
             </div>
