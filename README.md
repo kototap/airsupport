@@ -2,6 +2,8 @@
 
 ## サイト概要
 
+![1665996272854](https://user-images.githubusercontent.com/106796386/196148558-a5448471-be92-4cb6-a7b2-6cbb6c3a4434.png)
+
 ### サイトテーマ
   各地の空港周辺の観光情報やレストラン、カフェなどの情報を投稿したり検索したりできるコミュニティサイト  
   旅の時間を持て余すことなく有意義に過ごすことと、空港周辺の地域の活性化にもつなげていきたい。
@@ -31,6 +33,9 @@
   - レストランやカフェのオーナー様による宣伝
 
 ## 設計書
+![ER図](https://user-images.githubusercontent.com/106796386/196148995-2c6a3463-8e41-476c-ae8b-364b7f5522a2.jpg)
+![システム構成図](https://user-images.githubusercontent.com/106796386/196148879-0b35c5c5-5ed4-4131-923c-2f5bbad7bb30.jpg)
+
 - [ER図](https://drive.google.com/file/d/1u4yH1hbY84e71Le39BTIp4OsmI3DUDS1/view?usp=sharing)
 - [UI　Flows](https://drive.google.com/file/d/1D7TgHl0nmjuLEqufgK1qBxe2b572__s7/view?usp=sharing)
 - [ワイヤーフレーム](https://drive.google.com/file/d/1vaFUBP_x4B90DP3prFGON9LMyffXkkO5/view?usp=sharing)
