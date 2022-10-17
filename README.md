@@ -1,8 +1,8 @@
 # AIRSUPPORT
 
-## サイト概要
-
 ![1665996272854](https://user-images.githubusercontent.com/106796386/196148558-a5448471-be92-4cb6-a7b2-6cbb6c3a4434.png)
+
+## サイト概要
 
 ### サイトテーマ
   各地の空港周辺の観光情報やレストラン、カフェなどの情報を投稿したり検索したりできるコミュニティサイト  
@@ -32,24 +32,27 @@
   - 地元の魅力を発信
   - レストランやカフェのオーナー様による宣伝
 
-## 設計書
-![ER図](https://user-images.githubusercontent.com/106796386/196148995-2c6a3463-8e41-476c-ae8b-364b7f5522a2.jpg)
-![システム構成図](https://user-images.githubusercontent.com/106796386/196148879-0b35c5c5-5ed4-4131-923c-2f5bbad7bb30.jpg)
+# 設計書
 
-- [ER図](https://drive.google.com/file/d/1u4yH1hbY84e71Le39BTIp4OsmI3DUDS1/view?usp=sharing)
+## ER図
+![ER図](https://user-images.githubusercontent.com/106796386/196148995-2c6a3463-8e41-476c-ae8b-364b7f5522a2.jpg)
+
+## AWSシステム構成図
+![システム構成図](https://user-images.githubusercontent.com/106796386/196148879-0b35c5c5-5ed4-4131-923c-2f5bbad7bb30.jpg
+
+## その他
 - [UI　Flows](https://drive.google.com/file/d/1D7TgHl0nmjuLEqufgK1qBxe2b572__s7/view?usp=sharing)
 - [ワイヤーフレーム](https://drive.google.com/file/d/1vaFUBP_x4B90DP3prFGON9LMyffXkkO5/view?usp=sharing)
 - [テーブル定義書](https://docs.google.com/spreadsheets/d/1Tp5NF7XPubGdvODzr5KErdDS83oDe2MVII_KGrHSeE4/edit?usp=sharing)
-- [システム構成図](https://drive.google.com/file/d/1wdwH_ZmrgdbBzXkgeZi0eJ0YN4wzyqDj/view?usp=sharing)
 
-## 開発環境
+# 開発環境
 - OS：Linux2(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
-## gems
+# Gems
 - devise：ログイン機能
 - geocoder：GoogleAPI導入時の緯度・経度取得
 - kaminari：ページネーション
@@ -57,6 +60,6 @@
 - rubocop：コーディングチェック
 - rspec-rails：テスト
 
-## 使用素材
+# 使用素材
 - Font Awesome
 - Google Font
