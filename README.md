@@ -32,27 +32,27 @@
   - 地元の魅力を発信
   - レストランやカフェのオーナー様による宣伝
 
-# 設計書
+## 設計書
 
-## ER図
+### ER図
 ![ER図](https://user-images.githubusercontent.com/106796386/196148995-2c6a3463-8e41-476c-ae8b-364b7f5522a2.jpg)
 
-## AWSシステム構成図
+### AWSシステム構成図
 ![AWSシステム構成図](https://user-images.githubusercontent.com/106796386/196151335-1ed11995-edb1-4662-9db1-7507183a0a45.jpg)
 
-## その他
+### その他
 - [UI　Flows](https://drive.google.com/file/d/1D7TgHl0nmjuLEqufgK1qBxe2b572__s7/view?usp=sharing)
 - [ワイヤーフレーム](https://drive.google.com/file/d/1vaFUBP_x4B90DP3prFGON9LMyffXkkO5/view?usp=sharing)
 - [テーブル定義書](https://docs.google.com/spreadsheets/d/1Tp5NF7XPubGdvODzr5KErdDS83oDe2MVII_KGrHSeE4/edit?usp=sharing)
 
-# 開発環境
+## 開発環境
 - OS：Linux2(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
-# Gems
+## Gems
 - devise：ログイン機能
 - geocoder：GoogleAPI導入時の緯度・経度取得
 - kaminari：ページネーション
@@ -60,6 +60,6 @@
 - rubocop：コーディングチェック
 - rspec-rails：テスト
 
-# 使用素材
+## 使用素材
 - Font Awesome
 - Google Font
