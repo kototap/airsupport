@@ -1,6 +1,6 @@
 # AIRSUPPORT
 
-![1665996272854](https://user-images.githubusercontent.com/106796386/196148558-a5448471-be92-4cb6-a7b2-6cbb6c3a4434.png)
+![1666001493324](https://user-images.githubusercontent.com/106796386/196151749-ff090a8f-320e-482d-af78-42ff1c393f05.png)
 
 ## サイト概要
 
@@ -38,7 +38,7 @@
 ![ER図](https://user-images.githubusercontent.com/106796386/196148995-2c6a3463-8e41-476c-ae8b-364b7f5522a2.jpg)
 
 ## AWSシステム構成図
-![システム構成図](https://user-images.githubusercontent.com/106796386/196148879-0b35c5c5-5ed4-4131-923c-2f5bbad7bb30.jpg
+![AWSシステム構成図](https://user-images.githubusercontent.com/106796386/196151335-1ed11995-edb1-4662-9db1-7507183a0a45.jpg)
 
 ## その他
 - [UI　Flows](https://drive.google.com/file/d/1D7TgHl0nmjuLEqufgK1qBxe2b572__s7/view?usp=sharing)
