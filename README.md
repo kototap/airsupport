@@ -45,12 +45,12 @@
 - IDE：Cloud9
 
 ## gems
-- devise: ログイン機能
-- geocoder: GoogleAPI導入時の緯度・経度取得
-- kaminari: ページネーション
-- ransack: 検索機能実装
-- rubocop: コーディングチェック
-- rspec-rails: テスト
+- devise：ログイン機能
+- geocoder：GoogleAPI導入時の緯度・経度取得
+- kaminari：ページネーション
+- ransack：検索機能実装
+- rubocop：コーディングチェック
+- rspec-rails：テスト
 
 ## 使用素材
 - Font Awesome
