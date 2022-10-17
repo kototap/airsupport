@@ -35,6 +35,7 @@
 - [UI　Flows](https://drive.google.com/file/d/1D7TgHl0nmjuLEqufgK1qBxe2b572__s7/view?usp=sharing)
 - [ワイヤーフレーム](https://drive.google.com/file/d/1vaFUBP_x4B90DP3prFGON9LMyffXkkO5/view?usp=sharing)
 - [テーブル定義書](https://docs.google.com/spreadsheets/d/1Tp5NF7XPubGdvODzr5KErdDS83oDe2MVII_KGrHSeE4/edit?usp=sharing)
+- [システム構成図](https://drive.google.com/file/d/1wdwH_ZmrgdbBzXkgeZi0eJ0YN4wzyqDj/view?usp=sharing)
 
 ## 開発環境
 - OS：Linux2(CentOS)
@@ -43,6 +44,14 @@
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
+## gems
+- gem 'devise' => ログイン機能
+- gem 'geocoder' => GoogleAPI導入時の緯度・経度取得
+- gem 'kaminari' => ページネーション
+- gem 'ransack' => 検索機能実装
+- gem 'rubocop' => コーディングチェック
+- gem 'rspec-rails' => テスト
+
 ## 使用素材
 - Font Awesome
-- Google Maps API
+- Google Font
