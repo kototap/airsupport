@@ -37,11 +37,12 @@
 - [テーブル定義書](https://docs.google.com/spreadsheets/d/1Tp5NF7XPubGdvODzr5KErdDS83oDe2MVII_KGrHSeE4/edit?usp=sharing)
 
 ## 開発環境
-- OS：Linux(CentOS)
+- OS：Linux2(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
 ## 使用素材
-- 使用検討中です
+- Font Awesome
+- Google Maps API
