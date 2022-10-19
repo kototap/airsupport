@@ -44,7 +44,6 @@
 - [UI Flows](https://drive.google.com/file/d/1D7TgHl0nmjuLEqufgK1qBxe2b572__s7/view?usp=sharing)
 - [ワイヤーフレーム](https://drive.google.com/file/d/1vaFUBP_x4B90DP3prFGON9LMyffXkkO5/view?usp=sharing)
 - [テーブル定義書](https://docs.google.com/spreadsheets/d/1Tp5NF7XPubGdvODzr5KErdDS83oDe2MVII_KGrHSeE4/edit?usp=sharing)
-- [AWSインフラ設計書](https://docs.google.com/spreadsheets/d/1oV8BKiT1ywpfEh-jn5WY0Ps7NCO2_zdVMRPaEfcvftI/edit?usp=sharing)
 
 ## 開発環境
 - OS：Linux2(CentOS)
