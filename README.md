@@ -35,7 +35,7 @@
 ## 設計書
 
 ### ER図
-![ER図](https://user-images.githubusercontent.com/106796386/196148995-2c6a3463-8e41-476c-ae8b-364b7f5522a2.jpg)
+![ER図 (1)](https://user-images.githubusercontent.com/106796386/196601217-e2c09a94-ce5c-47e3-9380-fe24b39260e1.jpg)
 
 ### AWSシステム構成図
 ![AWSシステム構成図](https://user-images.githubusercontent.com/106796386/196151335-1ed11995-edb1-4662-9db1-7507183a0a45.jpg)
