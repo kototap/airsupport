@@ -78,7 +78,6 @@ ActiveRecord::Schema.define(version: 2022_09_30_064648) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "tag_id"
     t.string "title"
     t.string "body"
     t.string "airport"
